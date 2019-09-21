@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: a366ce6c66f6c2147b3d810d91e86cdf
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Column1
+    100002: Column2
+    100004: Column3
+    100006: Column4
+    100008: FloorBrick1
+    100010: FloorBrick2
+    100012: GoldTile1
+    100014: GoldTile2
+    100016: GreenTile
+    100018: //RootNode
+    100020: PurpleBrick1
+    100022: PurpleBrick2
+    100024: PurpleBrick3
+    100026: SideBrick
+    100028: Tile1
+    100030: Tile2
+    100032: Tile3
+    100034: Wall
+    400000: Column1
+    400002: Column2
+    400004: Column3
+    400006: Column4
+    400008: FloorBrick1
+    400010: FloorBrick2
+    400012: GoldTile1
+    400014: GoldTile2
+    400016: GreenTile
+    400018: //RootNode
+    400020: PurpleBrick1
+    400022: PurpleBrick2
+    400024: PurpleBrick3
+    400026: SideBrick
+    400028: Tile1
+    400030: Tile2
+    400032: Tile3
+    400034: Wall
+    2100000: phong1
+    2300000: Column1
+    2300002: Column2
+    2300004: Column3
+    2300006: Column4
+    2300008: FloorBrick1
+    2300010: FloorBrick2
+    2300012: GoldTile1
+    2300014: GoldTile2
+    2300016: GreenTile
+    2300018: PurpleBrick1
+    2300020: PurpleBrick2
+    2300022: PurpleBrick3
+    2300024: SideBrick
+    2300026: Tile1
+    2300028: Tile2
+    2300030: Tile3
+    2300032: Wall
+    3300000: Column1
+    3300002: Column2
+    3300004: Column3
+    3300006: Column4
+    3300008: FloorBrick1
+    3300010: FloorBrick2
+    3300012: GoldTile1
+    3300014: GoldTile2
+    3300016: GreenTile
+    3300018: PurpleBrick1
+    3300020: PurpleBrick2
+    3300022: PurpleBrick3
+    3300024: SideBrick
+    3300026: Tile1
+    3300028: Tile2
+    3300030: Tile3
+    3300032: Wall
+    4300000: Column4
+    4300002: FloorBrick2
+    4300004: FloorBrick1
+    4300006: GoldTile2
+    4300008: GoldTile1
+    4300010: Column1
+    4300012: SideBrick
+    4300014: PurpleBrick3
+    4300016: Tile3
+    4300018: GreenTile
+    4300020: Tile2
+    4300022: Wall
+    4300024: PurpleBrick1
+    4300026: PurpleBrick2
+    4300028: Column3
+    4300030: Column2
+    4300032: Tile1
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 230
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: 65d5510149d966b4ba223c0bf7305b0c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Pebble_01
+    100002: Pebble_02
+    100004: Pebble_03
+    100006: Pebble_04
+    100008: Pebble_05
+    100010: Pebble_06
+    100012: Pebble_07
+    100014: Pebble_08
+    100016: Pebble_09
+    100018: Pebble_10
+    100020: Pebble_11
+    100022: Pebble_12
+    100024: Pebble_13
+    100026: Pebble_14
+    100028: Pebble_15
+    100030: Pebble_16
+    100032: Pebble_17
+    100034: Pebble_18
+    100036: Pebble_19
+    100038: Pebble_20
+    100040: Pebble_21
+    100042: Pebble_22
+    100044: Pebble_23
+    100046: //RootNode
+    400000: Pebble_01
+    400002: Pebble_02
+    400004: Pebble_03
+    400006: Pebble_04
+    400008: Pebble_05
+    400010: Pebble_06
+    400012: Pebble_07
+    400014: Pebble_08
+    400016: Pebble_09
+    400018: Pebble_10
+    400020: Pebble_11
+    400022: Pebble_12
+    400024: Pebble_13
+    400026: Pebble_14
+    400028: Pebble_15
+    400030: Pebble_16
+    400032: Pebble_17
+    400034: Pebble_18
+    400036: Pebble_19
+    400038: Pebble_20
+    400040: Pebble_21
+    400042: Pebble_22
+    400044: Pebble_23
+    400046: //RootNode
+    2100000: 'Material #65'
+    2300000: Pebble_01
+    2300002: Pebble_02
+    2300004: Pebble_03
+    2300006: Pebble_04
+    2300008: Pebble_05
+    2300010: Pebble_06
+    2300012: Pebble_07
+    2300014: Pebble_08
+    2300016: Pebble_09
+    2300018: Pebble_10
+    2300020: Pebble_11
+    2300022: Pebble_12
+    2300024: Pebble_13
+    2300026: Pebble_14
+    2300028: Pebble_15
+    2300030: Pebble_16
+    2300032: Pebble_17
+    2300034: Pebble_18
+    2300036: Pebble_19
+    2300038: Pebble_20
+    2300040: Pebble_21
+    2300042: Pebble_22
+    2300044: Pebble_23
+    3300000: Pebble_01
+    3300002: Pebble_02
+    3300004: Pebble_03
+    3300006: Pebble_04
+    3300008: Pebble_05
+    3300010: Pebble_06
+    3300012: Pebble_07
+    3300014: Pebble_08
+    3300016: Pebble_09
+    3300018: Pebble_10
+    3300020: Pebble_11
+    3300022: Pebble_12
+    3300024: Pebble_13
+    3300026: Pebble_14
+    3300028: Pebble_15
+    3300030: Pebble_16
+    3300032: Pebble_17
+    3300034: Pebble_18
+    3300036: Pebble_19
+    3300038: Pebble_20
+    3300040: Pebble_21
+    3300042: Pebble_22
+    3300044: Pebble_23
+    4300000: Pebble_19
+    4300002: Pebble_04
+    4300004: Pebble_11
+    4300006: Pebble_05
+    4300008: Pebble_20
+    4300010: Pebble_06
+    4300012: Pebble_15
+    4300014: Pebble_08
+    4300016: Pebble_12
+    4300018: Pebble_14
+    4300020: Pebble_01
+    4300022: Pebble_09
+    4300024: Pebble_03
+    4300026: Pebble_02
+    4300028: Pebble_23
+    4300030: Pebble_18
+    4300032: Pebble_17
+    4300034: Pebble_13
+    4300036: Pebble_21
+    4300038: Pebble_22
+    4300040: Pebble_10
+    4300042: Pebble_16
+    4300044: Pebble_07
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
