@@ -38,8 +38,8 @@ public class PlayerStaff : MonoBehaviour
         changeMat[4] = Resources.Load("Nature/Main_Objects/COMMON/Girl/M_Staff", typeof(Material)) as Material;
 
         state = C_STATE.EMPTY;
-        crystalNum = 88;
-
+        if (crystalNum != 0)
+            crystalNum = 0;
         ChangeMaterial();
     }
     
@@ -48,19 +48,19 @@ public class PlayerStaff : MonoBehaviour
         switch (state)
         {
             case C_STATE.BLUE:
-                mat = changeMat[0];
+                GetComponent<MeshRenderer>().material = changeMat[0];
                 break;
             case C_STATE.WHITE:
-                mat = changeMat[1];
+                GetComponent<MeshRenderer>().material = changeMat[1];
                 break;
             case C_STATE.RED:
-                mat = changeMat[2];
+                GetComponent<MeshRenderer>().material = changeMat[2];
                 break;
             case C_STATE.BLACK:
-                mat = changeMat[3];
+                GetComponent<MeshRenderer>().material = changeMat[3];
                 break;
             case C_STATE.EMPTY:
-                mat = changeMat[4];
+                GetComponent<MeshRenderer>().material = changeMat[4];
                 break;
         }
     }

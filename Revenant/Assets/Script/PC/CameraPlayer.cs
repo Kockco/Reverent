@@ -6,7 +6,7 @@ public class CameraPlayer : MonoBehaviour
 {
     [SerializeField]
     float mouseSensitivity = 2.0f;  //카메라 마우스 감도
-    
+
     Vector3 dir;
 
     Transform myTransform;
@@ -19,19 +19,18 @@ public class CameraPlayer : MonoBehaviour
 
     [Header("캐릭터 크기 조정")]
     [Range(0, 5)]
-    public float charSize =1 ;
+    public float charSize = 1;
     [Header("카메라 높이 조정")]
     [Range(0, 5)]
-    public float  camHeight = 1.4f;
+    public float camHeight = 1.4f;
     [Header("시작하는 카메라 거리")]
-    [Range(0,-30)]
+    [Range(0, -30)]
     public float startDistance = -4.1f;
-    [Header ("현재 거리(수정불가)")]
+    [Header("현재 거리(수정불가)")]
     [SerializeField]
     float nowDistance;
 
     public bool otherCamera;
-
     // Use this for initialization
     void Awake()
     {
@@ -44,10 +43,10 @@ public class CameraPlayer : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, startDistance);
     }
-
     // Update is called once per frame
     void Update()
     {
+
         if (!otherCamera)
         {
             Balance();
@@ -63,9 +62,7 @@ public class CameraPlayer : MonoBehaviour
             //test 용
             nowDistance = Camera.main.transform.localPosition.z;
             transform.localScale = new Vector3(charSize, charSize, charSize);
-
         }
-      
     }
     void LateUpdate()
     {
@@ -77,7 +74,7 @@ public class CameraPlayer : MonoBehaviour
                 TopView();
         }
         //MouseSense();
-       // MyView();
+        // MyView();
     }
 
     void MouseSense()
@@ -87,8 +84,8 @@ public class CameraPlayer : MonoBehaviour
         mouseMove += new Vector3(-Input.GetAxisRaw("Mouse Y") * mouseSensitivity, Input.GetAxisRaw("Mouse X") * mouseSensitivity, 0);   //마우스의 움직임을 가감
         if (mouseMove.x < -40)  //위로 볼수있는 것 제한 90이면 아예 땅바닥에서 하늘보기
             mouseMove.x = -40;
-        else if (30 < mouseMove.x) //위에서 아래로 보는것 제한 
-            mouseMove.x = 30;
+        else if (50 < mouseMove.x) //위에서 아래로 보는것 제한 
+            mouseMove.x = 50;
 
         cameraParentTransform.localEulerAngles = mouseMove;
     }
@@ -96,7 +93,7 @@ public class CameraPlayer : MonoBehaviour
     void TopView()
     {
         cameraParentTransform.position = myTransform.position + Vector3.up * 25; //캐릭터 머리 훨씬위
-        cameraParentTransform.localEulerAngles = new Vector3(90, 0 ,0);
+        cameraParentTransform.localEulerAngles = new Vector3(90, 0, 0);
     }
 
     void MyView()
@@ -120,5 +117,4 @@ public class CameraPlayer : MonoBehaviour
         else if (Camera.main.transform.localPosition.z < -30) // - 5까지였음
             Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, -30);    //최대로 먼 수치
     }
-    
 }

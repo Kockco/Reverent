@@ -68,10 +68,6 @@ public class Player : MonoBehaviour
         currentState = nextState;
         currentState.OnEnter(this);
     }
-    
-    private void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-    }
 
     public void MoveCalc(float ratio)
     {
@@ -149,5 +145,23 @@ public class Player : MonoBehaviour
     public void PlayerAnimation(string aniName) { model.GetComponent<Animator>().SetTrigger(aniName); }
     public void PlayerAnimation(string aniName,bool b) { model.GetComponent<Animator>().SetBool(aniName,b); }
     public void PlayerAnimation(string aniName, float f) { model.GetComponent<Animator>().SetFloat(aniName, f); }
+    
+    void OnDrawGizmos()
+    {
+        RaycastHit hit;
+        // Physics.SphereCast (레이저를 발사할 위치, 구의 반경, 발사 방향, 충돌 결과, 최대 거리, 충돌할 레이어)
+        bool isHit = Physics.SphereCast(transform.position, transform.lossyScale.x / 3, -transform.up, out hit, 0.1f);
 
+        Gizmos.color = Color.red;
+        if (isHit)
+        {
+            Gizmos.DrawRay(transform.position, (-transform.up) * hit.distance);
+            Gizmos.DrawWireSphere(transform.position + (-transform.up) * hit.distance, 0.1f);
+        }
+        else
+        {
+            Gizmos.DrawRay(transform.position, (-transform.up) * 0.1f);
+            //Gizmos.DrawWireSphere(transform.position + (-transform.up) * hit.distance, 0.01f);
+        }
+    }
 }

@@ -7,11 +7,6 @@ public class CrystalManager : MonoBehaviour
     public GameObject[] crystal;
     public GameObject[] emptyCrystal;
     public Material[] crystalMaterial;
-    public Material blueMat;
-    public Material whiteMat;
-    public Material redMat;
-    public Material blackMat;
-    public Material emptyMat;
 
     private static CrystalManager _instance = null;
 
@@ -36,6 +31,16 @@ public class CrystalManager : MonoBehaviour
     {
         crystal = GameObject.FindGameObjectsWithTag("Crystal");
         emptyCrystal = GameObject.FindGameObjectsWithTag("Empty_Crystal");
+
+        int cNum = 0;
+        foreach(var i in emptyCrystal)
+        {
+            i.GetComponent<CrystalState>().myNum = 0;
+        }
+        foreach (var i in crystal)
+        {
+            i.GetComponent<CrystalState>().myNum = ++cNum;
+        }
 
         crystalMaterial = new Material[5];
         crystalMaterial[0] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Blue", typeof(Material)) as Material;
