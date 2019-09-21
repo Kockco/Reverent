@@ -8680,7 +8680,7 @@ PrefabInstance:
     - target: {fileID: 9500000, guid: 8cce00c18cad29f4b99679b2abb0ce09, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 2e11c6d30640d06449bb9ca105507c93, type: 2}
+      objectReference: {fileID: 9100000, guid: aa380cbe7699b9948b54db7ba11acb7f, type: 2}
     - target: {fileID: 13700000, guid: 8cce00c18cad29f4b99679b2abb0ce09, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -40703,7 +40703,7 @@ MonoBehaviour:
   move: {x: 0, y: 0, z: 0}
   myTransform: {fileID: 0}
   runSpeed: 4
-  jumpPower: 6
+  jumpPower: 4.3
   gravity: 9.81
   yVelocity: 0
   model: {fileID: 0}
