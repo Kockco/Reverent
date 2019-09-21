@@ -44,9 +44,9 @@ public class CrystalManager : MonoBehaviour
 
         crystalMaterial = new Material[5];
         crystalMaterial[0] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Blue", typeof(Material)) as Material;
-        crystalMaterial[1] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_White", typeof(Material)) as Material;
+        crystalMaterial[1] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Yellow", typeof(Material)) as Material;
         crystalMaterial[2] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Red", typeof(Material)) as Material;
-        crystalMaterial[3] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Black", typeof(Material)) as Material;
+        crystalMaterial[3] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Green", typeof(Material)) as Material;
         crystalMaterial[4] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Empty", typeof(Material)) as Material;
     }
 
@@ -60,7 +60,7 @@ public class CrystalManager : MonoBehaviour
                 obj.GetComponent<MeshRenderer>().materials = mts;
                 break;
             case C_STATE.WHITE:
-                mts[matNum] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_White", typeof(Material)) as Material;
+                mts[matNum] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Yellow", typeof(Material)) as Material;
                 obj.GetComponent<MeshRenderer>().materials = mts;
                 break;
             case C_STATE.RED:
@@ -68,7 +68,7 @@ public class CrystalManager : MonoBehaviour
                 obj.GetComponent<MeshRenderer>().materials = mts;
                 break;
             case C_STATE.BLACK:
-                mts[matNum] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Black", typeof(Material)) as Material;
+                mts[matNum] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Green", typeof(Material)) as Material;
                 obj.GetComponent<MeshRenderer>().materials = mts;
                 break;
             case C_STATE.EMPTY:

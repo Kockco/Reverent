@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Crystal_White
+  m_Name: Crystal_Green
   m_Shader: {fileID: 4800000, guid: bc8ccb75ecb64c948a10a511ee77c79f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
