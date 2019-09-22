@@ -38,6 +38,7 @@ public class MouseEvent : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))//범위 크리스탈 색 Empty로 바꾸기
         {
+            staff.OutCrystalEffect();
             PlayerCrystalReset(true);
         }
     }
@@ -108,6 +109,7 @@ public class MouseEvent : MonoBehaviour
                     //완전체 크리스탈의 정보를 스태프로 가져옴
                     staff.CrystalNum = hitCrystal.myNum;
                     staff.State = hitCrystal.state;
+                    hitCrystal.CrystalPopEffect();
                 }
             }
             else if (hit.transform.tag == "Wall")

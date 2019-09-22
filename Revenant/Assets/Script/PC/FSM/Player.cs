@@ -137,9 +137,9 @@ public class Player : MonoBehaviour
         move.y = yVelocity;
 
         if (yVelocity >= 0)
-            yVelocity -= gravity * Time.deltaTime;
+            yVelocity -= gravity *1 * Time.deltaTime;
         else if (yVelocity > -19 && yVelocity < 0)
-            yVelocity -= gravity *2* Time.deltaTime;
+            yVelocity -= gravity *2 * Time.deltaTime;
     }
     
     public void PlayerAnimation(string aniName) { model.GetComponent<Animator>().SetTrigger(aniName); }
