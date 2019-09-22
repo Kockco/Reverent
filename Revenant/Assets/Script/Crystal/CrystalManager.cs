@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class CrystalManager : MonoBehaviour
 {
+    //크리스탈 관리
     public GameObject[] crystal;
     public GameObject[] emptyCrystal;
+    //이펙트 관리
+    public GameObject[] crystalEffect;
+
+    //마테리얼 관리
     public Material[] crystalMaterial;
 
+    //싱글턴 생성
     private static CrystalManager _instance = null;
-
     public static CrystalManager Instance
     {
         get
@@ -27,12 +32,19 @@ public class CrystalManager : MonoBehaviour
         }
     }
 
+
     private void Awake()
     {
         crystal = GameObject.FindGameObjectsWithTag("Crystal");
         emptyCrystal = GameObject.FindGameObjectsWithTag("Empty_Crystal");
+        crystalEffect = GameObject.FindGameObjectsWithTag("Crystal_Effect");
 
         int cNum = 0;
+
+        foreach(var i in crystalEffect)
+        {
+            i.SetActive(false);
+        }
         foreach(var i in emptyCrystal)
         {
             i.GetComponent<CrystalState>().myNum = 0;

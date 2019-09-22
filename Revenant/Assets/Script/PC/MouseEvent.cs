@@ -110,13 +110,17 @@ public class MouseEvent : MonoBehaviour
                     staff.CrystalNum = hitCrystal.myNum;
                     staff.State = hitCrystal.state;
                     hitCrystal.CrystalPopEffect();
+                    for(int effectNum =0; effectNum <3; effectNum++)
+                    {
+                        CrystalManager.Instance.crystalEffect[effectNum].GetComponent<KongSlerpMove>().CreateEffet(hitCrystal.transform.position);
+                    }
                 }
             }
             else if (hit.transform.tag == "Wall")
             {
             }
         }
-        staff.ChangeMaterial();
+        //staff.ChangeMaterial();
     }
     void PlayerCrystalReset(bool animationPlay = false)
     {
@@ -125,5 +129,6 @@ public class MouseEvent : MonoBehaviour
 
         staff.CrystalNum=88;
         staff.State = C_STATE.EMPTY;
+        staff.ChangeMaterial();
     }
 }

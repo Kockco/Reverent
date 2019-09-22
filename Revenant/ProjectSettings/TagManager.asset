@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Crystal
   - Empty_Crystal
+  - Crystal_Effect
   layers:
   - Default
   - TransparentFX
