@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Brazier_cup
-  m_Shader: {fileID: 4800000, guid: fbc0807e2e1bbb94d96cab3e6c5d94f9, type: 3}
+  m_Name: TriPlanar 6
+  m_Shader: {fileID: 4800000, guid: 6a901a364e1c1e24b8c7a55a021f25ec, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -20,7 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: cc5fbdf4e9b19cb4ea322dd37cbfacc2, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -39,25 +39,25 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _IrTex:
-        m_Texture: {fileID: 2800000, guid: b9b4e784e0499544a8c9e6a5d5aea09d, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 38e83df644a1ce84c9935d253317101c, type: 3}
+        m_Texture: {fileID: 2800000, guid: b9c58fb46a9c87a479b4b03dd721bad8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Mask:
-        m_Texture: {fileID: 2800000, guid: 73d6444f5242e134a8f940e8c8e29491, type: 3}
+    - _MainTexBottom:
+        m_Texture: {fileID: 2800000, guid: 4f03895cd8a1c904caf98fcbe88cbe12, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTexSide:
+        m_Texture: {fileID: 2800000, guid: 4235ec7b6486dcf42bb3d4b717fe0694, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Noise:
-        m_Texture: {fileID: 2800000, guid: 50f5bfbaf5f024c409813bdac16a6237, type: 3}
-        m_Scale: {x: 1, y: 1}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 4770b0b24e7548d40bed956b45526454, type: 3}
+        m_Scale: {x: 0, y: 0}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -68,34 +68,44 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: d440902fad11e807d00044888d76c639, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Brightness: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Edge: -0.02
+    - _Edge2: 0.26
+    - _Edge3: 1.42
+    - _Edge4: 2
+    - _EdgeWidth: 0.33
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LM: 0
-    - _LM2: 0
+    - _Merge: 0
+    - _MergeW: 0.34
+    - _MergeWidth: 0.21
+    - _MergeY: -0.61
     - _Metallic: 0
     - _Mode: 0
+    - _NoiseScale: -0.48
     - _OcclusionStrength: 1
-    - _Offset: 0.528
     - _Parallax: 0.02
+    - _RimPower: 20
+    - _Scale: 2
+    - _SideScale: 0.87
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _TopSpread: 2
     - _UVSec: 0
-    - _Value: 1
-    - _Value2: 2
-    - _WorldScale: 1
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.068396226, g: 0.03727584, b: 0.035165984, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color2: {r: 0.73671407, g: 1, b: 0.13235295, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _IrColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _RimColor: {r: 0.2959238, g: 0.3183944, b: 0.4716981, a: 1}
+    - _RimColor2: {r: 0.1709559, g: 0.21457915, b: 0.375, a: 1}
+    - _TopColor: {r: 0.75, g: 0, b: 0, a: 1}
