@@ -14,6 +14,7 @@ public class PlayerStaff : MonoBehaviour
     Material mat;
     public Material[] changeMat;
     C_STATE state;
+    public int kong = 0;
     public C_STATE State
     {
         get
@@ -23,7 +24,7 @@ public class PlayerStaff : MonoBehaviour
         set
         {
             state = value;
-            ChangeMaterial();
+            //ChangeMaterial();
         }
     }
 
@@ -49,12 +50,20 @@ public class PlayerStaff : MonoBehaviour
         {
             crystalEffect[a] = transform.GetChild(0).GetChild(a++).gameObject;
         }
-
+        
         ChangeMaterial();
     }
-    
+
+    private void Update()
+    {
+        if(kong == 3)
+        {
+            ChangeMaterial();
+        }
+    }
     public void ChangeMaterial()
     {
+        kong = 0;
         for(int i = 4; i < 7; i++)
         {
             crystalEffect[i].SetActive(false);
@@ -87,7 +96,7 @@ public class PlayerStaff : MonoBehaviour
                 break;
         }
     }
-
+    
     void IngCrystalEffect()
     {
         switch (state)

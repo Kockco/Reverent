@@ -9,7 +9,6 @@ public class CrystalState : MonoBehaviour
     public int myNum;
     public C_STATE state;
     public Material[] mat; //마테리얼 
-    public Material[] mat2; //마테리얼 
     bool isLink = false; //링크가 되어있는지 확인
     public bool IsLink { get; set; }
     bool isClear = false;
