@@ -17,6 +17,7 @@ public class CrystalMove : CrystalPuzzle
             c_state.state = C_STATE.EMPTY;
         
         pos = new Vector3[5];
+
         for(int i = 0; i <5; i++)
         {
             pos[i] = transform.position;
@@ -29,7 +30,7 @@ public class CrystalMove : CrystalPuzzle
     }
     private void Update()
     {
-        if (c_state.isActive)
+        if (c_state.isActive && !c_state.IsClear)
         {
             if (transform.position == pos[4] && c_state.state != C_STATE.EMPTY)
             {
@@ -39,21 +40,19 @@ public class CrystalMove : CrystalPuzzle
             {
                 target = pos[4];
             }
-            //중앙이 아닐때는 중앙으로 / 중앙 포지션과는 비슷해지면 초기화
-            if (((target.z - transform.position.z) < 0.1f && (target.z - transform.position.z) > -0.1f)
-                && ((target.x - transform.position.x) < 0.1f && (target.x - transform.position.x) > -0.1f))
-            {
+            ////중앙이 아닐때는 중앙으로 / 중앙 포지션과는 비슷해지면 초기화
+            //if (((target.z - transform.position.z) < 0.1f && (target.z - transform.position.z) > -0.1f)
+            //    && ((target.x - transform.position.x) < 0.1f && (target.x - transform.position.x) > -0.1f))
+            if(target == transform.position)
                 transform.position = target;
-            }
             TargetArrive(target);
         }
     }
-
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
-        if (c_state.isActive)
-            transform.position = Vector3.Lerp(transform.position, target, Time.fixedDeltaTime * 2f);
+        if (c_state.isActive && !c_state.IsClear)
+            transform.position = Vector3.MoveTowards(transform.position, target, Time.fixedDeltaTime * 2f);
     }
 
     void TargetPosChange()
@@ -78,7 +77,7 @@ public class CrystalMove : CrystalPuzzle
     }
 
     void TargetArrive(Vector3 aPos)
-    {
+    {   
         if ((target == transform.position && c_state.state != C_STATE.EMPTY && target != pos[4]) ||
             (transform.position == pos[4] && c_state.state == C_STATE.EMPTY))
         {

@@ -26,6 +26,9 @@ public class PlayerJumpState : PlayerState
         else
         {
             RaycastHit hit;
+            int layerMask = 1 << LayerMask.NameToLayer("Crystal");
+            // Physics.SphereCast (레이저를 발사할 위치, 구의 반경, 발사 방향, 충돌 결과, 최대 거리, )
+            bool isHit = Physics.SphereCast(player.transform.position, player.transform.lossyScale.x / 2, -player.transform.up, out hit, 0.1f);
             if (Physics.Raycast(player.transform.position, Vector3.down, out hit) && hit.distance < 0.15f)
             {
                 player.transform.GetChild(0).GetComponent<Animator>().SetTrigger("JumpEnd");
@@ -34,7 +37,6 @@ public class PlayerJumpState : PlayerState
                 player.SetState(new PlayerIdleState());
             }
         }
-
         player.MoveCalc(0.3f);
         player.Gravity();
     }
@@ -44,4 +46,5 @@ public class PlayerJumpState : PlayerState
         delay = 0;
         groundCheck = false;
     }
+    
 }

@@ -27,6 +27,8 @@ public class PlayerStaff : MonoBehaviour
         }
     }
 
+    GameObject[] crystalEffect;
+
     private void Start()
     {
         mat = GetComponent<MeshRenderer>().material;
@@ -38,29 +40,95 @@ public class PlayerStaff : MonoBehaviour
         changeMat[4] = Resources.Load("Nature/Main_Objects/COMMON/Girl/M_Staff", typeof(Material)) as Material;
 
         state = C_STATE.EMPTY;
-        crystalNum = 88;
+        if (crystalNum != 0)
+            crystalNum = 0;
+
+        crystalEffect = new GameObject[12];
+        int a = 0;
+        foreach(var i in crystalEffect)
+        {
+            crystalEffect[a] = transform.GetChild(0).GetChild(a++).gameObject;
+        }
 
         ChangeMaterial();
     }
     
     public void ChangeMaterial()
     {
+        for(int i = 4; i < 7; i++)
+        {
+            crystalEffect[i].SetActive(false);
+        }
+        Invoke("IngCrystalEffect", 0.5f);
         switch (state)
         {
             case C_STATE.BLUE:
-                mat = changeMat[0];
+                GetComponent<MeshRenderer>().material = changeMat[0];
+                crystalEffect[0].SetActive(false);
+                crystalEffect[0].SetActive(true);
                 break;
             case C_STATE.WHITE:
-                mat = changeMat[1];
+                GetComponent<MeshRenderer>().material = changeMat[1];
+                crystalEffect[1].SetActive(false);
+                crystalEffect[1].SetActive(true);
                 break;
             case C_STATE.RED:
-                mat = changeMat[2];
+                GetComponent<MeshRenderer>().material = changeMat[2];
+                crystalEffect[2].SetActive(false);
+                crystalEffect[2].SetActive(true);
                 break;
             case C_STATE.BLACK:
-                mat = changeMat[3];
+                GetComponent<MeshRenderer>().material = changeMat[3];
+                crystalEffect[3].SetActive(false);
+                crystalEffect[3].SetActive(true);
                 break;
             case C_STATE.EMPTY:
-                mat = changeMat[4];
+                GetComponent<MeshRenderer>().material = changeMat[4];
+                break;
+        }
+    }
+
+    void IngCrystalEffect()
+    {
+        switch (state)
+        {
+            case C_STATE.BLUE:
+                crystalEffect[4].SetActive(true);
+                break;
+            case C_STATE.WHITE:
+                crystalEffect[5].SetActive(true);
+                break;
+            case C_STATE.RED:
+                crystalEffect[6].SetActive(true);
+                break;
+            case C_STATE.BLACK:
+                crystalEffect[7].SetActive(true);
+                break;
+            case C_STATE.EMPTY:
+                break;
+        }
+    }
+    public void OutCrystalEffect()
+    {
+        switch (state)
+        {
+            case C_STATE.BLUE:
+                crystalEffect[8].SetActive(false);
+                crystalEffect[8].SetActive(true);
+                break;
+            case C_STATE.WHITE:
+                crystalEffect[9].SetActive(false);
+                crystalEffect[9].SetActive(true);
+                break;
+            case C_STATE.RED:
+                crystalEffect[10].SetActive(false);
+                crystalEffect[10].SetActive(true);
+                break;
+            case C_STATE.BLACK:
+                crystalEffect[11].SetActive(false);
+                crystalEffect[11].SetActive(true);
+                break;
+            case C_STATE.EMPTY:
                 break;
         }
     }

@@ -21,7 +21,7 @@ public class PlayerIdleState : PlayerState
             player.yVelocity = 0;
         }
 
-        if(player.nowSpeed == 0)
+        if (player.nowSpeed == 0)
         {
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("idle", true);
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
@@ -31,8 +31,8 @@ public class PlayerIdleState : PlayerState
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("idle", false);
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", true);
         }
-
-        //player.move.y -= player.gravity * Time.deltaTime;
+        player.MoveCalc(1.0f);
+        
         if (jumpDelay < 0.2f)
         {
             player.jumpKey = false;
@@ -41,7 +41,6 @@ public class PlayerIdleState : PlayerState
         }
         else
         {
-            player.MoveCalc(1.0f);
             player.Jump();
         }
         player.Gravity();
