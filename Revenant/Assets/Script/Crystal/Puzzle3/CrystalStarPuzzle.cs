@@ -14,6 +14,9 @@ public class CrystalStarPuzzle : CrystalPuzzle
     {
         stop,
         move,
+        right,
+        left
+       
     }
     STATE state;
     public Transform parent;
@@ -94,16 +97,31 @@ public class CrystalStarPuzzle : CrystalPuzzle
                 }
                 switch (transform.GetComponent<CrystalState>().myNum)
                 {
-                    case 401:
+                    case 8:
                         Line.SetPosition(2, nextCrystal[1].transform.position);
                         break;
-                    case 402:
-                        Line.SetPosition(2, nextCrystal[2].transform.position);
+                    case 9:
+                        Line.SetPosition(2, transform.position);
                         break;
-                    case 403:
+                    case 10:
                         Line.SetPosition(2, nextCrystal[3].transform.position);
                         break;
-                    case 404:
+                    case 11:
+                        Line.SetPosition(2, nextCrystal[4].transform.position);
+                        break;
+                    case 12:
+                        Line.SetPosition(2, transform.position);
+                        break;
+                    case 13:
+                        Line.SetPosition(2, nextCrystal[6].transform.position);
+                        break;
+                    case 14:
+                        Line.SetPosition(2, nextCrystal[7].transform.position);
+                        break;
+                    case 15:
+                        Line.SetPosition(2, nextCrystal[8].transform.position);
+                        break;
+                    case 16:
                         Line.SetPosition(2, transform.position);
                         break;
                 }
@@ -165,7 +183,7 @@ public class CrystalStarPuzzle : CrystalPuzzle
                     parent.transform.Rotate(Vector3.up * Time.deltaTime * 10);
                 else
                 {
-                    state = STATE.stop;
+                    state = STATE.right;
                     c_state.isActive = false;
                 }
                 break;
@@ -174,10 +192,31 @@ public class CrystalStarPuzzle : CrystalPuzzle
                     parent.transform.Rotate(Vector3.down * Time.deltaTime * 10);
                 else
                 {
-                    state = STATE.stop;
+                    state = STATE.left;
                     c_state.isActive = false;
                 }
                 break;
         }
+    }
+    public bool GetState(int i)
+    {
+        switch (state)
+        {
+            case STATE.left:
+                if (i == 1)
+                    return true;
+                break;
+            case STATE.right:
+                if (i == 2)
+                    return true;
+                break;
+        }
+        return false;
+    }
+    public void SetInit()
+    {
+        c_state.state = C_STATE.EMPTY;
+        c_state.isActive = true;
+        transform.GetComponent<CrystalState>().myNum =88;
     }
 }

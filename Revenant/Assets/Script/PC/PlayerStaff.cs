@@ -30,7 +30,7 @@ public class PlayerStaff : MonoBehaviour
         }
     }
 
-    GameObject[] crystalEffect;
+    public  GameObject[] crystalEffect;
 
     private void Start()
     {
@@ -66,7 +66,7 @@ public class PlayerStaff : MonoBehaviour
     public void ChangeMaterial()
     {
         kong = 0;
-        for(int i = 4; i < 7; i++)
+        for(int i = 4; i <= 7; i++)
         {
             crystalEffect[i].SetActive(false);
         }
