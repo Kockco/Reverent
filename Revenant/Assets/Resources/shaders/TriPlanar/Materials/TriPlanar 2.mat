@@ -90,7 +90,7 @@ Material:
     - _MergeY: -0.61
     - _Metallic: 0
     - _Mode: 0
-    - _NoiseScale: 0.7
+    - _NoiseScale: 0.39
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RimPower: 20
@@ -99,7 +99,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TopSpread: 0.08
+    - _TopSpread: 2
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
