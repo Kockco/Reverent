@@ -10,10 +10,13 @@ public class StarManager : MonoBehaviour
     public GameObject[] cc;
     public GameObject[] ec;
     public GameObject[] plane;
+    public CameraPlayer TopView;
+    float time;
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 2; i < 9; i++)
+        TopView = GameObject.Find("PC").GetComponent<CameraPlayer>();
+        for (int i = 2; i < 9; i++)
         {
             cc[i].SetActive(false);
         }
@@ -22,30 +25,47 @@ public class StarManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (page == 1 && ec[6].GetComponent<CrystalStarPuzzle>().GetState(1) && ec[0].GetComponent<CrystalStarPuzzle>().GetState(2))
+        if (page == 1 && ec[6].GetComponent<CrystalStarPuzzle>().GetState(1) && ec[0].GetComponent<CrystalStarPuzzle>().GetState(2) &&
+            TopView.topView)
         {
-            page = 2;
-            NextPage();
-            ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
-            ec[0].GetComponent<CrystalStarPuzzle>().SetInit();
-            plane[0].SetActive(false);
+            time += Time.deltaTime;
+            if (time > 2)
+            {
+                page = 2;
+                NextPage();
+                ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
+                ec[0].GetComponent<CrystalStarPuzzle>().SetInit();
+                plane[0].SetActive(false);
+                time = 0;
+            }
         }
         else if (page == 2 && ec[5].GetComponent<CrystalStarPuzzle>().GetState(2) && ec[2].GetComponent<CrystalStarPuzzle>().GetState(1)
-            && ec[6].GetComponent<CrystalStarPuzzle>().GetState(1))
+            && ec[6].GetComponent<CrystalStarPuzzle>().GetState(1) &&TopView.topView)
         {
-            page = 3;
-            NextPage();
-            ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
-            ec[5].GetComponent<CrystalStarPuzzle>().SetInit();
-            ec[2].GetComponent<CrystalStarPuzzle>().SetInit();
-            plane[1].SetActive(false);
+            time += Time.deltaTime;
+            if (time > 2)
+            {
+                page = 3;
+                NextPage();
+                ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
+                ec[5].GetComponent<CrystalStarPuzzle>().SetInit();
+                ec[2].GetComponent<CrystalStarPuzzle>().SetInit();
+                plane[1].SetActive(false);
+                time = 0;
+            }
         }
-        else if (page == 3 && ec[6].GetComponent<CrystalStarPuzzle>().GetState(1) && ec[0].GetComponent<CrystalStarPuzzle>().GetState(2))
+        else if (page == 3 && ec[4].GetComponent<CrystalStarPuzzle>().GetState(1) && ec[0].GetComponent<CrystalStarPuzzle>().GetState(2)
+            && ec[1].GetComponent<CrystalStarPuzzle>().GetState(2) && ec[2].GetComponent<CrystalStarPuzzle>().GetState(2) && TopView.topView)
         {
-            page = 4;
-            NextPage();
-            ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
-            ec[0].GetComponent<CrystalStarPuzzle>().SetInit();
+            time += Time.deltaTime;
+            if (time > 2)
+            {
+                page = 4;
+                NextPage();
+                ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
+                ec[0].GetComponent<CrystalStarPuzzle>().SetInit();
+                time = 0;
+            }
         }
     }
     void NextPage()
