@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 8dc7562bf02d26744953127b10d0ef0f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MainTexBase:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Mask:
         m_Texture: {fileID: 2800000, guid: eda653ec45ec9d04095dd1d569b049d9, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -79,40 +83,60 @@ Material:
         m_Texture: {fileID: 2800000, guid: 23c6dd9d6e40f5a41a1a523eafed7732, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SparkleNoise:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Brightness: 1.39
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Edgewidth: 0.1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Height: 0.12
     - _LM: 0
     - _LM2: 0
+    - _MaxTessDistance: 50
     - _Metallic: 0
     - _Mode: 0
+    - _NoiseScale: 0.1
+    - _NoiseWeight: 0.1
     - _OcclusionStrength: 1
     - _Offset: 0.683
     - _Parallax: 0.02
     - _RimPower: 1.1
     - _SUV: 0
+    - _Scale: 1
     - _SmoothnessTextureChannel: 0
+    - _SnowDepth: 0.3
+    - _SnowHeight: 0.3
     - _SnowOffset: 0.1
     - _SnowSize: 0.65
+    - _SnowTextureOpacity: 0.3
+    - _SnowTextureScale: 0.3
+    - _SparkCutoff: 0.1
+    - _SparkleScale: 10
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Tess: 20
     - _UVSec: 0
     - _Value: 1
     - _Value2: 2
     - _WorldScale: 3.8
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 1}
+    - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Color: {r: 0.24509804, g: 0.24509804, b: 0.24509804, a: 1}
+    - _EdgeColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _IrColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+    - _PathColor: {r: 0.5, g: 0.5, b: 0.7, a: 1}
     - _RimColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _SnowAngle: {r: 0, g: 1, b: 0, a: 1}
     - _SnowColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _TColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _ToonRamp: {r: 0.5, g: 0.5, b: 0.5, a: 1}
