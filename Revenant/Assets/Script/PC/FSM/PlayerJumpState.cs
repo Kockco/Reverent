@@ -15,7 +15,6 @@ public class PlayerJumpState : PlayerState
         delay = 0;
         groundCheck = false;
         player.runSpeed = 1;
-        player.rotSpeed = 0;
         player.useStaff = false;
     }
     void PlayerState.Update()

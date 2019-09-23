@@ -10,7 +10,6 @@ public class PlayerIdleState : PlayerState
         //player 프로퍼티 초기화
         this.player = player;
         player.runSpeed = 4;
-        player.rotSpeed = 10;
     }
     void PlayerState.Update()
     {
@@ -24,7 +23,7 @@ public class PlayerIdleState : PlayerState
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", true);
         }
 
-        player.MoveCalc(1.0f);
+        player.MoveCalc(0.01f);
         player.Jump();
         player.Gravity();
         //GradientCheck();
