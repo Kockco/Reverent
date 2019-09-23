@@ -12,6 +12,7 @@ public class CrystalManager : MonoBehaviour
 
     //마테리얼 관리
     public Material[] crystalMaterial;
+    public GameObject[] crystalEffectParticle;
 
     //싱글턴 생성
     private static CrystalManager _instance = null;
@@ -60,6 +61,19 @@ public class CrystalManager : MonoBehaviour
         crystalMaterial[2] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Red", typeof(Material)) as Material;
         crystalMaterial[3] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Green", typeof(Material)) as Material;
         crystalMaterial[4] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Empty", typeof(Material)) as Material;
+        crystalEffectParticle = new GameObject[12];
+        crystalEffectParticle[0] = Resources.Load("FX/1.Revv/CCrystal/Active/CCrystal_Active_Blue 1 1", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[1] = Resources.Load("FX/1.Revv/CCrystal/Reset/CCrystal_Reset_Blue", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[2] = Resources.Load("FX/1.Revv/CCrystal/IN/CC_IN_Blue 1", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[3] = Resources.Load("FX/1.Revv/CCrystal/Active/CCrystal_Active_Yellow", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[4] = Resources.Load("FX/1.Revv/CCrystal/Reset/CCrystal_Reset_Yellow", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[5] = Resources.Load("FX/1.Revv/CCrystal/IN/CC_IN_Yellow 1", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[6] = Resources.Load("FX/1.Revv/CCrystal/Active/CCrystal_Active_Red", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[7] = Resources.Load("FX/1.Revv/CCrystal/Reset/CCrystal_Reset_Red", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[8] = Resources.Load("FX/1.Revv/CCrystal/IN/CC_IN_Red 1", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[9] = Resources.Load("FX/1.Revv/CCrystal/Active/CCrystal_Active_Green 1 1", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[10] = Resources.Load("FX/1.Revv/CCrystal/Reset/CCrystal_Reset_Green", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[11] = Resources.Load("FX/1.Revv/CCrystal/IN/CC_IN_Green 1", typeof(GameObject)) as GameObject;
     }
 
     public void LoadMaterial(GameObject obj, int matNum, C_STATE stat)

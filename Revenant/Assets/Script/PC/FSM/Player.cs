@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     //캐릭터 상태
     public PlayerState currentState;
+    public bool useStaff;
+
     //이동관련
     public Vector3 move;
     public Transform myTransform;
@@ -17,20 +19,15 @@ public class Player : MonoBehaviour
     //중력
     public float gravity = 9.81f;
     public float yVelocity = 0;
-    
+    public float rotSpeed = 8f;
+
     //카메라 관련
     public Transform model;
     public Transform cameraTransform;
-    public Transform aim;
-
     public CharacterController cc;
     
-    //점프키 와 딜레이
-    public bool jumpKey;
-    public float jumpDelay;
-    public float nextDelay;
-
     public float nowSpeed;
+    public float staffTime;
     private void Awake()
     {
         //상태변경
@@ -39,21 +36,16 @@ public class Player : MonoBehaviour
         model = transform.GetChild(0);
         cameraTransform = Camera.main.transform.parent;
         myTransform = transform;
-        jumpKey = false;
+        useStaff = true;
     }
 
     private void Update()
     {
         //currentState 업데이트 돌리기
         currentState.Update();
-
         // 현재 움직이는 속도
         nowSpeed = new Vector3(cc.velocity.x, 0, cc.velocity.z).magnitude;
-
-        //앞전 딜 
-        //if (nextDelay <= 0.3f)
-            nextDelay += Time.deltaTime;
-        if ((!jumpKey || move.y < -0.5f) && nextDelay > 0.3f)
+        //if (move.y < -0.5f)
             cc.Move(move * Time.deltaTime);
     }
 
@@ -89,12 +81,12 @@ public class Player : MonoBehaviour
             Quaternion cameraRotation = cameraTransform.rotation;
             cameraRotation.x = cameraRotation.z = 0;    //y축만 필요하므로 나머지 값은 0으로 바꾼다.
             //자연스러움을 위해 Slerp로 회전시킨다.
-            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, cameraRotation, 10.0f * Time.deltaTime);
+            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, cameraRotation, rotSpeed * Time.deltaTime);
             if (move != Vector3.zero)//Quaternion.LookRotation는 (0,0,0)이 들어가면 경고를 내므로 예외처리 해준다.
             {
                 Quaternion characterRotation = Quaternion.LookRotation(move);
                 characterRotation.x = characterRotation.z = 0;
-                model.rotation = Quaternion.Slerp(model.rotation, characterRotation, 10.0f * Time.deltaTime);
+                model.rotation = Quaternion.Slerp(model.rotation, characterRotation, rotSpeed * Time.deltaTime);
             }
 
             //관성을 위해 MoveTowards를 활용하여 서서히 이동하도록 한다.
@@ -112,24 +104,21 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpKey == false)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             transform.GetChild(0).GetComponent<Animator>().SetBool("Jump",true);
-            jumpKey = true;
-            jumpDelay = 0;
-        }
-        if(jumpKey)
-            JumpDelay();
-    }
-    public void JumpDelay()
-    {
-        jumpDelay += Time.deltaTime;
-        if (jumpDelay > 0.2f)
-        {
             yVelocity = jumpPower;
-            jumpKey = false;
-            jumpDelay = 0;
             SetState(new PlayerJumpState());
+        }
+    }
+
+    public void MoveJump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.GetChild(0).GetComponent<Animator>().SetBool("MoveJump", true);
+            yVelocity = jumpPower;
+            SetState(new PlayerMoveJumpState());
         }
     }
     public void Gravity()
@@ -145,7 +134,28 @@ public class Player : MonoBehaviour
     public void PlayerAnimation(string aniName) { model.GetComponent<Animator>().SetTrigger(aniName); }
     public void PlayerAnimation(string aniName,bool b) { model.GetComponent<Animator>().SetBool(aniName,b); }
     public void PlayerAnimation(string aniName, float f) { model.GetComponent<Animator>().SetFloat(aniName, f); }
-    
+    //플레이어 애니메이션 실행 함수
+    public void PlayerClickAnimation(C_STATE c_state)
+    {
+        switch (c_state)
+        {
+            case C_STATE.BLUE:
+                PlayerAnimation("Blue");
+                break;
+            case C_STATE.WHITE:
+                PlayerAnimation("Yellow");
+                break;
+            case C_STATE.RED:
+                PlayerAnimation("Red");
+                break;
+            case C_STATE.BLACK:
+                PlayerAnimation("Green");
+                break;
+            case C_STATE.EMPTY:
+                break;
+        }
+    }
+
     void OnDrawGizmos()
     {
         RaycastHit hit;

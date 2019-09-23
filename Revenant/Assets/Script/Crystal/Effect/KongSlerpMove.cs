@@ -17,7 +17,7 @@ public class KongSlerpMove : MonoBehaviour
     bool next;
     float time = 1;
 
-    float a = 0;
+    float a = 0.2f;
 
     void Awake()
     {
@@ -25,6 +25,7 @@ public class KongSlerpMove : MonoBehaviour
         pattern = PATTERN.END;
         next = false;
         time = 0;
+        a = 0.2f;
     }
     
     void Update()
@@ -40,14 +41,14 @@ public class KongSlerpMove : MonoBehaviour
                 }
                 break;
             case PATTERN.STAFF_TARGET:
-                transform.position = Vector3.Lerp(transform.position, staff.transform.GetChild(0).transform.position,Random.Range(0.05f, 0.2f) * a );
-                a *= Time.deltaTime;
-                //time += Time.deltaTime;
-                //if(time > 1)
-                //{
-                //    NextPattern();
-                //    time = 0;
-                //}
+                transform.position = Vector3.Lerp(transform.position, staff.transform.GetChild(0).transform.position,Random.Range(0.05f, 0.2f) + a * Time.deltaTime );
+                a += Time.deltaTime;
+                time += Time.deltaTime;
+                if (time > 2)
+                {
+                    NextPattern();
+                    time = 0;
+                }
                 break;
             case PATTERN.END:
                 gameObject.SetActive(false);
@@ -64,6 +65,7 @@ public class KongSlerpMove : MonoBehaviour
         pattern = PATTERN.FIRST_TARGET;
         next = true;
         time = 0;
+        a = 0;
     }
     //다음 단계로 이동
     void NextPattern()

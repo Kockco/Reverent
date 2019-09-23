@@ -26,20 +26,28 @@ public class MouseEvent : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // 크리스탈 색 빼기
+        if (player.useStaff)
         {
-            player.GetComponent<Player>().PlayerAnimation("Click");
-            UseStaff();
-            //카메라 돌리는 과정 수정예정
-            //Quaternion cameraRotation = cam.transform.parent.rotation;
-            //cameraRotation.x = cameraRotation.z = 0;
+            if (Input.GetMouseButtonDown(0)) // 크리스탈 색 빼기
+            {
+                //player.GetComponent<Player>().PlayerAnimation("Click");
 
-            //player.transform.GetChild(0).rotation = Quaternion.Slerp(player.transform.GetChild(0).rotation, cameraRotation, 100.0f * Time.deltaTime);
-        }
-        if (Input.GetMouseButtonDown(1))//범위 크리스탈 색 Empty로 바꾸기
-        {
-            staff.OutCrystalEffect();
-            PlayerCrystalReset(true);
+                player.staffTime = 2f;
+                UseStaff();
+                
+                //카메라 돌리는 과정 수정예정
+                //Quaternion cameraRotation = cam.transform.parent.rotation;
+                //cameraRotation.x = cameraRotation.z = 0;
+
+                //player.transform.GetChild(0).rotation = Quaternion.Slerp(player.transform.GetChild(0).rotation, cameraRotation, 100.0f * Time.deltaTime);
+            }
+            if (Input.GetMouseButtonDown(1))//범위 크리스탈 색 Empty로 바꾸기
+            {
+                player.SetState(new PlayerUseStaffState());
+                player.staffTime = 1.2f;
+                staff.OutCrystalEffect();
+                PlayerCrystalReset(true);
+            }
         }
     }
 
@@ -55,10 +63,12 @@ public class MouseEvent : MonoBehaviour
             if (hit.transform.tag == "Empty_Crystal") // 에임과 충돌한것->내스테프와 같은것
             {
                 EmptyCrystal hitCrystal = hit.transform.GetComponent<EmptyCrystal>();
+                player.SetState(new PlayerUseStaffState());
 
                 if (!hitCrystal.isActive && !hitCrystal.IsLink
                     && staff.State != C_STATE.EMPTY && !hitCrystal.IsClear) //크리스탈 비활성화/링크가 되있지 않을때(엠티)/스태프가 색이 있다면 크리스탈만 변경
                 {
+                    player.PlayerAnimation("Input", true);
                     //링크 해제
                     foreach (var i in CrystalManager.Instance.crystal)
                     {
@@ -86,6 +96,7 @@ public class MouseEvent : MonoBehaviour
                     hitCrystal.isActive = true;
                     if (staff.State == C_STATE.EMPTY) //크리스탈에서 스태프로 색만빼기
                     {
+                        player.PlayerAnimation("Input", true);
                         staff.CrystalNum = hitCrystal.myNum; //빈크리스탈과 Link되잇는 넘버정보넘김
                         staff.State = hitCrystal.state; //빈크리스탈의 상태를 스태프에게 전달(마테리얼도 변경됨)
                         hitCrystal.IsLink = false;
@@ -94,6 +105,7 @@ public class MouseEvent : MonoBehaviour
                     }
                     else//크리스탈 색없애고 스태프의 크리스탈 색 넣기
                     {
+                        player.PlayerAnimation("Input", true);
                         hitCrystal.IsLink = true;
                         hitCrystal.myNum = staff.CrystalNum; //저장되있던 스태프와 Link되있는 넘버정보를 넘김
                         hitCrystal.state = staff.State; // 저장되있던 스태프 상태를 넘김(크리스탈색바뀜)
@@ -106,11 +118,13 @@ public class MouseEvent : MonoBehaviour
                 ColorCrystal hitCrystal = hit.transform.GetComponent<ColorCrystal>();
                 if (!hitCrystal.IsLink && !hitCrystal.IsClear)
                 {
+                    player.SetState(new PlayerUseStaffState());
                     //완전체 크리스탈의 정보를 스태프로 가져옴
                     staff.CrystalNum = hitCrystal.myNum;
                     staff.State = hitCrystal.state;
                     hitCrystal.CrystalPopEffect();
-                    for(int effectNum =0; effectNum <3; effectNum++)
+                    player.PlayerClickAnimation(hitCrystal.state); // 애니메이션 실행
+                    for (int effectNum =0; effectNum <3; effectNum++) // 이펙트 실행
                     {
                         CrystalManager.Instance.crystalEffect[effectNum].GetComponent<KongSlerpMove>().CreateEffet(hitCrystal.transform.position);
                     }

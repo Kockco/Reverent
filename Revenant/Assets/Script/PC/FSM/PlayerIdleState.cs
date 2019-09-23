@@ -5,14 +5,12 @@ using UnityEngine;
 public class PlayerIdleState : PlayerState
 {
     private Player player;
-    public float jumpDelay;
-
     void PlayerState.OnEnter(Player player)
     {
         //player 프로퍼티 초기화
         this.player = player;
-        // 초기화 구현
-        jumpDelay = 0;
+        player.runSpeed = 4;
+        player.rotSpeed = 8;
     }
     void PlayerState.Update()
     {
@@ -20,29 +18,14 @@ public class PlayerIdleState : PlayerState
         {
             player.yVelocity = 0;
         }
-
-        if (player.nowSpeed == 0)
+        if (player.nowSpeed != 0)
         {
-            player.transform.GetChild(0).GetComponent<Animator>().SetBool("idle", true);
-            player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
-        }
-        else
-        {
-            player.transform.GetChild(0).GetComponent<Animator>().SetBool("idle", false);
+            player.SetState(new PlayerMoveState());
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", true);
         }
+
         player.MoveCalc(1.0f);
-        
-        if (jumpDelay < 0.2f)
-        {
-            player.jumpKey = false;
-            jumpDelay += Time.deltaTime;
-            //player.move = Vector3.zero;
-        }
-        else
-        {
-            player.Jump();
-        }
+        player.Jump();
         player.Gravity();
         //GradientCheck();
     }

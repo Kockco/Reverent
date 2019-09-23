@@ -50,7 +50,7 @@ public class CameraPlayer : MonoBehaviour
         if (!otherCamera)
         {
             Balance();
-            CameraDistanceCtrl();
+            //CameraDistanceCtrl();
 
             if (Input.GetKeyDown(KeyCode.T)) // 탑뷰로 바꾸기
             {
@@ -109,12 +109,12 @@ public class CameraPlayer : MonoBehaviour
             myTransform.eulerAngles = new Vector3(0, myTransform.eulerAngles.y, 0);
     }
 
-    void CameraDistanceCtrl()
-    {
-        Camera.main.transform.localPosition += new Vector3(0, 0, Input.GetAxisRaw("Mouse ScrollWheel") * 2.0f); //휠로 카메라의 거리를 조절한다.
-        if (0 < Camera.main.transform.localPosition.z) //  -1 이 가장 나음?
-            Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, 0);    //최대로 가까운 수치
-        else if (Camera.main.transform.localPosition.z < -30) // - 5까지였음
-            Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, -30);    //최대로 먼 수치
-    }
+    //void CameraDistanceCtrl()
+    //{
+    //    Camera.main.transform.localPosition += new Vector3(0, 0, Input.GetAxisRaw("Mouse ScrollWheel") * 2.0f); //휠로 카메라의 거리를 조절한다.
+    //    if (0 < Camera.main.transform.localPosition.z) //  -1 이 가장 나음?
+    //        Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, 0);    //최대로 가까운 수치
+    //    else if (Camera.main.transform.localPosition.z < -30) // - 5까지였음
+    //        Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, -30);    //최대로 먼 수치
+    //}
 }
