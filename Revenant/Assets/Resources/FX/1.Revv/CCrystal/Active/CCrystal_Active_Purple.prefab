@@ -4640,7 +4640,7 @@ GameObject:
   m_Component:
   - component: {fileID: 599696245763744496}
   m_Layer: 0
-  m_Name: CCrystal_Active_Yellow
+  m_Name: CCrystal_Active_Purple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70446,7 +70446,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 0.932032, g: 0.9339623, b: 0.6828498, a: 1}
-  m_Intensity: 2
+  m_Intensity: 0.5
   m_Range: 13
   m_SpotAngle: 30
   m_CookieSize: 10
