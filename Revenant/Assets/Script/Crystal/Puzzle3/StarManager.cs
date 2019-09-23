@@ -9,6 +9,7 @@ public class StarManager : MonoBehaviour
 
     public GameObject[] cc;
     public GameObject[] ec;
+    public GameObject[] plane;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,24 @@ public class StarManager : MonoBehaviour
         if (page == 1 && ec[6].GetComponent<CrystalStarPuzzle>().GetState(1) && ec[0].GetComponent<CrystalStarPuzzle>().GetState(2))
         {
             page = 2;
+            NextPage();
+            ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
+            ec[0].GetComponent<CrystalStarPuzzle>().SetInit();
+            plane[0].SetActive(false);
+        }
+        else if (page == 2 && ec[5].GetComponent<CrystalStarPuzzle>().GetState(2) && ec[2].GetComponent<CrystalStarPuzzle>().GetState(1)
+            && ec[6].GetComponent<CrystalStarPuzzle>().GetState(1))
+        {
+            page = 3;
+            NextPage();
+            ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
+            ec[5].GetComponent<CrystalStarPuzzle>().SetInit();
+            ec[2].GetComponent<CrystalStarPuzzle>().SetInit();
+            plane[1].SetActive(false);
+        }
+        else if (page == 3 && ec[6].GetComponent<CrystalStarPuzzle>().GetState(1) && ec[0].GetComponent<CrystalStarPuzzle>().GetState(2))
+        {
+            page = 4;
             NextPage();
             ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
             ec[0].GetComponent<CrystalStarPuzzle>().SetInit();

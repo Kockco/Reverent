@@ -16,7 +16,6 @@ public class CrystalStarPuzzle : CrystalPuzzle
         move,
         right,
         left
-       
     }
     STATE state;
     public Transform parent;
@@ -58,8 +57,8 @@ public class CrystalStarPuzzle : CrystalPuzzle
 
         //선 초기화
         Line = GetComponent<LineRenderer>();
-        Line.startWidth = .05f;
-        Line.endWidth = .05f;
+        Line.startWidth = .15f;
+        Line.endWidth = .15f;
         posLenght = LinkPos.Length;
 
         if (parent.rotation.eulerAngles.y > 180)
@@ -86,6 +85,7 @@ public class CrystalStarPuzzle : CrystalPuzzle
             StairChange();
             for (int i = 0; i < posLenght; i++)
             {
+                //링크된애들이랑 번호가 같으면 그쪽으로 연결해준다.
                 if (transform.GetComponent<CrystalState>().myNum == LinkPos[i].GetComponent<CrystalState>().myNum)
                 {
                     linePos = transform.position;
@@ -180,7 +180,7 @@ public class CrystalStarPuzzle : CrystalPuzzle
                 break;
             case C_STATE.LIGHT:
                 if (maxLimit > RotY)
-                    parent.transform.Rotate(Vector3.up * Time.deltaTime * 10);
+                    parent.transform.Rotate(Vector3.up * Time.deltaTime * 40);
                 else
                 {
                     state = STATE.right;
@@ -189,7 +189,7 @@ public class CrystalStarPuzzle : CrystalPuzzle
                 break;
             case C_STATE.DARK:
                 if (minLimit < RotY)
-                    parent.transform.Rotate(Vector3.down * Time.deltaTime * 10);
+                    parent.transform.Rotate(Vector3.down * Time.deltaTime * 40);
                 else
                 {
                     state = STATE.left;

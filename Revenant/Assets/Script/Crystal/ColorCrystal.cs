@@ -8,15 +8,27 @@ public class ColorCrystal : CrystalState
     private void Start()
     {
         GameObject[] obj = new GameObject[3];
-        for (int i = 0; i < 3; i++)
+        switch (state)
         {
-            obj[i] = Instantiate(CrystalManager.Instance.crystalEffectParticle[i], Vector3.zero, Quaternion.identity) as GameObject;
-            obj[i].transform.SetParent(transform);
-            obj[i].transform.position = new Vector3(transform.position.x, transform.position.y+1.1f,transform.position.z);
-            obj[i].transform.rotation = Quaternion.identity;
-
+            case C_STATE.LIGHT:
+                for (int i = 12; i < 15; i++)
+                {
+                    obj[i-12] = Instantiate(CrystalManager.Instance.crystalEffectParticle[i], Vector3.zero, Quaternion.identity) as GameObject;
+                    obj[i - 12].transform.SetParent(transform);
+                    obj[i - 12].transform.position = new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z);
+                    obj[i - 12].transform.rotation = Quaternion.identity;
+                }
+                break;
+            case C_STATE.DARK:
+                for (int i = 15; i < 18; i++)
+                {
+                    obj[i - 15] = Instantiate(CrystalManager.Instance.crystalEffectParticle[i], Vector3.zero, Quaternion.identity) as GameObject;
+                    obj[i - 15].transform.SetParent(transform);
+                    obj[i - 15].transform.position = new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z);
+                    obj[i - 15].transform.rotation = Quaternion.identity;
+                }
+                break;
         }
-
         obj[1].transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
         LoadMaterial();
         CrystalEffect = new GameObject[3];
