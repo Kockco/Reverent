@@ -7,6 +7,16 @@ public class ColorCrystal : CrystalState
     public GameObject[] CrystalEffect;
     private void Start()
     {
+        GameObject[] obj = new GameObject[3];
+        for (int i = 0; i < 3; i++)
+        {
+            obj[i] = Instantiate(CrystalManager.Instance.crystalEffectParticle[i], Vector3.zero, Quaternion.identity) as GameObject;
+            obj[i].transform.SetParent(transform);
+            obj[i].transform.localPosition = Vector3.zero;
+            obj[i].transform.localRotation = Quaternion.identity;
+
+        }
+
         LoadMaterial();
         CrystalEffect = new GameObject[3];
         CrystalEffect[0] = transform.GetChild(3).gameObject;
