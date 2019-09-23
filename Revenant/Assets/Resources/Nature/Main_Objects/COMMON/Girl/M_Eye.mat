@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Eye
-  m_Shader: {fileID: 4800000, guid: f1e781594632bd54e9cd9cbb8a4d21cf, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 9d2e182382406f24bb565bcd6d60f489, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -80,6 +84,7 @@ Material:
     - _GradientHeight: 10
     - _GradientYStartPos: 0
     - _LM: 0
+    - _LM2: 0
     - _LightmapPower: 0.5
     - _Metallic: 0
     - _Mode: 0
@@ -90,6 +95,8 @@ Material:
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _Value: 1
+    - _Value2: 2
     - _WorldScale: 0.002
     - _ZWrite: 1
     m_Colors:
@@ -97,7 +104,7 @@ Material:
     - _BackBottomColor: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _BackTopColor: {r: 0.84994656, g: 0.9433962, b: 0.9353463, a: 1}
     - _BottomColor: {r: 0.84994656, g: 0.9433962, b: 0.9353463, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 4.0304246, g: 4.0304246, b: 4.0304246, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FrontBottomColor: {r: 0.84994656, g: 0.9433962, b: 0.9353463, a: 1}
     - _FrontTopColor: {r: 0.84994656, g: 0.9433962, b: 0.9353463, a: 1}
