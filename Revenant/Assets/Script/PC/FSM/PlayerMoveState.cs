@@ -9,7 +9,7 @@ public class PlayerMoveState : PlayerState
     {
         //player 프로퍼티 초기화
         this.player = player;
-        player.rotSpeed = 8;
+        player.rotSpeed = 10;
     }
     void PlayerState.Update()
     {
@@ -22,7 +22,7 @@ public class PlayerMoveState : PlayerState
             player.SetState(new PlayerIdleState());
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
         }
-        player.MoveCalc(10f);
+        player.MoveCalc(1.0f);
         player.MoveJump();
         player.Gravity();
     }

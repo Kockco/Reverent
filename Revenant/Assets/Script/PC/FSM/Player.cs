@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     //중력
     public float gravity = 9.81f;
     public float yVelocity = 0;
-    public float rotSpeed = 8f;
+    public float rotSpeed = 10f;
 
     //카메라 관련
     public Transform model;

@@ -10,7 +10,7 @@ public class PlayerIdleState : PlayerState
         //player 프로퍼티 초기화
         this.player = player;
         player.runSpeed = 4;
-        player.rotSpeed = 8;
+        player.rotSpeed = 10;
     }
     void PlayerState.Update()
     {
