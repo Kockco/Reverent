@@ -94,6 +94,7 @@ public class MouseEvent : MonoBehaviour
                     }
                     //마테리얼을 서로 교체해줌
                     hitCrystal.isActive = true;
+                    staff.kong = 3;
                     if (staff.State == C_STATE.EMPTY) //크리스탈에서 스태프로 색만빼기
                     {
                         player.PlayerAnimation("Input", true);
@@ -129,9 +130,6 @@ public class MouseEvent : MonoBehaviour
                         CrystalManager.Instance.crystalEffect[effectNum].GetComponent<KongSlerpMove>().CreateEffet(hitCrystal.transform.position);
                     }
                 }
-            }
-            else if (hit.transform.tag == "Wall")
-            {
             }
         }
         //staff.ChangeMaterial();

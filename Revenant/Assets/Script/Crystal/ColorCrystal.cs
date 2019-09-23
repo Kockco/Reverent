@@ -12,11 +12,12 @@ public class ColorCrystal : CrystalState
         {
             obj[i] = Instantiate(CrystalManager.Instance.crystalEffectParticle[i], Vector3.zero, Quaternion.identity) as GameObject;
             obj[i].transform.SetParent(transform);
-            obj[i].transform.localPosition = Vector3.zero;
-            obj[i].transform.localRotation = Quaternion.identity;
+            obj[i].transform.position = new Vector3(transform.position.x, transform.position.y+1.1f,transform.position.z);
+            obj[i].transform.rotation = Quaternion.identity;
 
         }
 
+        obj[1].transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
         LoadMaterial();
         CrystalEffect = new GameObject[3];
         CrystalEffect[0] = transform.GetChild(3).gameObject;
@@ -34,7 +35,6 @@ public class ColorCrystal : CrystalState
         {
             CrystalEffect[0].SetActive(false);
             CrystalEffect[1].SetActive(true);
-
         }
     }
     public void CrystalPopEffect()

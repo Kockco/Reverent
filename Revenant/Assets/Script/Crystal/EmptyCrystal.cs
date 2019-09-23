@@ -10,6 +10,7 @@ public class EmptyCrystal : CrystalState
     void Start()
     {
         LoadMaterial();
+
         myMat = transform.GetChild(0).GetComponent<MeshRenderer>();
 
 
@@ -42,6 +43,12 @@ public class EmptyCrystal : CrystalState
                 break;
             case C_STATE.EMPTY:
                 myMat.material = mat[4];
+                break;
+            case C_STATE.LIGHT:
+                myMat.material = mat[5];
+                break;
+            case C_STATE.DARK:
+                myMat.material = mat[6];
                 break;
         }
     }

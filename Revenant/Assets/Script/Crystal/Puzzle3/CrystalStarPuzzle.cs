@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CrystalStarPuzzle : CrystalPuzzle
 {
+    [Header("센터 좌표")]
+    public Transform centerObject; //바닥 중앙 좌표
+
+    Vector3 myPos;
+    Vector3 linePos;
+
     enum STATE
     {
         stop,
@@ -11,28 +17,43 @@ public class CrystalStarPuzzle : CrystalPuzzle
     }
     STATE state;
     public Transform parent;
-    public float startRot;
 
+    public float startRot;
     public float RotY;
+    [Header("최저값 최대값")]
     [Range(0, -179)]
     public int minLimit;
     [Range(0, 179)]
     public int maxLimit;
 
     LineRenderer Line;
+    [Header("최저값 최대값")]
     public GameObject[] LinkPos;
+    [Header("최저값 최대값")]
     public GameObject[] nextCrystal;
+    
     int posLenght;
     private void Start()
     {
+        //라인 위치가 좀 위로 올라가야함(피봇이 바닥)
+        linePos = transform.position;
+        linePos.y = transform.position.y + 3f;
+
+        //센터 포지션 맟춰주기
+        myPos = transform.position;
+        transform.parent.position = centerObject.position;
+        transform.position = myPos;
+        
         RotY = 0;
         state = STATE.stop;
         c_state = GetComponent<EmptyCrystal>();
         c_state.state = C_STATE.EMPTY;
 
+        //부모 돌려주기
         parent = transform.parent;
         startRot= parent.rotation.eulerAngles.y;
 
+        //선 초기화
         Line = GetComponent<LineRenderer>();
         Line.startWidth = .05f;
         Line.endWidth = .05f;
@@ -53,6 +74,7 @@ public class CrystalStarPuzzle : CrystalPuzzle
         if (minLimit >= maxLimit)
             Debug.Log("Limit Error");
     }
+
     private void Update()
     {
         if (c_state.isActive == true)
@@ -63,8 +85,12 @@ public class CrystalStarPuzzle : CrystalPuzzle
             {
                 if (transform.GetComponent<CrystalState>().myNum == LinkPos[i].GetComponent<CrystalState>().myNum)
                 {
-                    Line.SetPosition(1, transform.position);
-                    Line.SetPosition(0, LinkPos[i].transform.position);
+                    linePos = transform.position;
+                    linePos.y = transform.position.y + 2f;
+                    Vector3 linkPos = LinkPos[i].transform.position;
+                    linkPos.y = LinkPos[i].transform.position.y +1f;
+                    Line.SetPosition(1, linePos);
+                    Line.SetPosition(0, linkPos);
                 }
                 switch (transform.GetComponent<CrystalState>().myNum)
                 {
@@ -114,14 +140,27 @@ public class CrystalStarPuzzle : CrystalPuzzle
                 }
                 else
                 {
+                    linePos = transform.position;
+                    linePos.y = transform.position.y + 3f;
+
                     state = STATE.stop;
                     c_state.isActive = false;
-                    Line.SetPosition(0, transform.position);
-                    Line.SetPosition(1, transform.position);
-                    Line.SetPosition(2, transform.position);
+
+                    Line.SetPosition(0, linePos);
+                    Line.SetPosition(1, linePos);
+                    Line.SetPosition(2, linePos);
+
                 }
                 break;
             case C_STATE.BLUE:
+                break;
+            case C_STATE.WHITE:
+                break;
+            case C_STATE.RED:
+                break;
+            case C_STATE.BLACK:
+                break;
+            case C_STATE.LIGHT:
                 if (maxLimit > RotY)
                     parent.transform.Rotate(Vector3.up * Time.deltaTime * 10);
                 else
@@ -130,7 +169,7 @@ public class CrystalStarPuzzle : CrystalPuzzle
                     c_state.isActive = false;
                 }
                 break;
-            case C_STATE.WHITE:
+            case C_STATE.DARK:
                 if (minLimit < RotY)
                     parent.transform.Rotate(Vector3.down * Time.deltaTime * 10);
                 else
@@ -138,10 +177,6 @@ public class CrystalStarPuzzle : CrystalPuzzle
                     state = STATE.stop;
                     c_state.isActive = false;
                 }
-                break;
-            case C_STATE.RED:
-                break;
-            case C_STATE.BLACK:
                 break;
         }
     }
