@@ -26,6 +26,8 @@
 #pragma surface surf ToonRamp
 #pragma shader_feature LM
 #pragma shader_feature LM2
+	
+			
 		sampler2D _Ramp;
 
 		// custom lighting function that uses a texture ramp based
