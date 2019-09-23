@@ -11,11 +11,14 @@ public class StarManager : MonoBehaviour
     public GameObject[] ec;
     public GameObject[] plane;
     public CameraPlayer TopView;
+    public PlayerStaff staff;
+    public GameObject effect;
     float time;
     // Start is called before the first frame update
     void Start()
     {
         TopView = GameObject.Find("PC").GetComponent<CameraPlayer>();
+        staff = GameObject.Find("Staff").GetComponent<PlayerStaff>();
         for (int i = 2; i < 9; i++)
         {
             cc[i].SetActive(false);
@@ -25,15 +28,18 @@ public class StarManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (page == 1 && ec[6].GetComponent<CrystalStarPuzzle>().GetState(1) && ec[0].GetComponent<CrystalStarPuzzle>().GetState(2) &&
+        if (page == 1 && ec[5].GetComponent<CrystalStarPuzzle>().GetState(1) && ec[0].GetComponent<CrystalStarPuzzle>().GetState(2) &&
             TopView.topView)
         {
             time += Time.deltaTime;
             if (time > 2)
             {
+                staff.StaffEvent();
+                effect.SetActive(false);
+                effect.SetActive(true);
                 page = 2;
                 NextPage();
-                ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
+                ec[5].GetComponent<CrystalStarPuzzle>().SetInit();
                 ec[0].GetComponent<CrystalStarPuzzle>().SetInit();
                 plane[0].SetActive(false);
                 time = 0;
@@ -45,6 +51,9 @@ public class StarManager : MonoBehaviour
             time += Time.deltaTime;
             if (time > 2)
             {
+                staff.StaffEvent();
+                effect.SetActive(false);
+                effect.SetActive(true);
                 page = 3;
                 NextPage();
                 ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
@@ -54,12 +63,15 @@ public class StarManager : MonoBehaviour
                 time = 0;
             }
         }
-        else if (page == 3 && ec[4].GetComponent<CrystalStarPuzzle>().GetState(1) && ec[0].GetComponent<CrystalStarPuzzle>().GetState(2)
-            && ec[1].GetComponent<CrystalStarPuzzle>().GetState(2) && ec[2].GetComponent<CrystalStarPuzzle>().GetState(2) && TopView.topView)
+        else if (page == 3 && ec[4].GetComponent<CrystalStarPuzzle>().GetState(2) && ec[0].GetComponent<CrystalStarPuzzle>().GetState(2)
+            && ec[1].GetComponent<CrystalStarPuzzle>().GetState(2) && ec[2].GetComponent<CrystalStarPuzzle>().GetState(1) && TopView.topView)
         {
             time += Time.deltaTime;
             if (time > 2)
             {
+                staff.StaffEvent();
+                effect.SetActive(false);
+                effect.SetActive(true);
                 page = 4;
                 NextPage();
                 ec[6].GetComponent<CrystalStarPuzzle>().SetInit();

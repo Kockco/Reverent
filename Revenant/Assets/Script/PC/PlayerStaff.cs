@@ -31,7 +31,8 @@ public class PlayerStaff : MonoBehaviour
     }
 
     public  GameObject[] crystalEffect;
-
+    public GameObject staffEffect;
+    public bool staffEventOn;
     private void Start()
     {
         mat = GetComponent<MeshRenderer>().material;
@@ -61,6 +62,11 @@ public class PlayerStaff : MonoBehaviour
         if(kong == 3)
         {
             ChangeMaterial();
+        }
+        if(staffEventOn)
+        {
+            Invoke("StaffOff", 9);
+            staffEventOn = false;
         }
     }
     public void ChangeMaterial()
@@ -115,23 +121,29 @@ public class PlayerStaff : MonoBehaviour
         {
             case C_STATE.BLUE:
                 crystalEffect[4].SetActive(true);
+                crystalEffect[0].SetActive(false);
                 break;
             case C_STATE.WHITE:
                 crystalEffect[5].SetActive(true);
+                crystalEffect[1].SetActive(false);
                 break;
             case C_STATE.RED:
                 crystalEffect[6].SetActive(true);
+                crystalEffect[2].SetActive(false);
                 break;
             case C_STATE.BLACK:
                 crystalEffect[7].SetActive(true);
+                crystalEffect[3].SetActive(false);
                 break;
             case C_STATE.EMPTY:
                 break;
             case C_STATE.LIGHT:
                 crystalEffect[5].SetActive(true);
+                crystalEffect[1].SetActive(false);
                 break;
             case C_STATE.DARK:
                 crystalEffect[7].SetActive(true);
+                crystalEffect[3].SetActive(false);
                 break;
         }
     }
@@ -166,5 +178,15 @@ public class PlayerStaff : MonoBehaviour
                 crystalEffect[11].SetActive(true);
                 break;
         }
+    }
+    public void StaffEvent()
+    {
+        staffEffect.SetActive(false);
+        staffEffect.SetActive(true);
+        staffEventOn = true;
+    }
+    public void StaffOff()
+    {
+        staffEffect.SetActive(false);
     }
 }
