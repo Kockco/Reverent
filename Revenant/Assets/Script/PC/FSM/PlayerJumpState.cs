@@ -14,6 +14,9 @@ public class PlayerJumpState : PlayerState
         // 초기화 구현
         delay = 0;
         groundCheck = false;
+        player.runSpeed = 1;
+        player.rotSpeed = 0;
+        player.useStaff = false;
     }
     void PlayerState.Update()
     {
@@ -33,11 +36,10 @@ public class PlayerJumpState : PlayerState
             {
                 player.transform.GetChild(0).GetComponent<Animator>().SetTrigger("JumpEnd");
                 player.transform.GetChild(0).GetComponent<Animator>().SetBool("Jump", false);
-                player.nextDelay = 0;
                 player.SetState(new PlayerIdleState());
             }
         }
-        player.MoveCalc(0.3f);
+        player.MoveCalc(10f);
         player.Gravity();
     }
     void PlayerState.OnExit()
@@ -45,6 +47,7 @@ public class PlayerJumpState : PlayerState
         //종료되면서 정리해야할것 구현
         delay = 0;
         groundCheck = false;
+        player.useStaff = true;
     }
     
 }
