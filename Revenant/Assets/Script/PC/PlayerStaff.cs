@@ -13,8 +13,10 @@ public class PlayerStaff : MonoBehaviour
 
     Material mat;
     public Material[] changeMat;
-    C_STATE state;
+
     public int kong = 0;
+
+    C_STATE state;
     public C_STATE State
     {
         get
@@ -94,6 +96,16 @@ public class PlayerStaff : MonoBehaviour
             case C_STATE.EMPTY:
                 GetComponent<MeshRenderer>().material = changeMat[4];
                 break;
+            case C_STATE.LIGHT:
+                GetComponent<MeshRenderer>().material = changeMat[1];
+                crystalEffect[1].SetActive(false);
+                crystalEffect[1].SetActive(true);
+                break;
+            case C_STATE.DARK:
+                GetComponent<MeshRenderer>().material = changeMat[3];
+                crystalEffect[3].SetActive(false);
+                crystalEffect[3].SetActive(true);
+                break;
         }
     }
     
@@ -114,6 +126,12 @@ public class PlayerStaff : MonoBehaviour
                 crystalEffect[7].SetActive(true);
                 break;
             case C_STATE.EMPTY:
+                break;
+            case C_STATE.LIGHT:
+                crystalEffect[5].SetActive(true);
+                break;
+            case C_STATE.DARK:
+                crystalEffect[7].SetActive(true);
                 break;
         }
     }
@@ -138,6 +156,14 @@ public class PlayerStaff : MonoBehaviour
                 crystalEffect[11].SetActive(true);
                 break;
             case C_STATE.EMPTY:
+                break;
+            case C_STATE.LIGHT:
+                crystalEffect[9].SetActive(false);
+                crystalEffect[9].SetActive(true);
+                break;
+            case C_STATE.DARK:
+                crystalEffect[11].SetActive(false);
+                crystalEffect[11].SetActive(true);
                 break;
         }
     }

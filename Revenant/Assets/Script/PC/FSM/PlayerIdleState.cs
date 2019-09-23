@@ -9,7 +9,7 @@ public class PlayerIdleState : PlayerState
     {
         //player 프로퍼티 초기화
         this.player = player;
-        player.runSpeed = 4;
+        player.runSpeed = player.mySpeed;
     }
     void PlayerState.Update()
     {

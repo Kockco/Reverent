@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
     [Range(0.1f, 30.0f)]
     public float jumpPower = 6f;
 
+    public float mySpeed = 4;
+
     //중력
     public float gravity = 9.81f;
     public float yVelocity = 0;
@@ -46,6 +48,12 @@ public class Player : MonoBehaviour
         nowSpeed = new Vector3(cc.velocity.x, 0, cc.velocity.z).magnitude;
         //if (move.y < -0.5f)
             cc.Move(move * Time.deltaTime);
+
+        if(Input.GetKeyDown(KeyCode.F11))
+        {
+            runSpeed = 12;
+            mySpeed = 12;
+        }
     }
 
     public void SetState(PlayerState nextState)
@@ -151,6 +159,12 @@ public class Player : MonoBehaviour
                 PlayerAnimation("Green");
                 break;
             case C_STATE.EMPTY:
+                break;
+            case C_STATE.LIGHT:
+                PlayerAnimation("Black");
+                break;
+            case C_STATE.DARK:
+                PlayerAnimation("Black");
                 break;
         }
     }

@@ -30,7 +30,7 @@ public class PlayerUseStaffState : PlayerState
     {
         //종료되면서 정리해야할것 구현
         player.useStaff = true;
-        player.runSpeed = 4;
+        player.runSpeed = player.mySpeed;
     }
     
 }

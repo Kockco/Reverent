@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum C_STATE { BLUE, WHITE, RED, BLACK, EMPTY }
+public enum C_STATE { BLUE, WHITE, RED, BLACK, EMPTY , LIGHT , DARK}
 
 public class CrystalState : MonoBehaviour
 {
