@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
     //중력
     public float gravity = 9.81f;
     public float yVelocity = 0;
-    public float rotSpeed = 10f;
 
     //카메라 관련
     public Transform model;
@@ -81,12 +80,12 @@ public class Player : MonoBehaviour
             Quaternion cameraRotation = cameraTransform.rotation;
             cameraRotation.x = cameraRotation.z = 0;    //y축만 필요하므로 나머지 값은 0으로 바꾼다.
             //자연스러움을 위해 Slerp로 회전시킨다.
-            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, cameraRotation, rotSpeed * Time.deltaTime);
+            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, cameraRotation, 10 * Time.deltaTime);
             if (move != Vector3.zero)//Quaternion.LookRotation는 (0,0,0)이 들어가면 경고를 내므로 예외처리 해준다.
             {
                 Quaternion characterRotation = Quaternion.LookRotation(move);
                 characterRotation.x = characterRotation.z = 0;
-                model.rotation = Quaternion.Slerp(model.rotation, characterRotation, rotSpeed * Time.deltaTime);
+                model.rotation = Quaternion.Slerp(model.rotation, characterRotation, 10 * Time.deltaTime);
             }
 
             //관성을 위해 MoveTowards를 활용하여 서서히 이동하도록 한다.
