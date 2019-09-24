@@ -62,7 +62,7 @@ public class CrystalManager : MonoBehaviour
         crystalMaterial[4] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Empty", typeof(Material)) as Material;
         crystalMaterial[5] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_White", typeof(Material)) as Material;
         crystalMaterial[6] = Resources.Load("Nature/Main_Objects/COMMON/CCrystal/Crystal_Purple", typeof(Material)) as Material;
-        crystalEffectParticle = new GameObject[18];
+        crystalEffectParticle = new GameObject[20];
         crystalEffectParticle[0] = Resources.Load("FX/1.Revv/CCrystal/Active/CCrystal_Active_Blue 1 1", typeof(GameObject)) as GameObject;
         crystalEffectParticle[1] = Resources.Load("FX/1.Revv/CCrystal/Reset/CCrystal_Reset_Blue", typeof(GameObject)) as GameObject;
         crystalEffectParticle[2] = Resources.Load("FX/1.Revv/CCrystal/IN/CC_IN_Blue 1", typeof(GameObject)) as GameObject;
@@ -81,6 +81,8 @@ public class CrystalManager : MonoBehaviour
         crystalEffectParticle[15] = Resources.Load("FX/1.Revv/CCrystal/Active/CCrystal_Active_Purple 1", typeof(GameObject)) as GameObject;
         crystalEffectParticle[16] = Resources.Load("FX/1.Revv/CCrystal/Reset/CCrystal_Reset_Purple", typeof(GameObject)) as GameObject;
         crystalEffectParticle[17] = Resources.Load("FX/1.Revv/CCrystal/IN/CC_IN_Purple", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[18] = Resources.Load("FX/2.Puzzle/Puzzle4/Prefab/starfall", typeof(GameObject)) as GameObject;
+        crystalEffectParticle[19] = Resources.Load("FX/2.Puzzle/Puzzle4/Prefab/StarPuzzle_step1_comp", typeof(GameObject)) as GameObject;
     }
 
     public void LoadMaterial(GameObject obj, int matNum, C_STATE stat)

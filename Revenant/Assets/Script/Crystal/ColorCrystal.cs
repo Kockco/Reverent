@@ -7,7 +7,7 @@ public class ColorCrystal : CrystalState
     public GameObject[] CrystalEffect;
     private void Start()
     {
-        GameObject[] obj = new GameObject[3];
+        GameObject[] obj = new GameObject[4];
         switch (state)
         {
             case C_STATE.LIGHT:
@@ -29,12 +29,19 @@ public class ColorCrystal : CrystalState
                 }
                 break;
         }
+        obj[3] = Instantiate(CrystalManager.Instance.crystalEffectParticle[18], Vector3.zero, Quaternion.identity) as GameObject;
+        obj[3].transform.SetParent(transform);
+        obj[3].transform.position = new Vector3(transform.position.x, transform.position.y + 1.1f, transform.position.z);
+        obj[3].transform.rotation = Quaternion.identity;
+
         obj[1].transform.rotation = Quaternion.Euler(new Vector3(-90,0,0));
+
         LoadMaterial();
-        CrystalEffect = new GameObject[3];
+        CrystalEffect = new GameObject[5];
         CrystalEffect[0] = transform.GetChild(3).gameObject;
         CrystalEffect[1] = transform.GetChild(4).gameObject;
         CrystalEffect[2] = transform.GetChild(5).gameObject;
+        CrystalEffect[3] = transform.GetChild(6).gameObject;
     }
     void Update()
     {
@@ -42,11 +49,13 @@ public class ColorCrystal : CrystalState
         {
             CrystalEffect[0].SetActive(true);
             CrystalEffect[1].SetActive(false);
+            CrystalEffect[3].SetActive(true);
         }
         else if (!IsLink)
         {
             CrystalEffect[0].SetActive(false);
             CrystalEffect[1].SetActive(true);
+            CrystalEffect[3].SetActive(false);
         }
     }
     public void CrystalPopEffect()

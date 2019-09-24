@@ -125,9 +125,20 @@ public class MouseEvent : MonoBehaviour
                     staff.State = hitCrystal.state;
                     hitCrystal.CrystalPopEffect();
                     player.PlayerClickAnimation(hitCrystal.state); // 애니메이션 실행
-                    for (int effectNum =0; effectNum <3; effectNum++) // 이펙트 실행
+                    if(hitCrystal.state == C_STATE.LIGHT)
                     {
-                        CrystalManager.Instance.crystalEffect[effectNum].GetComponent<KongSlerpMove>().CreateEffet(hitCrystal.transform.position);
+                        for (int effectNum = 3; effectNum < 6; effectNum++) // 이펙트 실행
+                        {
+                            CrystalManager.Instance.crystalEffect[effectNum].GetComponent<KongSlerpMove>().CreateEffet(hitCrystal.transform.position);
+                        }
+
+                    }
+                    if (hitCrystal.state == C_STATE.DARK)
+                    {
+                        for (int effectNum = 12; effectNum < 15; effectNum++) // 이펙트 실행
+                        {
+                            CrystalManager.Instance.crystalEffect[effectNum].GetComponent<KongSlerpMove>().CreateEffet(hitCrystal.transform.position);
+                        }
                     }
                 }
             }
