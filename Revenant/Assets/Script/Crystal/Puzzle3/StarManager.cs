@@ -74,8 +74,10 @@ public class StarManager : MonoBehaviour
                 effect.SetActive(true);
                 page = 4;
                 NextPage();
-                ec[6].GetComponent<CrystalStarPuzzle>().SetInit();
+                ec[4].GetComponent<CrystalStarPuzzle>().SetInit();
                 ec[0].GetComponent<CrystalStarPuzzle>().SetInit();
+                ec[1].GetComponent<CrystalStarPuzzle>().SetInit();
+                ec[2].GetComponent<CrystalStarPuzzle>().SetInit();
                 time = 0;
             }
         }
@@ -107,6 +109,10 @@ public class StarManager : MonoBehaviour
                 cc[6].SetActive(false);
                 cc[7].SetActive(false);
                 cc[8].SetActive(false);
+                cc[5].SetActive(true);
+                cc[6].SetActive(true);
+                cc[7].SetActive(true);
+                cc[8].SetActive(true);
                 break;
         }
 
