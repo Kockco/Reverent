@@ -22,7 +22,6 @@ public class PlayerMoveState : PlayerState
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
         }
         player.MoveCalc(1.0f);
-        player.MoveJump();
         player.Gravity();
     }
     void PlayerState.OnExit()

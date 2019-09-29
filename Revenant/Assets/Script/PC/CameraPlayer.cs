@@ -26,6 +26,9 @@ public class CameraPlayer : MonoBehaviour
     [Header("시작하는 카메라 거리")]
     [Range(0, -30)]
     public float startDistance = -4.1f;
+    [Header("카메라 따라다니는 속도")]
+    [Range(4, 30)]
+    public float camSpeed = 4f;
     [Header("현재 거리(수정불가)")]
     [SerializeField]
     float nowDistance;
@@ -79,7 +82,9 @@ public class CameraPlayer : MonoBehaviour
 
     void MouseSense()
     {
-        cameraParentTransform.position = myTransform.position + Vector3.up * camHeight;  //캐릭터의 머리 높이쯤
+        //cameraParentTransform.position = myTransform.position + Vector3.up * camHeight;  //캐릭터의 머리 높이쯤
+        Vector3 TargetPos = new Vector3(transform.position.x, transform.position.y + 1 * camHeight, transform.position.z);
+        cameraParentTransform.position = Vector3.Lerp(cameraParentTransform.position, TargetPos, Time.deltaTime * camSpeed);
 
         mouseMove += new Vector3(-Input.GetAxisRaw("Mouse Y") * mouseSensitivity, Input.GetAxisRaw("Mouse X") * mouseSensitivity, 0);   //마우스의 움직임을 가감
         if (mouseMove.x < -40)  //위로 볼수있는 것 제한 90이면 아예 땅바닥에서 하늘보기
