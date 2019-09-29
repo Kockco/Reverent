@@ -6,17 +6,12 @@ public class Player : MonoBehaviour
 {
     //캐릭터 상태
     public PlayerState currentState;
-    public bool useStaff;
 
     //이동관련
     public Vector3 move;
     public Transform myTransform;
     [Range(0.1f, 30.0f)]
-    public float runSpeed = 5;
-    [Range(0.1f, 30.0f)]
-    public float jumpPower = 6f;
-
-    public float mySpeed = 4;
+    public float moveSpeed = 5;
 
     //중력
     public float gravity = 9.81f;
@@ -26,9 +21,10 @@ public class Player : MonoBehaviour
     public Transform model;
     public Transform cameraTransform;
     public CharacterController cc;
-    
+
+    [SerializeField]
     public float nowSpeed;
-    public float staffTime;
+
     private void Awake()
     {
         //상태변경
@@ -37,7 +33,7 @@ public class Player : MonoBehaviour
         model = transform.GetChild(0);
         cameraTransform = Camera.main.transform.parent;
         myTransform = transform;
-        useStaff = true;
+        
     }
 
     private void Update()
@@ -46,13 +42,11 @@ public class Player : MonoBehaviour
         currentState.Update();
         // 현재 움직이는 속도
         nowSpeed = new Vector3(cc.velocity.x, 0, cc.velocity.z).magnitude;
-        //if (move.y < -0.5f)
-            cc.Move(move * Time.deltaTime);
+        cc.Move(move * Time.deltaTime);
 
         if(Input.GetKeyDown(KeyCode.F11))
         {
-            runSpeed = 12;
-            mySpeed = 12;
+            moveSpeed = 12;
         }
     }
 
@@ -78,9 +72,9 @@ public class Player : MonoBehaviour
         inputMoveXZ = myTransform.TransformDirection(inputMoveXZ);
 
         if (inputMoveXZMgnitude <= 1)
-            inputMoveXZ *= runSpeed;
+            inputMoveXZ *= moveSpeed;
         else
-            inputMoveXZ = inputMoveXZ.normalized * runSpeed;
+            inputMoveXZ = inputMoveXZ.normalized * moveSpeed;
 
         //조작 중에만 카메라의 방향에 상대적으로 캐릭터가 움직이도록 한다.
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
@@ -97,37 +91,18 @@ public class Player : MonoBehaviour
             }
 
             //관성을 위해 MoveTowards를 활용하여 서서히 이동하도록 한다.
-            move = Vector3.MoveTowards(move, inputMoveXZ, ratio * runSpeed);
+            move = Vector3.MoveTowards(move, inputMoveXZ, ratio * moveSpeed);
         }
         else
         {
             //조작이 없으면 서서히 멈춘다.
-            move = Vector3.MoveTowards(move, Vector3.zero, (1 - inputMoveXZMgnitude) * runSpeed * ratio);
+            move = Vector3.MoveTowards(move, Vector3.zero, (1 - inputMoveXZMgnitude) * moveSpeed * ratio);
         }
         float speed = move.sqrMagnitude;    //현재 속도를 애니메이터에 세팅한다.
 
         move.y = tempMoveY; //y값 복구
     }
-
-    public void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            transform.GetChild(0).GetComponent<Animator>().SetBool("Jump",true);
-            yVelocity = jumpPower;
-            SetState(new PlayerJumpState());
-        }
-    }
-
-    public void MoveJump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            transform.GetChild(0).GetComponent<Animator>().SetBool("MoveJump", true);
-            yVelocity = jumpPower;
-            SetState(new PlayerMoveJumpState());
-        }
-    }
+    
     public void Gravity()
     {
         move.y = yVelocity;
@@ -141,50 +116,23 @@ public class Player : MonoBehaviour
     public void PlayerAnimation(string aniName) { model.GetComponent<Animator>().SetTrigger(aniName); }
     public void PlayerAnimation(string aniName,bool b) { model.GetComponent<Animator>().SetBool(aniName,b); }
     public void PlayerAnimation(string aniName, float f) { model.GetComponent<Animator>().SetFloat(aniName, f); }
-    //플레이어 애니메이션 실행 함수
-    public void PlayerClickAnimation(C_STATE c_state)
-    {
-        switch (c_state)
-        {
-            case C_STATE.BLUE:
-                PlayerAnimation("Blue");
-                break;
-            case C_STATE.WHITE:
-                PlayerAnimation("Yellow");
-                break;
-            case C_STATE.RED:
-                PlayerAnimation("Red");
-                break;
-            case C_STATE.BLACK:
-                PlayerAnimation("Green");
-                break;
-            case C_STATE.EMPTY:
-                break;
-            case C_STATE.LIGHT:
-                PlayerAnimation("Black");
-                break;
-            case C_STATE.DARK:
-                PlayerAnimation("Black");
-                break;
-        }
-    }
 
-    void OnDrawGizmos()
-    {
-        RaycastHit hit;
-        // Physics.SphereCast (레이저를 발사할 위치, 구의 반경, 발사 방향, 충돌 결과, 최대 거리, 충돌할 레이어)
-        bool isHit = Physics.SphereCast(transform.position, transform.lossyScale.x / 3, -transform.up, out hit, 0.1f);
+    //void OnDrawGizmos()
+    //{
+    //    RaycastHit hit;
+    //    // Physics.SphereCast (레이저를 발사할 위치, 구의 반경, 발사 방향, 충돌 결과, 최대 거리, 충돌할 레이어)
+    //    bool isHit = Physics.SphereCast(transform.position, transform.lossyScale.x / 3, -transform.up, out hit, 0.1f);
 
-        Gizmos.color = Color.red;
-        if (isHit)
-        {
-            Gizmos.DrawRay(transform.position, (-transform.up) * hit.distance);
-            Gizmos.DrawWireSphere(transform.position + (-transform.up) * hit.distance, 0.1f);
-        }
-        else
-        {
-            Gizmos.DrawRay(transform.position, (-transform.up) * 0.1f);
-            //Gizmos.DrawWireSphere(transform.position + (-transform.up) * hit.distance, 0.01f);
-        }
-    }
+    //    Gizmos.color = Color.red;
+    //    if (isHit)
+    //    {
+    //        Gizmos.DrawRay(transform.position, (-transform.up) * hit.distance);
+    //        Gizmos.DrawWireSphere(transform.position + (-transform.up) * hit.distance, 0.1f);
+    //    }
+    //    else
+    //    {
+    //        Gizmos.DrawRay(transform.position, (-transform.up) * 0.1f);
+    //        //Gizmos.DrawWireSphere(transform.position + (-transform.up) * hit.distance, 0.01f);
+    //    }
+    //}
 }
