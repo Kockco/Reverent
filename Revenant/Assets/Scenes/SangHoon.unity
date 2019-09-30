@@ -2006,7 +2006,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1607519811
 Transform:
   m_ObjectHideFlags: 0
@@ -2458,7 +2458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a4ef96ce38b4c2428379aa38603fa86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxAimDistance: 10
+  maxAimDistance: 1
+  handleObj: {fileID: 0}
   move: {x: 0, y: 0, z: 0}
   myTransform: {fileID: 0}
   moveSpeed: 5
