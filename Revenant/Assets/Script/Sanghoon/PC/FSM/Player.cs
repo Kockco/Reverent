@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     //에임
     PlayerAimState aim;
     public float maxAimDistance = 10;
+    public GameObject handleObj;
 
     //캐릭터 상태
     public PlayerState currentState;
@@ -28,8 +29,11 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public float nowSpeed;
-    
 
+    public CameraPlayer camPlayer;
+    public RaycastHit hit;
+
+    
     private void Awake()
     {
         //상태변경
@@ -39,7 +43,7 @@ public class Player : MonoBehaviour
         cameraTransform = Camera.main.transform.parent;
         myTransform = transform;
         aim = GameObject.Find("Aim").GetComponent<PlayerAimState>();
-
+        camPlayer = GameObject.Find("PC").GetComponent<CameraPlayer>();
     }
 
     private void Update()
@@ -90,8 +94,6 @@ public class Player : MonoBehaviour
         else
             inputMoveXZ = inputMoveXZ.normalized * moveSpeed;
 
-
-     
         //조작 중에만 카메라의 방향에 상대적으로 캐릭터가 움직이도록 한다.
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
@@ -118,7 +120,7 @@ public class Player : MonoBehaviour
 
         move.y = tempMoveY; //y값 복구
     }
-    
+
     public void Gravity()
     {
         move.y = yVelocity;
@@ -135,7 +137,7 @@ public class Player : MonoBehaviour
     //핸들 잡기
     public void UseHandle()
     {
-        RaycastHit hit;
+        // RaycastHit hit;
         int layerMask = 1 << LayerMask.NameToLayer("Handle");
         // Physics.SphereCast (레이저를 발사할 위치, 구의 반경, 발사 방향, 충돌 결과, 최대 거리, 충돌할 레이어)
         bool isHit = Physics.SphereCast(aim.transform.position, aim.transform.transform.lossyScale.x / 2, aim.transform.transform.forward, out hit, maxAimDistance, layerMask);
@@ -144,8 +146,8 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.tag == "Handle") // 에임과 충돌한것->내스테프와 같은것
             {
+                handleObj = hit.transform.gameObject;
                 SetState(new PlayerHandle());
-               // transform.SetParent(hit.transform);
                 transform.parent = hit.transform;
             }
         }
@@ -155,6 +157,15 @@ public class Player : MonoBehaviour
     {
         Vector3 inputMoveX = new Vector3(0, Input.GetAxis("Horizontal") * 100, 0);
         transform.parent.Rotate(inputMoveX * Time.deltaTime, Space.Self);
+    }
+
+    public void PlayerToRayRotation(RaycastHit rayHit)
+    {
+        Vector3 tempVec = rayHit.transform.position - transform.position;
+        Vector3 tempVec2 = Vector3.Slerp(transform.forward, tempVec.normalized, Time.deltaTime * 2);
+
+        //transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = Quaternion.LookRotation(tempVec2, Vector3.up);
     }
 
 

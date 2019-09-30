@@ -33,7 +33,7 @@
 //    public GameObject[] LinkPos;
 //    [Header("최저값 최대값")]
 //    public GameObject[] nextCrystal;
-    
+
 //    int posLenght;
 //    private void Start()
 //    {
@@ -45,12 +45,12 @@
 //        myPos = transform.position;
 //        transform.parent.position = centerObject.position;
 //        transform.position = myPos;
-        
+
 //        RotY = 0;
 //        state = STATE.stop;
 //        //부모 돌려주기
 //        parent = transform.parent;
-//        startRot= parent.rotation.eulerAngles.y;
+//        startRot = parent.rotation.eulerAngles.y;
 
 //        //선 초기화
 //        Line = GetComponent<LineRenderer>();
@@ -76,20 +76,20 @@
 
 //    private void Update()
 //    {
-//            for (int i = 0; i < posLenght; i++)
+//        for (int i = 0; i < posLenght; i++)
+//        {
+//            //링크된애들이랑 번호가 같으면 그쪽으로 연결해준다.
+//            if (transform.GetComponent<CrystalState>().myNum == LinkPos[i].GetComponent<CrystalState>().myNum)
 //            {
-//                //링크된애들이랑 번호가 같으면 그쪽으로 연결해준다.
-//                if (transform.GetComponent<CrystalState>().myNum == LinkPos[i].GetComponent<CrystalState>().myNum)
-//                {
-//                    linePos = transform.position;
-//                    linePos.y = transform.position.y + 2f;
-//                    Vector3 linkPos = LinkPos[i].transform.position;
-//                    linkPos.y = LinkPos[i].transform.position.y +1f;
-//                    Line.SetPosition(1, linePos);
-//                    Line.SetPosition(0, linkPos);
-//                }
+//                linePos = transform.position;
+//                linePos.y = transform.position.y + 2f;
+//                Vector3 linkPos = LinkPos[i].transform.position;
+//                linkPos.y = LinkPos[i].transform.position.y + 1f;
+//                Line.SetPosition(1, linePos);
+//                Line.SetPosition(0, linkPos);
 //            }
 //        }
+//    }
 
 
 //        if (parent.rotation.eulerAngles.y > 180)
@@ -103,55 +103,55 @@
 //    }
 
 //    void StairChange()
+//{
+//    if (RotY < startRot - 1)
 //    {
-//                if (RotY < startRot - 1)
-//                {
-//                    parent.transform.Rotate(Vector3.up * Time.deltaTime * 10);
-//                }
-//                else if (RotY > startRot +1)
-//                {
-//                    parent.transform.Rotate(Vector3.down * Time.deltaTime * 10);
-//                }
-//                else
-//                {
-//                    linePos = transform.position;
-//                    linePos.y = transform.position.y + 3f;
+//        parent.transform.Rotate(Vector3.up * Time.deltaTime * 10);
+//    }
+//    else if (RotY > startRot + 1)
+//    {
+//        parent.transform.Rotate(Vector3.down * Time.deltaTime * 10);
+//    }
+//    else
+//    {
+//        linePos = transform.position;
+//        linePos.y = transform.position.y + 3f;
 
-//                    state = STATE.stop;
-//                    c_state.isActive = false;
+//        state = STATE.stop;
+//        c_state.isActive = false;
 
-//                    Line.SetPosition(0, linePos);
-//                    Line.SetPosition(1, linePos);
-//                    Line.SetPosition(2, linePos);
+//        Line.SetPosition(0, linePos);
+//        Line.SetPosition(1, linePos);
+//        Line.SetPosition(2, linePos);
 
-//                }
-//                if (maxLimit > RotY)
-//                    parent.transform.Rotate(Vector3.up * Time.deltaTime * 40);
-//                else
-//                {
-//                    state = STATE.right;
-//                }
-//                if (minLimit < RotY)
-//                    parent.transform.Rotate(Vector3.down * Time.deltaTime * 40);
-//                else
-//                {
-//                    state = STATE.left;
-//                }
-//        }
+//    }
+//    if (maxLimit > RotY)
+//        parent.transform.Rotate(Vector3.up * Time.deltaTime * 40);
+//    else
+//    {
+//        state = STATE.right;
+//    }
+//    if (minLimit < RotY)
+//        parent.transform.Rotate(Vector3.down * Time.deltaTime * 40);
+//    else
+//    {
+//        state = STATE.left;
+//    }
+//}
 //    }
 //    public bool GetState(int i)
+//{
+//    switch (state)
 //    {
-//        switch (state)
-//        {
-//            case STATE.left:
-//                if (i == 1)
-//                    return true;
-//                break;
-//            case STATE.right:
-//                if (i == 2)
-//                    return true;
-//                break;
-//        }
-//        return false;
+//        case STATE.left:
+//            if (i == 1)
+//                return true;
+//            break;
+//        case STATE.right:
+//            if (i == 2)
+//                return true;
+//            break;
 //    }
+//    return false;
+//}
 //}
