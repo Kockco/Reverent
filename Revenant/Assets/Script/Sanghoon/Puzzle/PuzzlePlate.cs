@@ -81,7 +81,7 @@ public class PuzzlePlate : MonoBehaviour
                     switch (potatoCount)
                     {
                         case 2:
-                            if (myRot <= stopAngle[1] + 90 && myRot >= stopAngle[1] - 90)
+                            if (myRot < stopAngle[1] + 90 && myRot > stopAngle[1] - 90)
                                 nearAngle = stopAngle[1];
                             else
                                 nearAngle = stopAngle[0];
