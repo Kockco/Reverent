@@ -47,10 +47,11 @@ public class Player : MonoBehaviour
         //currentState 업데이트 돌리기
         currentState.Update();
 
-        // 현재 움직이는 속도
-        nowSpeed = new Vector3(cc.velocity.x, 0, cc.velocity.z).magnitude;
+        //// 현재 움직이는 속도
+        //nowSpeed = new Vector3(cc.velocity.x, 0, cc.velocity.z).magnitude;
 
-        cc.Move(move * Time.deltaTime);
+        
+       
 
         if(Input.GetKeyDown(KeyCode.F11) && moveSpeed != 15)
         {
@@ -89,6 +90,8 @@ public class Player : MonoBehaviour
         else
             inputMoveXZ = inputMoveXZ.normalized * moveSpeed;
 
+
+     
         //조작 중에만 카메라의 방향에 상대적으로 캐릭터가 움직이도록 한다.
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
@@ -142,7 +145,7 @@ public class Player : MonoBehaviour
             if (hit.transform.tag == "Handle") // 에임과 충돌한것->내스테프와 같은것
             {
                 SetState(new PlayerHandle());
-                //transform.SetParent(hit.transform);
+               // transform.SetParent(hit.transform);
                 transform.parent = hit.transform;
             }
         }
@@ -151,7 +154,7 @@ public class Player : MonoBehaviour
     public void HandleRotation()
     {
         Vector3 inputMoveX = new Vector3(0, Input.GetAxis("Horizontal") * 100, 0);
-        transform.parent.Rotate(inputMoveX * Time.deltaTime);
+        transform.parent.Rotate(inputMoveX * Time.deltaTime, Space.Self);
     }
 
 

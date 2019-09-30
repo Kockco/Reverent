@@ -26,6 +26,7 @@ public class PlayerIdleState : PlayerState
             player.UseHandle();
             Debug.Log("IdleE");
         }
+        player.cc.Move(player.move * Time.deltaTime);
         player.MoveCalc(1f);
         player.Gravity();
     }
