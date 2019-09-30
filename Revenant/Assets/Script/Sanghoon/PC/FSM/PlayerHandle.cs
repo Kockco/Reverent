@@ -33,7 +33,7 @@ public class PlayerHandle : PlayerState
             player.transform.parent = null;
             player.cc.enabled = true;
             player.SetState(new PlayerIdleState());
-            player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
+            
         }
 
     }
