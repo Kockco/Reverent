@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b9c58fb46a9c87a479b4b03dd721bad8, type: 3}
+        m_Texture: {fileID: 2800000, guid: e9b3d00f04b005c49a55f3a58e3f6418, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexBottom:
@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: 7164ef8dffe0d48478896bfed874c377, type: 3}
+        m_Texture: {fileID: 2800000, guid: b0e2374f0e6f50840a1edb57303229df, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
