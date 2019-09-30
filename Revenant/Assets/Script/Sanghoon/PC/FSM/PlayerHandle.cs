@@ -11,13 +11,15 @@ public class PlayerHandle : PlayerState
         //player 프로퍼티 초기화
         this.player = player;
         basePos = player.transform.localPosition;
+        player.transform.rotation = Quaternion.Euler(0, 0, 0);
         player.cc.enabled = false;
     //    player.MoveCalc(0);
     }
     void PlayerState.Update()
     {
-        Debug.Log("handle");
+        // player.camPlayer.CamMoveToObject(); <- 이거 활성화하면 카메라가 전체를 비춰요!
         player.HandleRotation();
+        player.PlayerToRayRotation(player.hit);
 
         if (player.cc.isGrounded)
         {
@@ -30,7 +32,6 @@ public class PlayerHandle : PlayerState
             player.cc.enabled = true;
             player.SetState(new PlayerIdleState());
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
-            //Debug.Log("HandleE");
         }
 
     }
