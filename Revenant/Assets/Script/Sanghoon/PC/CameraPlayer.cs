@@ -100,7 +100,7 @@ public class CameraPlayer : MonoBehaviour
         cameraParentTransform.transform.position = Vector3.Lerp(cameraParentTransform.transform.position, tempPos, Time.deltaTime * 2f);
         cameraParentTransform.transform.rotation = Quaternion.Lerp((Quaternion)cameraParentTransform.transform.rotation, (Quaternion)moveToObject.transform.rotation, Time.deltaTime * 2f);
 
-        if (cameraParentTransform.transform.position == tempPos)
+        if (Input.GetKeyDown(KeyCode.E))
             camMove = false;
         
     }

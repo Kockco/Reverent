@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public float nowSpeed;
 
     public CameraPlayer camPlayer;
+    public RaycastHit hit;
 
     private void Awake()
     {
@@ -91,15 +92,13 @@ public class Player : MonoBehaviour
         else
             inputMoveXZ = inputMoveXZ.normalized * moveSpeed;
 
-
-     
         //조작 중에만 카메라의 방향에 상대적으로 캐릭터가 움직이도록 한다.
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
             Quaternion cameraRotation = cameraTransform.rotation;
             cameraRotation.x = cameraRotation.z = 0;    //y축만 필요하므로 나머지 값은 0으로 바꾼다.
             //자연스러움을 위해 Slerp로 회전시킨다.
-            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, cameraRotation, 10 * Time.deltaTime);
+            // myTransform.rotation = Quaternion.Slerp(myTransform.rotation, cameraRotation, 10 * Time.deltaTime);
             if (move != Vector3.zero)//Quaternion.LookRotation는 (0,0,0)이 들어가면 경고를 내므로 예외처리 해준다.
             {
                 Quaternion characterRotation = Quaternion.LookRotation(move);
@@ -119,7 +118,7 @@ public class Player : MonoBehaviour
 
         move.y = tempMoveY; //y값 복구
     }
-    
+
     public void Gravity()
     {
         move.y = yVelocity;
@@ -136,7 +135,7 @@ public class Player : MonoBehaviour
     //핸들 잡기
     public void UseHandle()
     {
-        RaycastHit hit;
+        // RaycastHit hit;
         int layerMask = 1 << LayerMask.NameToLayer("Handle");
         // Physics.SphereCast (레이저를 발사할 위치, 구의 반경, 발사 방향, 충돌 결과, 최대 거리, 충돌할 레이어)
         bool isHit = Physics.SphereCast(aim.transform.position, aim.transform.transform.lossyScale.x / 2, aim.transform.transform.forward, out hit, maxAimDistance, layerMask);
@@ -151,13 +150,21 @@ public class Player : MonoBehaviour
                 transform.parent = hit.transform;
             }
         }
-        
     }
 
     public void HandleRotation()
     {
         Vector3 inputMoveX = new Vector3(0, Input.GetAxis("Horizontal") * 100, 0);
         transform.parent.Rotate(inputMoveX * Time.deltaTime, Space.Self);
+    }
+
+    public void PlayerToRayRotation(RaycastHit rayHit)
+    {
+        Vector3 tempVec = rayHit.transform.position - transform.position;
+        Vector3 tempVec2 = Vector3.Slerp(transform.forward, tempVec.normalized, Time.deltaTime * 2);
+
+        //transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = Quaternion.LookRotation(tempVec2, Vector3.up);
     }
 
 
