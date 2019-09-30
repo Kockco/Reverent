@@ -13,19 +13,17 @@ public class PlayerIdleState : PlayerState
     void PlayerState.Update()
     {
         if (player.cc.isGrounded)
-        {
             player.yVelocity = 0;
-        }
+
         if (player.nowSpeed != 0)
         {
             player.SetState(new PlayerMoveState());
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", true);
         }
+
         if (Input.GetKeyDown(KeyCode.E))
-        {
             player.UseHandle();
-            Debug.Log("IdleE");
-        }
+
         player.cc.Move(player.move * Time.deltaTime);
         player.MoveCalc(1f);
         player.Gravity();

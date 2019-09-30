@@ -28,7 +28,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public float nowSpeed;
-    
+
+    public CameraPlayer camPlayer;
 
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class Player : MonoBehaviour
         cameraTransform = Camera.main.transform.parent;
         myTransform = transform;
         aim = GameObject.Find("Aim").GetComponent<PlayerAimState>();
-
+        camPlayer = GameObject.Find("PC").GetComponent<CameraPlayer>();
     }
 
     private void Update()
@@ -144,11 +145,13 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.tag == "Handle") // 에임과 충돌한것->내스테프와 같은것
             {
+
                 SetState(new PlayerHandle());
                // transform.SetParent(hit.transform);
                 transform.parent = hit.transform;
             }
         }
+        
     }
 
     public void HandleRotation()
