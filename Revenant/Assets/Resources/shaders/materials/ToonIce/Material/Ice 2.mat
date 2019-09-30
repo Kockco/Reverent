@@ -7,20 +7,20 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Puzzle01
-  m_Shader: {fileID: 4800000, guid: 58d5109ca31838346aa35de1a7954bbe, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_Name: Ice 2
+  m_Shader: {fileID: 4800000, guid: bc8ccb75ecb64c948a10a511ee77c79f, type: 3}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 06f841157379e2548918346accc5ad98, type: 3}
+        m_Texture: {fileID: 2800000, guid: 06057b52a4f33e94cb20a09746fa3de6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -39,15 +39,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _IrTex:
-        m_Texture: {fileID: 2800000, guid: 80353650a300d4241a976b5372f651d1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8008c8db1dfe63a478de1e2a8ab4b794, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _Mask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -55,8 +47,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Noise:
-        m_Texture: {fileID: 2800000, guid: 50f5bfbaf5f024c409813bdac16a6237, type: 3}
+    - _NoiseTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -68,38 +60,46 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: b0e2374f0e6f50840a1edb57303229df, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8723a17f945ae1b40ade1da49a189d8f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Antialiasing: 5
-    - _Brightness: 0.57
+    - _ALPHA: 0
+    - _Amount: 0.000042
+    - _BumpAmt: 5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Fresnel: 0.54
     - _GlossMapScale: 1
-    - _Glossiness: 0.33
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LM: 0
-    - _LM2: 0
+    - _HARD: 0
+    - _HRimPower: 1.63
     - _Metallic: 0
     - _Mode: 0
+    - _NORMAL: 0
     - _OcclusionStrength: 1
-    - _Offset: 0.48
-    - _OutlineSize: 0.01
+    - _Offset: 0.29
+    - _Outline: 0.078
     - _Parallax: 0.02
+    - _RimBrightness: 3.58
+    - _RimPower: 0.7
+    - _RimStrength: 1.93
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
-    - _Value: 1
-    - _Value2: 2
-    - _WorldScale: 1.4
+    - _YOffset: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.6011926, g: 0.6097739, b: 0.6603774, a: 1}
+    - _BottomColor: {r: 0.41585082, g: 0.45372987, b: 0.8396226, a: 1}
+    - _Color: {r: 0.7783019, g: 0.9071106, b: 1, a: 1}
+    - _Color2: {r: 0.022058845, g: 1, b: 0.47393495, a: 1}
+    - _Emis: {r: 1, g: 1, b: 1, a: 1}
+    - _EmisMask: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _IrColor: {r: 0.1792453, g: 0.1792453, b: 0.1792453, a: 1}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _InnerRimColor: {r: 0.23953731, g: 0.013948975, b: 0.9485294, a: 1}
+    - _OutlineColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 1, g: 0, b: 0, a: 1}
+    - _TColor: {r: 0.36565503, g: 0.45914313, b: 0.7830189, a: 1}
