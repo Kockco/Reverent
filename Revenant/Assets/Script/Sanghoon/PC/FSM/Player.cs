@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     public CameraPlayer camPlayer;
     public RaycastHit hit;
 
+    
     private void Awake()
     {
         //상태변경
@@ -41,19 +42,28 @@ public class Player : MonoBehaviour
         model = transform.GetChild(0);
         cameraTransform = Camera.main.transform.parent;
         myTransform = transform;
+        aim = GameObject.Find("Aim").GetComponent<PlayerAimState>();
+        camPlayer = GameObject.Find("PC").GetComponent<CameraPlayer>();
     }
 
     private void Update()
     {
         //currentState 업데이트 돌리기
         currentState.Update();
-        // 현재 움직이는 속도
-        nowSpeed = new Vector3(cc.velocity.x, 0, cc.velocity.z).magnitude;
-        cc.Move(move * Time.deltaTime);
 
-        if(Input.GetKeyDown(KeyCode.F11))
+        //// 현재 움직이는 속도
+        //nowSpeed = new Vector3(cc.velocity.x, 0, cc.velocity.z).magnitude;
+
+        
+       
+
+        if(Input.GetKeyDown(KeyCode.F11) && moveSpeed != 15)
         {
-            moveSpeed = 12;
+            moveSpeed = 15;
+        }
+        else if(Input.GetKeyDown(KeyCode.F11) && moveSpeed == 15)
+        {
+            moveSpeed = 4;
         }
     }
 
@@ -69,6 +79,7 @@ public class Player : MonoBehaviour
         currentState.OnEnter(this);
     }
 
+    //움직임, 카메라 따라 회전
     public void MoveCalc(float ratio)
     {
         float tempMoveY = move.y;
@@ -82,7 +93,6 @@ public class Player : MonoBehaviour
             inputMoveXZ *= moveSpeed;
         else
             inputMoveXZ = inputMoveXZ.normalized * moveSpeed;
-
 
         //조작 중에만 카메라의 방향에 상대적으로 캐릭터가 움직이도록 한다.
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
@@ -109,9 +119,8 @@ public class Player : MonoBehaviour
         float speed = move.sqrMagnitude;    //현재 속도를 애니메이터에 세팅한다.
 
         move.y = tempMoveY; //y값 복구
-
     }
-    
+
     public void Gravity()
     {
         move.y = yVelocity;
@@ -128,7 +137,7 @@ public class Player : MonoBehaviour
     //핸들 잡기
     public void UseHandle()
     {
-        //RaycastHit hit;
+        // RaycastHit hit;
         int layerMask = 1 << LayerMask.NameToLayer("Handle");
         // Physics.SphereCast (레이저를 발사할 위치, 구의 반경, 발사 방향, 충돌 결과, 최대 거리, 충돌할 레이어)
         bool isHit = Physics.SphereCast(aim.transform.position, aim.transform.transform.lossyScale.x / 2, aim.transform.transform.forward, out hit, maxAimDistance, layerMask);
@@ -152,7 +161,11 @@ public class Player : MonoBehaviour
 
     public void PlayerToRayRotation(RaycastHit rayHit)
     {
-        transform.LookAt(rayHit.transform);
+        Vector3 tempVec = rayHit.transform.position - transform.position;
+        Vector3 tempVec2 = Vector3.Slerp(transform.forward, tempVec.normalized, Time.deltaTime * 2);
+
+        //transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = Quaternion.LookRotation(tempVec2, Vector3.up);
     }
 
 

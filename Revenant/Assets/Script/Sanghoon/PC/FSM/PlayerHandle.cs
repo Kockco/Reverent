@@ -14,7 +14,7 @@ public class PlayerHandle : PlayerState
         player.transform.rotation = Quaternion.Euler(0, 0, 0);
         player.cc.enabled = false;
         player.handleObj.GetComponent<PuzzleHandle>().CatchCheck();
-        player.MoveCalc(0);
+        //player.MoveCalc(0);
     }
     void PlayerState.Update()
     {
@@ -33,7 +33,7 @@ public class PlayerHandle : PlayerState
             player.transform.parent = null;
             player.cc.enabled = true;
             player.SetState(new PlayerIdleState());
-            
+            player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
         }
 
     }
