@@ -21,7 +21,11 @@ public class PlayerIdleState : PlayerState
             player.SetState(new PlayerMoveState());
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", true);
         }
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            player.UseHandle();
+            Debug.Log("IdleE");
+        }
         player.MoveCalc(1f);
         player.Gravity();
     }

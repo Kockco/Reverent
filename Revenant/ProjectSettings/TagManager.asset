@@ -4,10 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Crystal
-  - Empty_Crystal
-  - Crystal_Effect
-  - Star_Stone
+  - Handle
   layers:
   - Default
   - TransparentFX
@@ -20,7 +17,7 @@ TagManager:
   - PostProcessing
   - Ground
   - Player
-  - Crystal
+  - Handle
   - 
   - 
   - 

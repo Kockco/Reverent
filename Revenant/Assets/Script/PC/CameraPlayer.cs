@@ -49,7 +49,6 @@ public class CameraPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (!otherCamera)
         {
             Balance();
@@ -76,8 +75,6 @@ public class CameraPlayer : MonoBehaviour
             else
                 TopView();
         }
-        //MouseSense();
-        // MyView();
     }
 
     void MouseSense()

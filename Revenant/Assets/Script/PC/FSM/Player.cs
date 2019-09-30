@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //에임
+    PlayerAimState aim;
+    public float maxAimDistance = 10;
+
     //캐릭터 상태
     public PlayerState currentState;
 
@@ -24,6 +28,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     public float nowSpeed;
+    
 
     private void Awake()
     {
@@ -33,20 +38,27 @@ public class Player : MonoBehaviour
         model = transform.GetChild(0);
         cameraTransform = Camera.main.transform.parent;
         myTransform = transform;
-        
+        aim = GameObject.Find("Aim").GetComponent<PlayerAimState>();
+
     }
 
     private void Update()
     {
         //currentState 업데이트 돌리기
         currentState.Update();
+
         // 현재 움직이는 속도
         nowSpeed = new Vector3(cc.velocity.x, 0, cc.velocity.z).magnitude;
+
         cc.Move(move * Time.deltaTime);
 
-        if(Input.GetKeyDown(KeyCode.F11))
+        if(Input.GetKeyDown(KeyCode.F11) && moveSpeed != 15)
         {
-            moveSpeed = 12;
+            moveSpeed = 15;
+        }
+        else if(Input.GetKeyDown(KeyCode.F11) && moveSpeed == 15)
+        {
+            moveSpeed = 4;
         }
     }
 
@@ -62,6 +74,7 @@ public class Player : MonoBehaviour
         currentState.OnEnter(this);
     }
 
+    //움직임, 카메라 따라 회전
     public void MoveCalc(float ratio)
     {
         float tempMoveY = move.y;
@@ -116,6 +129,31 @@ public class Player : MonoBehaviour
     public void PlayerAnimation(string aniName) { model.GetComponent<Animator>().SetTrigger(aniName); }
     public void PlayerAnimation(string aniName,bool b) { model.GetComponent<Animator>().SetBool(aniName,b); }
     public void PlayerAnimation(string aniName, float f) { model.GetComponent<Animator>().SetFloat(aniName, f); }
+    //핸들 잡기
+    public void UseHandle()
+    {
+        RaycastHit hit;
+        int layerMask = 1 << LayerMask.NameToLayer("Handle");
+        // Physics.SphereCast (레이저를 발사할 위치, 구의 반경, 발사 방향, 충돌 결과, 최대 거리, 충돌할 레이어)
+        bool isHit = Physics.SphereCast(aim.transform.position, aim.transform.transform.lossyScale.x / 2, aim.transform.transform.forward, out hit, maxAimDistance, layerMask);
+
+        if (isHit)
+        {
+            if (hit.transform.tag == "Handle") // 에임과 충돌한것->내스테프와 같은것
+            {
+                SetState(new PlayerHandle());
+                //transform.SetParent(hit.transform);
+                transform.parent = hit.transform;
+            }
+        }
+    }
+
+    public void HandleRotation()
+    {
+        Vector3 inputMoveX = new Vector3(0, Input.GetAxis("Horizontal") * 100, 0);
+        transform.parent.Rotate(inputMoveX * Time.deltaTime);
+    }
+
 
     //void OnDrawGizmos()
     //{
