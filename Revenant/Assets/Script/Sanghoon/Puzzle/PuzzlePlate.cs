@@ -10,7 +10,10 @@ public class PuzzlePlate : MonoBehaviour
     public int potatoCount;
     //멈추는 지점
     public float[] stopAngle;
-    
+    //근처 지점
+    public bool isRock;
+    public float nearAngle = 360;
+    public float myRot;
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,6 +44,71 @@ public class PuzzlePlate : MonoBehaviour
         else
         {
             link_handle.link_plate = this;
+        }
+        isRock = true;
+    }
+    private void Update()
+    {
+        if(transform.eulerAngles.y < 0)
+        {
+            myRot = 180 + transform.eulerAngles.y;
+        }
+        else
+        {
+            myRot = transform.eulerAngles.y;
+        }
+        // 핸들과 판이 같이 움직이도록
+        if(link_handle.isCatch)
+            transform.rotation = link_handle.gameObject.transform.rotation;
+
+        else if(!link_handle.isCatch && !isRock)
+        {
+            //정해진 위치면?
+            foreach(float rot in stopAngle)
+            {
+                if (transform.eulerAngles.y < rot + 1 && transform.eulerAngles.y > rot - 1)
+                {
+                    isRock = true;
+                    //포테이토 부모님 바꾸기
+                    foreach (GameObject pot in link_handle.potato)
+                    {
+                        pot.transform.parent = link_handle.potatoParent.transform;
+                    }
+                }
+
+                else
+                {
+                    switch (potatoCount)
+                    {
+                        case 2:
+                            if (myRot <= stopAngle[1] + 90 && myRot >= stopAngle[1] - 90)
+                                nearAngle = stopAngle[1];
+                            else
+                                nearAngle = stopAngle[0];
+                            break;
+                        case 3:
+                            if (myRot <= stopAngle[2] + 60 && myRot >= stopAngle[2] - 60)
+                                nearAngle = stopAngle[2];
+                            else if (myRot <= stopAngle[1] + 60 && myRot >= stopAngle[1] - 60)
+                                nearAngle = stopAngle[1];
+                            else
+                                nearAngle = stopAngle[0];
+                            break;
+                        case 4:
+                            if (myRot <= stopAngle[3] + 45 && myRot >= stopAngle[3] - 45)
+                                nearAngle = stopAngle[3];
+                            else if (myRot <= stopAngle[2] + 45 && myRot >= stopAngle[2] - 45)
+                                nearAngle = stopAngle[2];
+                            else if (myRot <= stopAngle[1] + 45 && myRot >= stopAngle[1] - 45)
+                                nearAngle = stopAngle[1];
+                            else
+                                nearAngle = stopAngle[0];
+                            break;
+                    }
+                }
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.x, nearAngle, transform.rotation.z), 3 *Time.deltaTime);
+            }
+            
         }
     }
 }

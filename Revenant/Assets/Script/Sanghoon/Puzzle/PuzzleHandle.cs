@@ -7,24 +7,44 @@ public class PuzzleHandle : MonoBehaviour
     public PuzzlePlate link_plate;
     public bool isCatch;
 
+    //핸들을 잡을떄 포테이토를 넣어주기위해
+    public GameObject[] potato;
+    public GameObject potatoParent;
+    public int[] plateNum;
+    
     private void Start()
     {
+        potatoParent = GameObject.Find("Potato");
+        potato = GameObject.FindGameObjectsWithTag("Potato");
         transform.rotation = link_plate.transform.rotation;
     }
     private void Update()
     {
-        if(isCatch)
-        {
-            link_plate.gameObject.transform.rotation = transform.rotation;
-        }
+        // 핸들과 판이 같이 움직이도록
+        if (!isCatch)
+            transform.rotation = link_plate.gameObject.transform.rotation;
     }
+
     public void CatchCheck()
     {
         if (isCatch == false)
         {
             isCatch = true;
+            link_plate.isRock = false;
+            foreach (GameObject pot in potato)
+            {
+                for (int i = 0; i < plateNum.Length; i++)
+                {
+                    if (pot.GetComponent<Potato>().myNum == plateNum[i])
+                    {
+                        pot.transform.parent = link_plate.transform;
+                    }
+                }
+            }
         }
         else
+        {
             isCatch = false;
+        }
     }
 }
