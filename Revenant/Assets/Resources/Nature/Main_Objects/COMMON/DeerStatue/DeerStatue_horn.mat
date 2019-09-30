@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: DeerStatue_horn
-  m_Shader: {fileID: 4800000, guid: 002352ce42252774785d76f9300f5277, type: 3}
+  m_Shader: {fileID: 4800000, guid: 58d5109ca31838346aa35de1a7954bbe, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -64,11 +64,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _Antialiasing: 5
     - _Brightness: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Fresnel: 0.5
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -77,6 +79,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Offset: 0.02
+    - _OutlineSize: 0.01
     - _Parallax: 0.02
     - _RimPower: 1.5
     - _SmoothnessTextureChannel: 0
@@ -88,5 +91,6 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _HiColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 0.8421786, b: 0.5896226, a: 1}
     - _SpecuColor: {r: 0.745283, g: 0.54676944, b: 0.17928976, a: 1}
