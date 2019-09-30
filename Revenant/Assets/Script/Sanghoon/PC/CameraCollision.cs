@@ -23,9 +23,8 @@ public class CameraCollision : MonoBehaviour
     {
         Vector3 desiredCameraPos = transform.parent.TransformPoint(dollyDir * maxDistance);
         RaycastHit hit;
-        int layerMask = 1 << LayerMask.NameToLayer("Wall");
 
-        if (Physics.Linecast(transform.parent.position, desiredCameraPos, out hit, layerMask))
+        if(Physics.Linecast(transform.parent.position, desiredCameraPos, out hit))
         {
             distance = Mathf.Clamp((hit.distance * 0.9f), minDistance, maxDistance);
         }

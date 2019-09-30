@@ -12,7 +12,6 @@ public class PlayerMoveState : PlayerState
     }
     void PlayerState.Update()
     {
-        Debug.Log("move");
         if (player.cc.isGrounded)
         {
             player.yVelocity = 0;
@@ -23,7 +22,6 @@ public class PlayerMoveState : PlayerState
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
         }
         player.MoveCalc(1.0f);
-        player.cc.Move(player.move * Time.deltaTime);
         player.Gravity();
     }
     void PlayerState.OnExit()
