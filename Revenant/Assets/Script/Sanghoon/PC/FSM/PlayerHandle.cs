@@ -16,6 +16,7 @@ public class PlayerHandle : PlayerState
     }
     void PlayerState.Update()
     {
+        player.camPlayer.CamMoveToObject();
         Debug.Log("handle");
         player.HandleRotation();
 
