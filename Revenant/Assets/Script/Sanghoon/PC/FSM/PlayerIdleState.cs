@@ -13,8 +13,9 @@ public class PlayerIdleState : PlayerState
     void PlayerState.Update()
     {
         if (player.cc.isGrounded)
+        {
             player.yVelocity = 0;
-
+        }
         if (player.nowSpeed != 0)
         {
             player.SetState(new PlayerMoveState());

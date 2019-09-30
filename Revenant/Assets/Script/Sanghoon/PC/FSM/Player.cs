@@ -41,28 +41,20 @@ public class Player : MonoBehaviour
         model = transform.GetChild(0);
         cameraTransform = Camera.main.transform.parent;
         myTransform = transform;
-        aim = GameObject.Find("Aim").GetComponent<PlayerAimState>();
-        camPlayer = GameObject.Find("PC").GetComponent<CameraPlayer>();
+        
     }
 
     private void Update()
     {
         //currentState 업데이트 돌리기
         currentState.Update();
+        // 현재 움직이는 속도
+        nowSpeed = new Vector3(cc.velocity.x, 0, cc.velocity.z).magnitude;
+        cc.Move(move * Time.deltaTime);
 
-        //// 현재 움직이는 속도
-        //nowSpeed = new Vector3(cc.velocity.x, 0, cc.velocity.z).magnitude;
-
-        
-       
-
-        if(Input.GetKeyDown(KeyCode.F11) && moveSpeed != 15)
+        if(Input.GetKeyDown(KeyCode.F11))
         {
-            moveSpeed = 15;
-        }
-        else if(Input.GetKeyDown(KeyCode.F11) && moveSpeed == 15)
-        {
-            moveSpeed = 4;
+            moveSpeed = 12;
         }
     }
 
@@ -78,7 +70,6 @@ public class Player : MonoBehaviour
         currentState.OnEnter(this);
     }
 
-    //움직임, 카메라 따라 회전
     public void MoveCalc(float ratio)
     {
         float tempMoveY = move.y;
@@ -121,7 +112,7 @@ public class Player : MonoBehaviour
         move.y = tempMoveY; //y값 복구
 
     }
-
+    
     public void Gravity()
     {
         move.y = yVelocity;
