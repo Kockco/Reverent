@@ -13,7 +13,10 @@ public class PuzzleHandle : MonoBehaviour
     }
     private void Update()
     {
-        
+        if(isCatch)
+        {
+            link_plate.gameObject.transform.rotation = transform.rotation;
+        }
     }
     public void CatchCheck()
     {

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     //에임
     PlayerAimState aim;
     public float maxAimDistance = 10;
+    public GameObject handleObj;
 
     //캐릭터 상태
     public PlayerState currentState;
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
     public CameraPlayer camPlayer;
     public RaycastHit hit;
 
+    
     private void Awake()
     {
         //상태변경
@@ -98,7 +100,7 @@ public class Player : MonoBehaviour
             Quaternion cameraRotation = cameraTransform.rotation;
             cameraRotation.x = cameraRotation.z = 0;    //y축만 필요하므로 나머지 값은 0으로 바꾼다.
             //자연스러움을 위해 Slerp로 회전시킨다.
-            // myTransform.rotation = Quaternion.Slerp(myTransform.rotation, cameraRotation, 10 * Time.deltaTime);
+            myTransform.rotation = Quaternion.Slerp(myTransform.rotation, cameraRotation, 10 * Time.deltaTime);
             if (move != Vector3.zero)//Quaternion.LookRotation는 (0,0,0)이 들어가면 경고를 내므로 예외처리 해준다.
             {
                 Quaternion characterRotation = Quaternion.LookRotation(move);
@@ -144,9 +146,8 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.tag == "Handle") // 에임과 충돌한것->내스테프와 같은것
             {
-
+                handleObj = hit.transform.gameObject;
                 SetState(new PlayerHandle());
-               // transform.SetParent(hit.transform);
                 transform.parent = hit.transform;
             }
         }
