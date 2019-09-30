@@ -13,7 +13,7 @@ public class PlayerHandle : PlayerState
         basePos = player.transform.localPosition;
         player.transform.rotation = Quaternion.Euler(0, 0, 0);
         player.cc.enabled = false;
-        //player.handleObj.GetComponent<PuzzleHandle>().CatchCheck();
+        player.handleObj.GetComponent<PuzzleHandle>().CatchCheck();
         player.MoveCalc(0);
     }
     void PlayerState.Update()
@@ -29,7 +29,7 @@ public class PlayerHandle : PlayerState
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            //player.handleObj.GetComponent<PuzzleHandle>().CatchCheck();
+            player.handleObj.GetComponent<PuzzleHandle>().CatchCheck();
             player.transform.parent = null;
             player.cc.enabled = true;
             player.SetState(new PlayerIdleState());

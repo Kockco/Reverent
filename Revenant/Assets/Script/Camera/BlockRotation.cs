@@ -28,7 +28,7 @@ public class BlockRotation : MonoBehaviour
     void OnDrawGizmos()
     {
         RaycastHit hit;
-        int layerMask = 1 << LayerMask.NameToLayer("Crystal");
+        int layerMask = 1 << LayerMask.NameToLayer("Handle");
         // Physics.SphereCast (레이저를 발사할 위치, 구의 반경, 발사 방향, 충돌 결과, 최대 거리, 충돌할 레이어)
         bool isHit = Physics.SphereCast(transform.position, transform.transform.lossyScale.x / 2, transform.transform.forward, out hit, maxAimDistance, layerMask);
 

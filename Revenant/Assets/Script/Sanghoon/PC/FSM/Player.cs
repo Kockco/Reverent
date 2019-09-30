@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     //에임
     PlayerAimState aim;
-    public float maxAimDistance;
+    public float maxAimDistance = 10;
     public GameObject handleObj;
 
     //캐릭터 상태
@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
         model = transform.GetChild(0);
         cameraTransform = Camera.main.transform.parent;
         myTransform = transform;
-        
     }
 
     private void Update()
@@ -129,7 +128,7 @@ public class Player : MonoBehaviour
     //핸들 잡기
     public void UseHandle()
     {
-        // RaycastHit hit;
+        //RaycastHit hit;
         int layerMask = 1 << LayerMask.NameToLayer("Handle");
         // Physics.SphereCast (레이저를 발사할 위치, 구의 반경, 발사 방향, 충돌 결과, 최대 거리, 충돌할 레이어)
         bool isHit = Physics.SphereCast(aim.transform.position, aim.transform.transform.lossyScale.x / 2, aim.transform.transform.forward, out hit, maxAimDistance, layerMask);
