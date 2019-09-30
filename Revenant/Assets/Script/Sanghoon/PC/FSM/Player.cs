@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     //에임
     PlayerAimState aim;
-    public float maxAimDistance = 10;
+    public float maxAimDistance;
     public GameObject handleObj;
 
     //캐릭터 상태
@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
     public CameraPlayer camPlayer;
     public RaycastHit hit;
 
-    
     private void Awake()
     {
         //상태변경
@@ -94,6 +93,7 @@ public class Player : MonoBehaviour
         else
             inputMoveXZ = inputMoveXZ.normalized * moveSpeed;
 
+
         //조작 중에만 카메라의 방향에 상대적으로 캐릭터가 움직이도록 한다.
         if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
         {
@@ -119,6 +119,7 @@ public class Player : MonoBehaviour
         float speed = move.sqrMagnitude;    //현재 속도를 애니메이터에 세팅한다.
 
         move.y = tempMoveY; //y값 복구
+
     }
 
     public void Gravity()
@@ -161,11 +162,7 @@ public class Player : MonoBehaviour
 
     public void PlayerToRayRotation(RaycastHit rayHit)
     {
-        Vector3 tempVec = rayHit.transform.position - transform.position;
-        Vector3 tempVec2 = Vector3.Slerp(transform.forward, tempVec.normalized, Time.deltaTime * 2);
-
-        //transform.rotation = Quaternion.Euler(0, 0, 0);
-        transform.rotation = Quaternion.LookRotation(tempVec2, Vector3.up);
+        transform.LookAt(rayHit.transform);
     }
 
 
