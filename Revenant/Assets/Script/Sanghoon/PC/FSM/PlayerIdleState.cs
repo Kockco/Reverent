@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : PlayerState
+public class PlayerIdleState : PlayerState
 {
     private Player player;
     void PlayerState.OnEnter(Player player)
@@ -16,17 +16,26 @@ public class PlayerMoveState : PlayerState
         {
             player.yVelocity = 0;
         }
-        if (player.nowSpeed ==0)
+        if (player.nowSpeed != 0)
         {
-            player.SetState(new PlayerIdleState());
-            player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
+            player.SetState(new PlayerMoveState());
+            player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", true);
         }
-        player.MoveCalc(1.0f);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            player.UseHandle();
+            Debug.Log("IdleE");
+        }
+        player.cc.Move(player.move * Time.deltaTime);
+        player.MoveCalc(1f);
         player.Gravity();
     }
     void PlayerState.OnExit()
     {
         //종료되면서 정리해야할것 구현
     }
+    
+    
 
 }
+

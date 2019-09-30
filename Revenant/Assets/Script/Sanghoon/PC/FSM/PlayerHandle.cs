@@ -11,22 +11,28 @@ public class PlayerHandle : PlayerState
         //player 프로퍼티 초기화
         this.player = player;
         basePos = player.transform.localPosition;
-        player.MoveCalc(0);
+        player.cc.enabled = false;
+    //    player.MoveCalc(0);
     }
     void PlayerState.Update()
     {
+        Debug.Log("handle");
         player.HandleRotation();
+
         if (player.cc.isGrounded)
         {
-            player.yVelocity = 0;
+           player.yVelocity = 0;
         }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             player.transform.parent = null;
+            player.cc.enabled = true;
             player.SetState(new PlayerIdleState());
             player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
-            Debug.Log("HandleE");
+            //Debug.Log("HandleE");
         }
+
     }
     void PlayerState.OnExit()
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerState
+public class PlayerMoveState : PlayerState
 {
     private Player player;
     void PlayerState.OnEnter(Player player)
@@ -12,29 +12,23 @@ public class PlayerIdleState : PlayerState
     }
     void PlayerState.Update()
     {
+        Debug.Log("move");
         if (player.cc.isGrounded)
         {
             player.yVelocity = 0;
         }
-        if (player.nowSpeed != 0)
+        if (player.nowSpeed ==0)
         {
-            player.SetState(new PlayerMoveState());
-            player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", true);
+            player.SetState(new PlayerIdleState());
+            player.transform.GetChild(0).GetComponent<Animator>().SetBool("move", false);
         }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            player.UseHandle();
-            Debug.Log("IdleE");
-        }
-        player.MoveCalc(1f);
+        player.MoveCalc(1.0f);
+        player.cc.Move(player.move * Time.deltaTime);
         player.Gravity();
     }
     void PlayerState.OnExit()
     {
         //종료되면서 정리해야할것 구현
     }
-    
-    
 
 }
-
