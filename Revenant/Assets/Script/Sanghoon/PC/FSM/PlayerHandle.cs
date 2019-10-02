@@ -18,7 +18,7 @@ public class PlayerHandle : PlayerState
     }
     void PlayerState.Update()
     {
-        // player.camPlayer.CamMoveToObject(); <- 이거 활성화하면 카메라가 전체를 비춰요!
+        player.camPlayer.CamMoveToObject();
         player.HandleRotation();
         player.PlayerToRayRotation(player.hit);
 

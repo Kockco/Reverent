@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 
     public CameraPlayer camPlayer;
     public RaycastHit hit;
+    public Animator anim;
 
     
     private void Awake()
@@ -44,6 +45,7 @@ public class Player : MonoBehaviour
         myTransform = transform;
         aim = GameObject.Find("Aim").GetComponent<PlayerAimState>();
         camPlayer = GameObject.Find("PC").GetComponent<CameraPlayer>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -110,11 +112,14 @@ public class Player : MonoBehaviour
 
             //관성을 위해 MoveTowards를 활용하여 서서히 이동하도록 한다.
             move = Vector3.MoveTowards(move, inputMoveXZ, ratio * moveSpeed);
+
+            anim.SetBool("Momi_Move", true);
         }
         else
         {
             //조작이 없으면 서서히 멈춘다.
             move = Vector3.MoveTowards(move, Vector3.zero, (1 - inputMoveXZMgnitude) * moveSpeed * ratio);
+            anim.SetBool("Momi_Move", false);
         }
         float speed = move.sqrMagnitude;    //현재 속도를 애니메이터에 세팅한다.
 

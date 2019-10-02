@@ -9,7 +9,7 @@ public class CameraPlayer : MonoBehaviour
     
     // nassung's Code
     [SerializeField] GameObject moveToObject;  /////////
-    public bool camMove;                    /////////
+    public bool camMove;                             /////////
     /// ////////////////////////////////////////////////////////
 
     Vector3 dir;
