@@ -5,10 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Level/Level01_Tutorial.unity
+  - enabled: 0
+    path: Assets/Level/OldScene/OldScene2.unity
     guid: ce246aef0131ea545b3ce44dc3e99cc9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GrayBoxingScene.unity
     guid: 3188c1a5613cd4a41b40b80958216e51
+  - enabled: 1
+    path: Assets/Level/ManeScene(YJ_Test).unity
+    guid: c8529be1685fc3946bc413f8b33377b9
   m_configObjects: {}

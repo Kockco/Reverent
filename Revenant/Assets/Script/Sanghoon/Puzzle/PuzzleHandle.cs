@@ -11,7 +11,7 @@ public class PuzzleHandle : MonoBehaviour
     public GameObject[] potato;
     public GameObject potatoParent;
     public int[] plateNum;
-    
+
     private void Start()
     {
         potatoParent = GameObject.Find("Potato");
@@ -21,10 +21,10 @@ public class PuzzleHandle : MonoBehaviour
     private void Update()
     {
         // 핸들과 판이 같이 움직이도록
-        if (!isCatch)
-            transform.rotation = link_plate.gameObject.transform.rotation;
+        if (!isCatch) { transform.rotation = link_plate.gameObject.transform.rotation; }
     }
 
+    
     public void CatchCheck()
     {
         if (isCatch == false)
