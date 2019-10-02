@@ -15,7 +15,6 @@ public class CameraPlayer : MonoBehaviour
     Vector3 dir;
 
     Transform myTransform;
-    Transform model;
 
     Vector3 mouseMove;
     GameObject cameraParentTransform;
@@ -43,8 +42,7 @@ public class CameraPlayer : MonoBehaviour
     {
         otherCamera = false;
         myTransform = transform;
-        model = transform.GetChild(0);
-        cameraParentTransform = GameObject.Find("CameraParent");
+        cameraParentTransform = this.gameObject;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y, startDistance);
