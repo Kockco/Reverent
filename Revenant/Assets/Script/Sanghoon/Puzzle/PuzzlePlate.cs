@@ -14,7 +14,7 @@ public class PuzzlePlate : MonoBehaviour
     public bool isRock;
     public float nearAngle = 360;
     public float myRot;
-    // Start is called before the first frame update
+
     void Awake()
     {
         //멈추는 지점
