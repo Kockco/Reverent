@@ -4,19 +4,13 @@ using UnityEngine;
 
 public class Momi_Move : MomiFSMState
 {
-    Transform cameraRot;
-    Rigidbody rig;
-
-    public float InputX, InputZ, rotSpeed = 10;
-    public Vector3 desiredMoveDirection;
-    public bool blockRotationPlayer;
+    // Rigidbody rig;
 
     public override void BeginState()
     {
         base.BeginState();
-
-        cameraRot = GameObject.Find("Camera").GetComponent<Transform>();
-        rig = GetComponent<Rigidbody>();
+        
+        // rig = GetComponent<Rigidbody>();
         anime.SetBool("Momi_Move", true);
     }
 
@@ -29,30 +23,10 @@ public class Momi_Move : MomiFSMState
 
     protected override void Update()
     {
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            KeyMoveMomi();
-        else
-            manager.SetState(MomiState.Idle);
+
     }
 
-    void KeyMoveMomi()
-    {
-        InputX = Input.GetAxis("Horizontal");
-        InputZ = Input.GetAxis("Vertical");
-
-        Vector3 forward = cameraRot.forward;
-        Vector3 right = cameraRot.right;
-        forward.y = 0f;
-        right.y = 0f;
-
-        forward.Normalize();
-        right.Normalize();
-
-        desiredMoveDirection = forward * InputZ + right * InputX;
-        
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), rotSpeed);
-        transform.Translate(Vector3.forward * Time.deltaTime * moveSpeed);
-    }
+    
 }
 /*
     void CameraFrontViewMomi()

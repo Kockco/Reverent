@@ -1141,6 +1141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cc92c5742d2444eab1c05529e76adf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveToObject: {fileID: 0}
   momiY: 2
   rotationSpeed: 50
   scrollSpeed: 5
