@@ -9,25 +9,22 @@ public class Momi_Jump : MomiFSMState
         base.BeginState();
 
         // anime.SetInteger("Momi_Jump", 1);
+        anime.SetTrigger("Momi_Jump");
+
+        Invoke("EndJump", 0.8f);
     }
 
     public override void EndState()
     {
         base.EndState();
-
-        isJumped = false;
+        
     }
 
     protected override void Update()
     {
         base.Update();
 
-        EndJump();
-    }
-
-    void IsGrounded()
-    {
-        // anime.SetInteger("Momi_Jump", 2);
+        // if (isGround) manager.SetState(MomiState.Idle);
     }
 
     void EndJump()

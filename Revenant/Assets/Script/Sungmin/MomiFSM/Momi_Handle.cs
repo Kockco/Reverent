@@ -22,5 +22,11 @@ public class Momi_Handle : MomiFSMState
     protected override void Update()
     {
         cam.CamMoveToObject();
+
+        //if (Input.GetKey(KeyCode.W))
+        //if (Input.GetKey(KeyCode.A))
+        //if (Input.GetKey(KeyCode.S))
+        //if (Input.GetKey(KeyCode.D))
+        
     }
 }

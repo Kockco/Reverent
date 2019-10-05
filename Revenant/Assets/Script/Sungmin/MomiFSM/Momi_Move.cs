@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Momi_Move : MomiFSMState
 {
-    // Rigidbody rig;
-
     public override void BeginState()
     {
         base.BeginState();
@@ -23,7 +21,8 @@ public class Momi_Move : MomiFSMState
 
     protected override void Update()
     {
-
+        if (!Input.anyKey)
+            manager.SetState(MomiState.Idle);
     }
 
     
