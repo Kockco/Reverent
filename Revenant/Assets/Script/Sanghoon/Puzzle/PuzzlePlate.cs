@@ -14,7 +14,7 @@ public class PuzzlePlate : MonoBehaviour
     public bool isRock;
     public float nearAngle = 360;
     public float myRot;
-
+    // Start is called before the first frame update
     void Awake()
     {
         //멈추는 지점
@@ -30,25 +30,35 @@ public class PuzzlePlate : MonoBehaviour
         for(int i = 0; i < potatoCount; i++)
         {
             if((angle * i) + startAngle < 360)
-                stopAngle[i] = (angle * i) + startAngle;
+            stopAngle[i] = (angle * i)+ startAngle;
             else
             {
                 stopAngle[i] = (angle * i) + startAngle - 360;
             }
         }
 
-        if (link_handle == null) { Debug.Log("not link handle"); }
-        else { link_handle.link_plate = this; }
-
+        if (link_handle == null)
+        {
+            Debug.Log("not link handle");
+        }
+        else
+        {
+            link_handle.link_plate = this;
+        }
         isRock = true;
     }
     private void Update()
     {
-        //각도 되돌리기
-        if (transform.eulerAngles.y < 0) { myRot = 180 + transform.eulerAngles.y; }
-        else { myRot = transform.eulerAngles.y; }
+        if(transform.eulerAngles.y < 0)
+        {
+            myRot = 180 + transform.eulerAngles.y;
+        }
+        else
+        {
+            myRot = transform.eulerAngles.y;
+        }
         // 핸들과 판이 같이 움직이도록
-        if (link_handle.isCatch)
+        if(link_handle.isCatch)
             transform.rotation = link_handle.gameObject.transform.rotation;
 
         else if(!link_handle.isCatch && !isRock)
@@ -65,9 +75,9 @@ public class PuzzlePlate : MonoBehaviour
                         pot.transform.parent = link_handle.potatoParent.transform;
                     }
                 }
+
                 else
                 {
-                    //갯수당 각도 값
                     switch (potatoCount)
                     {
                         case 2:
@@ -98,6 +108,7 @@ public class PuzzlePlate : MonoBehaviour
                 }
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.x, nearAngle, transform.rotation.z), 3 *Time.deltaTime);
             }
+            
         }
     }
 }

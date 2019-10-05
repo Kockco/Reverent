@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mountain_Snow_000
-  m_Shader: {fileID: 4800000, guid: eb4f62df73441534686b6710d721a862, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9b91864950bb4a2419a7886b2511f557, type: 3}
   m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
