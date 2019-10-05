@@ -101,7 +101,7 @@ Material:
     - _BackBottomColor: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _BackTopColor: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _BottomColor: {r: 0, g: 0.5, b: 0.5, a: 0}
-    - _Color: {r: 0.9862688, g: 0.9862688, b: 0.9862688, a: 1}
+    - _Color: {r: 1.5058823, g: 1.4506929, b: 1.4506929, a: 1}
     - _FrontBottomColor: {r: 1, g: 0, b: 0, a: 0}
     - _FrontTopColor: {r: 1, g: 0, b: 0, a: 0}
     - _IrColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
