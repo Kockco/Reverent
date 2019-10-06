@@ -7,6 +7,7 @@ public class MomiFSMState : MonoBehaviour
 {
     protected MomiFSMManager manager;
     protected GameObject aim;
+    protected GameObject cam;
     protected Rigidbody rig;
     protected CapsuleCollider capCol;
     protected Animator anime;
@@ -16,7 +17,7 @@ public class MomiFSMState : MonoBehaviour
     [SerializeField] protected bool isGround = false;
 
     [SerializeField] AnimationCurve slopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
-
+    [SerializeField] Vector3 desiredMoveDirection;
     Vector3 groundContact;
 
     void Awake()
@@ -26,6 +27,7 @@ public class MomiFSMState : MonoBehaviour
         capCol = GetComponent<CapsuleCollider>();
         anime = transform.GetChild(0).GetComponent<Animator>();
         aim = GameObject.Find("Aim");
+        cam = Camera.main.gameObject;
     }
 
     // Start is called before the first frame update
@@ -46,17 +48,14 @@ public class MomiFSMState : MonoBehaviour
     protected virtual void Update()
     {
         IsGrounded();
+        AimRotation();
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)
+            || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) && manager.CurrentState != MomiState.Handle)
             KeyMoveMomi();
 
         if (Input.GetKeyDown(KeyCode.Space) && manager.CurrentState != MomiState.Jump)
             JumpMomi();
-    }
-
-    protected virtual void OnTriggerStay(Collider col)
-    {
-        
     }
 
     protected void KeyMoveMomi()
@@ -64,15 +63,16 @@ public class MomiFSMState : MonoBehaviour
         float inputX = Input.GetAxis("Horizontal");
         float inputZ = Input.GetAxis("Vertical");
 
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
+        Vector3 forward = cam.transform.forward;
+        Vector3 right = cam.transform.right;
+
         forward.y = 0f;
         right.y = 0f;
 
         forward.Normalize();
         right.Normalize();
 
-        Vector3 desiredMoveDirection = forward * inputZ + right * inputX;
+        desiredMoveDirection = forward * inputZ + right * inputX;
 
         if (manager.CurrentState != MomiState.Jump)
             manager.SetState(MomiState.Move);
@@ -109,6 +109,20 @@ public class MomiFSMState : MonoBehaviour
             groundContact = Vector3.up;
             
         }
+    }
+
+    void AimRotation()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+
+        Vector3 camForward = cam.transform.forward;
+
+        camForward.Normalize();
+        camForward.y = 0;
+
+        Vector3 desiredMoveDirection = camForward;
+        aim.transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), 1);
+
     }
 
 }
