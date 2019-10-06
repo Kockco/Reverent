@@ -12,7 +12,7 @@ public class MomiFSMState : MonoBehaviour
     protected CapsuleCollider capCol;
     protected Animator anime;
 
-    [SerializeField] protected float moveSpeed = 3;
+    [SerializeField] protected float moveSpeed = 4;
     [SerializeField] protected float jumpPower = 3;
     [SerializeField] protected bool isGround = false;
 
