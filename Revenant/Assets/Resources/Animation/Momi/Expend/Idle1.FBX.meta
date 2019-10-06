@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 30bba05c562fabd49a016db73b954f96
+guid: 0739262e5bac3cf4f964fe88b8f6ee61
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -49,12 +49,12 @@ ModelImporter:
     100086: Hat02_low
     100088: Hat03
     100090: Head_low
-    100092: L Clavicle Point
-    100094: L Deltoid
-    100096: L hand twist
-    100098: L hip twist
-    100100: L upper point
-    100102: //RootNode
+    100092: //RootNode
+    100094: L Clavicle Point
+    100096: L Deltoid
+    100098: L hand twist
+    100100: L hip twist
+    100102: L upper point
     100104: Muffler01_low
     100106: Muffler02_low
     100108: Point001
@@ -114,12 +114,12 @@ ModelImporter:
     400086: Hat02_low
     400088: Hat03
     400090: Head_low
-    400092: L Clavicle Point
-    400094: L Deltoid
-    400096: L hand twist
-    400098: L hip twist
-    400100: L upper point
-    400102: //RootNode
+    400092: //RootNode
+    400094: L Clavicle Point
+    400096: L Deltoid
+    400098: L hand twist
+    400100: L hip twist
+    400102: L upper point
     400104: Muffler01_low
     400106: Muffler02_low
     400108: Point001
@@ -154,7 +154,7 @@ ModelImporter:
     4300012: Hat02_low
     4300014: Cape_low
     4300016: Muffler01_low
-    7400000: Move
+    7400000: Idle1
     9500000: //RootNode
     13700000: Body_low
     13700002: Hat02_low
@@ -189,10 +189,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Move
-      takeName: Move
-      firstFrame: 24
-      lastFrame: 48
+      name: Idle1
+      takeName: Idle1
+      firstFrame: 0
+      lastFrame: 72
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

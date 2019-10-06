@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 30bba05c562fabd49a016db73b954f96
+guid: 6f71f8732e6594240be0628a0f9d45bc
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -42,32 +42,33 @@ ModelImporter:
     100072: Body_low
     100074: Bone001
     100076: Bone002
-    100078: Cape_low
-    100080: Hat01
-    100082: Hat01_low
-    100084: Hat02
-    100086: Hat02_low
-    100088: Hat03
-    100090: Head_low
-    100092: L Clavicle Point
-    100094: L Deltoid
-    100096: L hand twist
-    100098: L hip twist
-    100100: L upper point
-    100102: //RootNode
+    100078: Box001
+    100080: Cape_low
+    100082: Hat01
+    100084: Hat01_low
+    100086: Hat02
+    100088: Hat02_low
+    100090: Hat03
+    100092: Head_low
+    100094: L Clavicle Point
+    100096: L Deltoid
+    100098: L hand twist
+    100100: L hip twist
+    100102: L upper point
     100104: Muffler01_low
     100106: Muffler02_low
     100108: Point001
     100110: Point002
     100112: Point004
-    100114: R Clavicle point
-    100116: R Deltoid
-    100118: R hand twist
-    100120: R hip twist
-    100122: R upper point
-    100124: Scarf002
-    100126: Scarf01
-    100128: Scarf03
+    100114: //RootNode
+    100116: R Clavicle point
+    100118: R Deltoid
+    100120: R hand twist
+    100122: R hip twist
+    100124: R upper point
+    100126: Scarf002
+    100128: Scarf01
+    100130: Scarf03
     400000: Bip001
     400002: Bip001 Footsteps
     400004: Bip001 Head
@@ -107,44 +108,47 @@ ModelImporter:
     400072: Body_low
     400074: Bone001
     400076: Bone002
-    400078: Cape_low
-    400080: Hat01
-    400082: Hat01_low
-    400084: Hat02
-    400086: Hat02_low
-    400088: Hat03
-    400090: Head_low
-    400092: L Clavicle Point
-    400094: L Deltoid
-    400096: L hand twist
-    400098: L hip twist
-    400100: L upper point
-    400102: //RootNode
+    400078: Box001
+    400080: Cape_low
+    400082: Hat01
+    400084: Hat01_low
+    400086: Hat02
+    400088: Hat02_low
+    400090: Hat03
+    400092: Head_low
+    400094: L Clavicle Point
+    400096: L Deltoid
+    400098: L hand twist
+    400100: L hip twist
+    400102: L upper point
     400104: Muffler01_low
     400106: Muffler02_low
     400108: Point001
     400110: Point002
     400112: Point004
-    400114: R Clavicle point
-    400116: R Deltoid
-    400118: R hand twist
-    400120: R hip twist
-    400122: R upper point
-    400124: Scarf002
-    400126: Scarf01
-    400128: Scarf03
+    400114: //RootNode
+    400116: R Clavicle point
+    400118: R Deltoid
+    400120: R hand twist
+    400122: R hip twist
+    400124: R upper point
+    400126: Scarf002
+    400128: Scarf01
+    400130: Scarf03
     2100000: 01 - Default
     2100002: No Name
-    2300000: Cape_low
-    2300002: Hat01_low
-    2300004: L Deltoid
-    2300006: Muffler01_low
-    2300008: R Deltoid
-    3300000: Cape_low
-    3300002: Hat01_low
-    3300004: L Deltoid
-    3300006: Muffler01_low
-    3300008: R Deltoid
+    2300000: Box001
+    2300002: Cape_low
+    2300004: Hat01_low
+    2300006: L Deltoid
+    2300008: Muffler01_low
+    2300010: R Deltoid
+    3300000: Box001
+    3300002: Cape_low
+    3300004: Hat01_low
+    3300006: L Deltoid
+    3300008: Muffler01_low
+    3300010: R Deltoid
     4300000: Body_low
     4300002: Muffler02_low
     4300004: Head_low
@@ -154,7 +158,8 @@ ModelImporter:
     4300012: Hat02_low
     4300014: Cape_low
     4300016: Muffler01_low
-    7400000: Move
+    4300018: Box001
+    7400000: Pull
     9500000: //RootNode
     13700000: Body_low
     13700002: Hat02_low
@@ -187,35 +192,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Move
-      takeName: Move
-      firstFrame: 24
-      lastFrame: 48
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []

@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     GameObject momi;
+    MomiFSMManager momiState;
     public GameObject moveToObject;
     public float momiY;
 
@@ -18,18 +19,25 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         momi = GameObject.Find("Momi_Character");
+        momiState = GameObject.Find("Momi").GetComponent<MomiFSMManager>();
         Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        LookAtMomi();
+        
     }
 
     void LateUpdate()
     {
-        transform.LookAt(momiPos);
+        // if (momiState.CurrentState != MomiState.Handle)
+
+        if (momiState.CurrentState != MomiState.Handle)
+        {
+            LookAtMomi();
+            transform.LookAt(momiPos);
+        }
     }
 
     void LookAtMomi()
@@ -44,7 +52,8 @@ public class CameraScript : MonoBehaviour
         momiPos = momi.transform.position + Vector3.up * momiY;
 
         momiDirect = Quaternion.Euler(-rotX, rotY, 0f) * Vector3.forward;
-        transform.position = momiPos + momiDirect * -distance;
+        transform.position = Vector3.Slerp(transform.position, momiPos + momiDirect * -distance, Time.deltaTime * 2);
+        // transform.position = momiPos + momiDirect * -distance;
     }
 
     public void CamMoveToObject()
