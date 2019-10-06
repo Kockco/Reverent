@@ -5,6 +5,7 @@ using UnityEngine;
 public class PotatoColision : MonoBehaviour
 {
     public int num;
+    
     private void Start()
     {
 
