@@ -8,6 +8,8 @@ public class Momi_Handle : MomiFSMState
     new AimControll aim;
     public GameObject col;
 
+    float handleTime;
+
     public override void BeginState()
     {
         base.BeginState();
@@ -22,6 +24,7 @@ public class Momi_Handle : MomiFSMState
         base.EndState();
         
         transform.parent = null;
+        handleTime = 0;
 
         anime.SetBool("Momi_Pull", false);
         anime.SetBool("Momi_Push", false);
@@ -30,13 +33,14 @@ public class Momi_Handle : MomiFSMState
     protected override void Update()
     {
         // base.Update();
+        handleTime += Time.deltaTime;
 
         cam.CamMoveToObject();
 
         RotationMomi();
         RotationHandle();
 
-        if (Input.GetKeyDown(KeyCode.E) && cam.isClear)
+        if (Input.GetKeyDown(KeyCode.E) && handleTime >= 1f)
             manager.SetState(MomiState.Idle);
     }
 
@@ -57,14 +61,14 @@ public class Momi_Handle : MomiFSMState
         Vector3 tempCol = col.transform.position; tempCol.y = 0;
         Vector3 tempMomi = transform.position; tempMomi.y = 0;
 
-        Vector3 tempVec = (tempCol - tempMomi).normalized;
+        Vector3 tempVec = (tempCol - tempMomi);
 
         transform.rotation = Quaternion.LookRotation(tempVec);
     }
 
     void RotationHandle()
     {
-        Vector3 inputMoveY = new Vector3(0, Input.GetAxis("Vertical") * 100, 0);
+        Vector3 inputMoveY = new Vector3(0, Input.GetAxis("Vertical") * 50, 0);
 
         if (Input.GetKey(KeyCode.W))
         {
