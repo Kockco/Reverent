@@ -5,11 +5,13 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     GameObject momi;
+    MomiFSMManager momiState;
     public GameObject moveToObject;
     public float momiY;
 
     public float rotationSpeed, scrollSpeed, rotationXMax;
     public float distance, minDis, maxDis;
+    public bool isClear;
     float rotX, rotY;
 
     Vector3 momiPos, momiDirect;
@@ -18,18 +20,25 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         momi = GameObject.Find("Momi_Character");
+        momiState = GameObject.Find("Momi").GetComponent<MomiFSMManager>();
         Cursor.visible = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        LookAtMomi();
+        
     }
 
     void LateUpdate()
     {
-        transform.LookAt(momiPos);
+        // if (momiState.CurrentState != MomiState.Handle)
+
+        if (momiState.CurrentState != MomiState.Handle)
+        {
+            LookAtMomi();
+            transform.LookAt(momiPos);
+        }
     }
 
     void LookAtMomi()
@@ -44,7 +53,8 @@ public class CameraScript : MonoBehaviour
         momiPos = momi.transform.position + Vector3.up * momiY;
 
         momiDirect = Quaternion.Euler(-rotX, rotY, 0f) * Vector3.forward;
-        transform.position = momiPos + momiDirect * -distance;
+        transform.position = Vector3.Slerp(transform.position, momiPos + momiDirect * -distance, Time.deltaTime * 2);
+        // transform.position = momiPos + momiDirect * -distance;
     }
 
     public void CamMoveToObject()
@@ -52,5 +62,6 @@ public class CameraScript : MonoBehaviour
         Vector3 tempPos = new Vector3(moveToObject.transform.position.x, moveToObject.transform.position.y, moveToObject.transform.position.z);// -(camHeight * 10));
         transform.position = Vector3.Lerp(transform.position, tempPos, Time.deltaTime * 2f);
         transform.rotation = Quaternion.Lerp((Quaternion)transform.rotation, (Quaternion)moveToObject.transform.rotation, Time.deltaTime * 2f);
+        
     }
 }
