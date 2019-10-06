@@ -18,7 +18,7 @@ public class AimControll : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        if (col.transform.tag == "Handle" && Input.GetKeyDown(KeyCode.E))
+        if (col.transform.tag == "Handle" && Input.GetKeyDown(KeyCode.E) && momiManager.CurrentState != MomiState.Handle)
         {
             momiManager.SetState(MomiState.Handle);
             momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();

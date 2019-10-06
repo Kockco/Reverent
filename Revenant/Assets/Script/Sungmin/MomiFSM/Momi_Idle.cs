@@ -16,6 +16,7 @@ public class Momi_Idle : MomiFSMState
     {
         base.EndState();
 
+        time = 0f;
     }
 
     protected override void Update()

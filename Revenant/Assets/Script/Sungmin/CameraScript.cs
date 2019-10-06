@@ -10,7 +10,8 @@ public class CameraScript : MonoBehaviour
     public float momiY;
 
     public float rotationSpeed, scrollSpeed, rotationXMax;
-    public float distance, minDis, maxDis;
+    public float distance, minDis, maxDis, camTime;
+    public bool isClear;
     float rotX, rotY;
 
     Vector3 momiPos, momiDirect;
@@ -58,8 +59,15 @@ public class CameraScript : MonoBehaviour
 
     public void CamMoveToObject()
     {
+        camTime += Time.deltaTime;
+
         Vector3 tempPos = new Vector3(moveToObject.transform.position.x, moveToObject.transform.position.y, moveToObject.transform.position.z);// -(camHeight * 10));
         transform.position = Vector3.Lerp(transform.position, tempPos, Time.deltaTime * 2f);
         transform.rotation = Quaternion.Lerp((Quaternion)transform.rotation, (Quaternion)moveToObject.transform.rotation, Time.deltaTime * 2f);
+
+        if (camTime >= 1f)
+            isClear = true;
+        else
+            isClear = false;
     }
 }

@@ -29,19 +29,30 @@ public class Momi_Handle : MomiFSMState
 
     protected override void Update()
     {
-        base.Update();
+        // base.Update();
 
         cam.CamMoveToObject();
 
         RotationMomi();
         RotationHandle();
 
-        // if (Input.GetKeyDown(KeyCode.E)) manager.SetState(MomiState.Idle);
+        if (Input.GetKeyDown(KeyCode.E) && cam.isClear)
+            manager.SetState(MomiState.Idle);
     }
 
     void RotationMomi()
     {
-        transform.parent = col.transform.parent.transform.parent;
+        if (col.transform != null)
+        {
+            try
+            {
+                transform.parent = col.transform.parent.transform.parent;
+            }
+            catch
+            {
+                transform.parent = col.transform.parent;
+            }
+        }
 
         Vector3 tempCol = col.transform.position; tempCol.y = 0;
         Vector3 tempMomi = transform.position; tempMomi.y = 0;
@@ -56,15 +67,19 @@ public class Momi_Handle : MomiFSMState
         Vector3 inputMoveY = new Vector3(0, Input.GetAxis("Vertical") * 100, 0);
 
         if (Input.GetKey(KeyCode.W))
+        {
             anime.SetBool("Momi_Push", true);
+            transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
+        }
         else
             anime.SetBool("Momi_Push", false);
 
         if (Input.GetKey(KeyCode.S))
+        {
             anime.SetBool("Momi_Pull", true);
+            transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
+        }
         else
             anime.SetBool("Momi_Pull", false);
-
-        transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
     }
 }
