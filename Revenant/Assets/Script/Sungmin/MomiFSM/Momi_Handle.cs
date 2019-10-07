@@ -8,8 +8,8 @@ public class Momi_Handle : MomiFSMState
     new AimControll aim;
     public GameObject col;
 
+    public int handleNum;
     float handleTime;
-    bool isParent = false;
 
     public override void BeginState()
     {
@@ -17,13 +17,12 @@ public class Momi_Handle : MomiFSMState
 
         cam = GameObject.Find("Camera").GetComponent<CameraScript>();
         aim = transform.GetChild(1).GetComponent<AimControll>();
-
     }
 
     public override void EndState()
     {
         base.EndState();
-        
+
         transform.parent = null;
         handleTime = 0;
 
@@ -36,17 +35,13 @@ public class Momi_Handle : MomiFSMState
         // base.Update();
         handleTime += Time.deltaTime;
 
-        cam.CamMoveToObject();
+        cam.CamMoveToObject(handleNum);
 
         RotationMomi();
         RotationHandle();
 
         if (Input.GetKeyDown(KeyCode.E) && handleTime >= 1f)
-        {
-            CatchCheck();
-            isParent = false;
             manager.SetState(MomiState.Idle);
-        }
     }
 
     void RotationMomi()
@@ -61,18 +56,12 @@ public class Momi_Handle : MomiFSMState
             {
                 transform.parent = col.transform.parent;
             }
-
-            if (!isParent)
-            {
-                CatchCheck();
-                isParent = true;
-            }
         }
 
         Vector3 tempCol = col.transform.position; tempCol.y = 0;
         Vector3 tempMomi = transform.position; tempMomi.y = 0;
 
-        Vector3 tempVec = tempCol - tempMomi;
+        Vector3 tempVec = (tempCol - tempMomi);
 
         transform.rotation = Quaternion.LookRotation(tempVec);
     }
@@ -85,35 +74,16 @@ public class Momi_Handle : MomiFSMState
         {
             anime.SetBool("Momi_Push", true);
             transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
-            HandleRotate();
         }
         else
-        {
             anime.SetBool("Momi_Push", false);
-        }
 
         if (Input.GetKey(KeyCode.S))
         {
             anime.SetBool("Momi_Pull", true);
             transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
-            HandleRotate();
         }
         else
             anime.SetBool("Momi_Pull", false);
-    }
-
-    void HandleRotate()
-    {
-        if (transform.parent.tag == "Planet_Handle")
-        {
-            transform.parent.GetComponent<PlantPuzzleHandle>().HandleRotate(Input.GetAxis("Vertical"));
-        }
-    }
-    void CatchCheck()
-    {
-        if (transform.parent.tag == "Planet_Handle")
-        {
-            transform.parent.GetComponent<PlantPuzzleHandle>().CatchCheck();
-        }
     }
 }
