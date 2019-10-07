@@ -1,9 +1,0 @@
-diff a/Revenant/Assets/Script/Sanghoon/PC/CameraPlayer.cs b/Revenant/Assets/Script/Sanghoon/PC/CameraPlayer.cs	(rejected hunks)
-@@ -13,7 +13,6 @@
-     Transform model;
- 
-     Vector3 mouseMove;
--    GameObject cameraParentTransform;
-     Transform cameraParentTransform;
- 
-     public bool topView;

@@ -5,31 +5,47 @@ using UnityEngine;
 public class PlantPuzzleHandle : MonoBehaviour
 {
     public bool isCatch;
-
     //세 개의 라인 받기
-    public PlanetLine First_Line;
-    public PlanetLine Second_Line;
-    public PlanetLine Third_Line;
-
-    void Start()
-    {
-        
-    }
+    public PlanetLine[] planetLine;
+    public PlanetSecondLine planetSecondLine;
+    
     void Update()
     {
-        First_Line.PlanetRotate(Input.GetAxis("Horizontal"));
-        Second_Line.PlanetRotate(Input.GetAxis("Horizontal"));
-        Third_Line.PlanetRotate(Input.GetAxis("Horizontal"));
     }
+
     public void CatchCheck()
     {
         if (isCatch == false)
         {
             isCatch = true;
+            
+            foreach (PlanetLine line in planetLine)
+                    line.isLock = false;
+
+            if (planetSecondLine.isChild)
+                planetSecondLine.isLock = false;
         }
         else
         {
             isCatch = false;
+            //포인트 제자리로 돌리기
+            foreach (PlanetLine line in planetLine)
+                    line.AngleCheck();
+
+            if (planetSecondLine.isChild)
+                planetSecondLine.AngleCheck();
         }
+    }
+
+    //핸들잡고 돌리는 부분 캐릭터에게
+    public void HandleRotate(float direction)
+    {
+        //transform.Rotate(0, rotateSpeed * direction * Time.deltaTime, 0);
+
+        foreach (PlanetLine line in planetLine)
+                line.PlanetRotate(direction);
+
+        if (planetSecondLine.isChild)
+            planetSecondLine.PlanetRotate(direction);
     }
 }
