@@ -5,7 +5,7 @@ using UnityEngine;
 public class StarPlate : MonoBehaviour
 {
     //핸들과 연결
-    public PlantPuzzleHandle handle;
+    public StarHandle handle;
     public float rotateSpeed;
     
     [SerializeField]
@@ -35,7 +35,7 @@ public class StarPlate : MonoBehaviour
         }
         //시작할때 지점
         Quaternion startingY = Quaternion.Euler(0, stopAngle[myPoint], 0);
-        transform.rotation = startingY;
+        transform.localRotation = startingY;
 
     }
 

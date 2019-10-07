@@ -11,12 +11,16 @@ public class Momi_Handle : MomiFSMState
     public int handleNum;
     float handleTime;
 
+    bool isParent;
+
     public override void BeginState()
     {
         base.BeginState();
 
         cam = GameObject.Find("Camera").GetComponent<CameraScript>();
         aim = transform.GetChild(1).GetComponent<AimControll>();
+
+        isParent = false;
     }
 
     public override void EndState()
@@ -28,6 +32,8 @@ public class Momi_Handle : MomiFSMState
 
         anime.SetBool("Momi_Pull", false);
         anime.SetBool("Momi_Push", false);
+
+        CatchCheck(); isParent = false;
     }
 
     protected override void Update()
@@ -55,6 +61,12 @@ public class Momi_Handle : MomiFSMState
             catch
             {
                 transform.parent = col.transform.parent;
+            }
+
+            if (!isParent)
+            {
+                CatchCheck();
+                   isParent = true;
             }
         }
 
@@ -85,5 +97,30 @@ public class Momi_Handle : MomiFSMState
         }
         else
             anime.SetBool("Momi_Pull", false);
+    }
+
+    void CatchCheck()
+    {
+        if(transform.parent.tag == "Planet_Handle")
+        {
+            transform.parent.GetComponent<PlantPuzzleHandle>().CatchCheck();
+        }
+        else if(transform.parent.tag == "Planet_Star")
+        {
+            transform.parent.GetComponent<StarHandle>().CatchCheck();
+        }
+    }
+
+    //핸들잡고 돌리는 부분 캐릭터에게
+    void HandleRotate()
+    {
+        if (transform.parent.tag == "Planet_Handle")
+        {
+            transform.parent.GetComponent<PlantPuzzleHandle>().HandleRotate(Input.GetAxis("Vertical"));
+        }
+        else if (transform.parent.tag == "Planet_Star")
+        {
+            transform.parent.GetComponent<StarHandle>().HandleRotate(Input.GetAxis("Vertical"));
+        }
     }
 }
