@@ -9,6 +9,7 @@ public class Momi_Handle : MomiFSMState
     public GameObject col;
 
     float handleTime;
+    bool isParent = false;
 
     public override void BeginState()
     {
@@ -16,7 +17,7 @@ public class Momi_Handle : MomiFSMState
 
         cam = GameObject.Find("Camera").GetComponent<CameraScript>();
         aim = transform.GetChild(1).GetComponent<AimControll>();
-        
+
     }
 
     public override void EndState()
@@ -41,7 +42,11 @@ public class Momi_Handle : MomiFSMState
         RotationHandle();
 
         if (Input.GetKeyDown(KeyCode.E) && handleTime >= 1f)
+        {
+            CatchCheck();
+            isParent = false;
             manager.SetState(MomiState.Idle);
+        }
     }
 
     void RotationMomi()
@@ -55,6 +60,12 @@ public class Momi_Handle : MomiFSMState
             catch
             {
                 transform.parent = col.transform.parent;
+            }
+
+            if (!isParent)
+            {
+                CatchCheck();
+                isParent = true;
             }
         }
 
@@ -74,16 +85,35 @@ public class Momi_Handle : MomiFSMState
         {
             anime.SetBool("Momi_Push", true);
             transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
+            HandleRotate();
         }
         else
+        {
             anime.SetBool("Momi_Push", false);
+        }
 
         if (Input.GetKey(KeyCode.S))
         {
             anime.SetBool("Momi_Pull", true);
             transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
+            HandleRotate();
         }
         else
             anime.SetBool("Momi_Pull", false);
+    }
+
+    void HandleRotate()
+    {
+        if (transform.parent.tag == "Planet_Handle")
+        {
+            transform.parent.GetComponent<PlantPuzzleHandle>().HandleRotate(Input.GetAxis("Vertical"));
+        }
+    }
+    void CatchCheck()
+    {
+        if (transform.parent.tag == "Planet_Handle")
+        {
+            transform.parent.GetComponent<PlantPuzzleHandle>().CatchCheck();
+        }
     }
 }
