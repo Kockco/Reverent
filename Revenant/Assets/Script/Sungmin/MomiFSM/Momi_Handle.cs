@@ -27,13 +27,12 @@ public class Momi_Handle : MomiFSMState
     {
         base.EndState();
 
+        CatchCheck(); isParent = false;
         transform.parent = null;
         handleTime = 0;
 
         anime.SetBool("Momi_Pull", false);
         anime.SetBool("Momi_Push", false);
-
-        CatchCheck(); isParent = false;
     }
 
     protected override void Update()
@@ -66,7 +65,7 @@ public class Momi_Handle : MomiFSMState
             if (!isParent)
             {
                 CatchCheck();
-                   isParent = true;
+                isParent = true;
             }
         }
 
@@ -86,6 +85,7 @@ public class Momi_Handle : MomiFSMState
         {
             anime.SetBool("Momi_Push", true);
             transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
+            HandleRotate();
         }
         else
             anime.SetBool("Momi_Push", false);
@@ -94,6 +94,7 @@ public class Momi_Handle : MomiFSMState
         {
             anime.SetBool("Momi_Pull", true);
             transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
+            HandleRotate();
         }
         else
             anime.SetBool("Momi_Pull", false);
@@ -101,11 +102,11 @@ public class Momi_Handle : MomiFSMState
 
     void CatchCheck()
     {
-        if(transform.parent.tag == "Planet_Handle")
+        if (transform.parent.tag == "Planet_Handle")
         {
             transform.parent.GetComponent<PlantPuzzleHandle>().CatchCheck();
         }
-        else if(transform.parent.tag == "Planet_Star")
+        else if (transform.parent.tag == "Star_Handle")
         {
             transform.parent.GetComponent<StarHandle>().CatchCheck();
         }
@@ -118,7 +119,7 @@ public class Momi_Handle : MomiFSMState
         {
             transform.parent.GetComponent<PlantPuzzleHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
-        else if (transform.parent.tag == "Planet_Star")
+        else if (transform.parent.tag == "Star_Handle")
         {
             transform.parent.GetComponent<StarHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }

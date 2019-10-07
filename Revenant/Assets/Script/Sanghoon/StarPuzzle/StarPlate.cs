@@ -57,14 +57,14 @@ public class StarPlate : MonoBehaviour
         {
             if (i == cutAngle - 1)
             {
-                if (transform.eulerAngles.y > centerAngle[i] || transform.eulerAngles.y < centerAngle[0])
+                if (transform.localRotation.eulerAngles.y > centerAngle[i] || transform.localRotation.eulerAngles.y < centerAngle[0])
                 {
                     myPoint = 0;
                 }
             }
             else
             {
-                if (transform.eulerAngles.y > centerAngle[i] && transform.eulerAngles.y < centerAngle[i + 1])
+                if (transform.localRotation.eulerAngles.y > centerAngle[i] && transform.localRotation.eulerAngles.y < centerAngle[i + 1])
                 {
                     myPoint = i + 1;
                 }
@@ -79,8 +79,8 @@ public class StarPlate : MonoBehaviour
         {
             if (!isLock)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.rotation.x, stopAngle[myPoint], transform.rotation.z), rotateSpeed * 0.5f * Time.deltaTime);
-                if ((int)transform.eulerAngles.y == stopAngle[myPoint])
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(transform.localRotation.x, stopAngle[myPoint], transform.localRotation.z), rotateSpeed * 0.5f * Time.deltaTime);
+                if ((int)transform.localRotation.eulerAngles.y == stopAngle[myPoint])
                 {
                     isLock = true;
                 }

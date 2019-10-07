@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Wall
   - Handle
+  - Planet_Handle
+  - Star_Handle
+  - Potato_Handle
+  - Star_Handle_2
   layers:
   - Default
   - TransparentFX
