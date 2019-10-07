@@ -2,36 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetSecondLine : MonoBehaviour
+public class StarPlate : MonoBehaviour
 {
-    PlanetCollision planetCol;
-    //자식으로 있냐없냐 판단
-    public bool isChild;
-
-    public GameObject planet;
-
     //핸들과 연결
     public PlantPuzzleHandle handle;
     public float rotateSpeed;
-
+    
     [SerializeField]
     public float[] stopAngle;
     [SerializeField]
     public float[] centerAngle;
     public int cutAngle;
     public int myPoint;
-    
+
     //현재 멈춰있는지 알기위함
     public bool isLock;
 
-    public int firstChangePoint;
-    public int secondChangePoint;
-
-    void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        planetCol = planet.GetComponent<PlanetCollision>();
-
-        isChild = true;
         //멈추는 지점
         stopAngle = new float[cutAngle];
         //중앙지점(왼쪽으로갈건지 오른쪽으로 갈건지 결정)
@@ -47,19 +36,18 @@ public class PlanetSecondLine : MonoBehaviour
         //시작할때 지점
         Quaternion startingY = Quaternion.Euler(0, stopAngle[myPoint], 0);
         transform.rotation = startingY;
+
     }
 
+    // Update is called once per frame
     void Update()
     {
-        Debug.Log(name + transform.eulerAngles.y);
-        if (isChild)
-            AutioRotation();
+        AutoRotation();
     }
 
-    public void PlanetRotate(float direction)
+    public void StarRotate(float direction)
     {
         transform.Rotate(0, rotateSpeed * direction * Time.deltaTime, 0);
-        ChildRotation(direction);
     }
 
     //왼쪽으로 맟출건지 오른쪽으로 맟출건지 결정
@@ -84,21 +72,14 @@ public class PlanetSecondLine : MonoBehaviour
         }
     }
 
-    //자전
-    void ChildRotation(float direction)
-    {
-        planet.transform.Rotate(0, rotateSpeed * direction * Time.deltaTime, 0);
-    }
-
     //자동으로 움직이기
-    void AutioRotation()
+    void AutoRotation()
     {
         if (!handle.isCatch)
         {
             if (!isLock)
             {
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.rotation.x, stopAngle[myPoint], transform.rotation.z), rotateSpeed * 0.5f * Time.deltaTime);
-                ChildRotation(rotateSpeed * Time.deltaTime);
                 if ((int)transform.eulerAngles.y == stopAngle[myPoint])
                 {
                     isLock = true;
@@ -107,20 +88,4 @@ public class PlanetSecondLine : MonoBehaviour
         }
     }
 
-    public void LineCheck()
-    {
-        if(planetCol.onChange )
-        {
-            if(planetCol.number ==1)
-            {
-                myPoint = firstChangePoint;
-            }
-            else if (planetCol.number == 2)
-            {
-                myPoint = secondChangePoint;
-            }
-
-            planet.transform.SetParent(transform);
-        }
-    }
 }

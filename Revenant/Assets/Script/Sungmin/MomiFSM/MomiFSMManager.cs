@@ -61,4 +61,5 @@ public class MomiFSMManager : MonoBehaviour
         states[currentState].BeginState();
         states[currentState].enabled = true;
     }
+    
 }

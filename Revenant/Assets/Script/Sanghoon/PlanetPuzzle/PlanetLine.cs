@@ -41,7 +41,8 @@ public class PlanetLine : MonoBehaviour
 
     void Update()
     {
-          AutioRotation();
+        Debug.Log(name + transform.eulerAngles.y);
+        AutioRotation();
     }
 
 
