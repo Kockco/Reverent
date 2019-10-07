@@ -22,7 +22,6 @@ public class BlockRotation : MonoBehaviour
         transform.position = new Vector3(player.position.x, player.position.y+1, player.position.z);
         rot = Quaternion.Euler(new Vector3(0, cam.eulerAngles.y, 0));
         transform.rotation = rot;
-        
     }
 
     void OnDrawGizmos()
