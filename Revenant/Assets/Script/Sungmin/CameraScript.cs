@@ -6,14 +6,14 @@ public class CameraScript : MonoBehaviour
 {
     GameObject momi;
     MomiFSMManager momiState;
-    public GameObject moveToObject;
+    public GameObject[] moveToObject;
     public float momiY;
 
-    public float rotationSpeed, scrollSpeed, rotationXMax;
+    public float rotationSpeed, rotationXMax;
     public float distance, minDis, maxDis;
-    public bool isClear, isWall;
+    public bool isClear;
     float rotX, rotY;
-    
+
     Vector3 momiPos, momiDirect;
     Quaternion rotation;
 
@@ -23,44 +23,43 @@ public class CameraScript : MonoBehaviour
         momi = GameObject.Find("Momi");
         momiState = GameObject.Find("Momi").GetComponent<MomiFSMManager>();
         Cursor.visible = false;
-
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (momiState.CurrentState != MomiState.Handle && !isWall)
+        if (momiState.CurrentState != MomiState.Handle)
             LookAtMomi();
-
-        // RayToWall();
     }
 
     void LateUpdate()
     {
         if (momiState.CurrentState != MomiState.Handle)
             transform.LookAt(momiPos);
+
+        RayToWall();
     }
 
-    public void CamMoveToObject()
+    public void CamMoveToObject(int num)
     {
-        Vector3 tempPos = new Vector3(moveToObject.transform.position.x, moveToObject.transform.position.y, moveToObject.transform.position.z);// -(camHeight * 10));
+        Vector3 tempPos = new Vector3(moveToObject[num].transform.position.x, moveToObject[num].transform.position.y, moveToObject[num].transform.position.z);// -(camHeight * 10));
         transform.position = Vector3.Lerp(transform.position, tempPos, Time.deltaTime * 2f);
-        transform.rotation = Quaternion.Lerp((Quaternion)transform.rotation, (Quaternion)moveToObject.transform.rotation, Time.deltaTime * 2f);
+        transform.rotation = Quaternion.Lerp((Quaternion)transform.rotation, (Quaternion)moveToObject[num].transform.rotation, Time.deltaTime * 2f);
     }
 
     void LookAtMomi()
     {
         rotX += Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
         rotY += Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
-        distance += -Input.GetAxis("Mouse ScrollWheel") * scrollSpeed * Time.deltaTime;
 
         rotX = Mathf.Clamp(rotX, -rotationXMax, rotationXMax);
         distance = Mathf.Clamp(distance, minDis, maxDis);
 
         momiPos = momi.transform.position + Vector3.up * momiY;
         momiDirect = Quaternion.Euler(-rotX, rotY, 0f) * Vector3.forward;
-        
-        transform.position = Vector3.Slerp(transform.position, momiPos + momiDirect * -distance, Time.deltaTime * 2);
+
+        transform.localPosition = Vector3.Slerp(transform.position, momiPos + momiDirect * -distance, Time.deltaTime * 2);
     }
 
     void RayToWall()
@@ -68,16 +67,22 @@ public class CameraScript : MonoBehaviour
         Vector3 tempVec = transform.position - momi.transform.position;
 
         RaycastHit rayHit;
-        int layerMask = 1 << LayerMask.NameToLayer("Wall");
-        if (Physics.Raycast(transform.position, -tempVec.normalized * 1, out rayHit, layerMask))
+        int layerMask = 12 << LayerMask.NameToLayer("Wall");
+        if (Physics.Raycast(transform.position, -tempVec.normalized * 3, out rayHit))
         {
-            isWall = true;
-            transform.position = rayHit.transform.position + Vector3.forward;
+            if (rayHit.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            {
+                // transform.position = Vector3.Slerp(rayHit.point + (Vector3.forward * 10), momi.transform.position, Time.deltaTime * 2);
+                distance = Mathf.Clamp(rayHit.distance * 0.2f, minDis, maxDis);
+            }
+            else
+            {
+                distance = maxDis;
+            }
         }
-        else
-            isWall = false;
 
-        Debug.DrawRay(transform.position, -tempVec.normalized * distance, Color.red);
+        if (rayHit.transform != null)
+            Debug.Log(rayHit.transform.name);
     }
-    
+
 }
