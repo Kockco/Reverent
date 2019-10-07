@@ -11,18 +11,6 @@ public class PlantPuzzleHandle : MonoBehaviour
     
     void Update()
     {
-        if (isCatch == true)
-        {
-            foreach (PlanetLine line in planetLine)
-            {
-                     line.PlanetRotate(Input.GetAxis("Horizontal"));
-            }
-            planetSecondLine.PlanetRotate(Input.GetAxis("Horizontal"));
-        }
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            CatchCheck();
-        }
     }
 
     public void CatchCheck()
@@ -50,11 +38,14 @@ public class PlantPuzzleHandle : MonoBehaviour
     }
 
     //핸들잡고 돌리는 부분 캐릭터에게
-    public void HandleRotate(float rotateSpeed,float direction)
+    public void HandleRotate(float direction)
     {
-        transform.Rotate(0, rotateSpeed * direction * Time.deltaTime, 0);
+        //transform.Rotate(0, rotateSpeed * direction * Time.deltaTime, 0);
 
         foreach (PlanetLine line in planetLine)
                 line.PlanetRotate(direction);
+
+        if (planetSecondLine.isChild)
+            planetSecondLine.PlanetRotate(direction);
     }
 }

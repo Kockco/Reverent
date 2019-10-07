@@ -20,7 +20,7 @@ public class PlanetSecondLine : MonoBehaviour
     public float[] centerAngle;
     public int cutAngle;
     public int myPoint;
-
+    
     //현재 멈춰있는지 알기위함
     public bool isLock;
 
@@ -51,6 +51,7 @@ public class PlanetSecondLine : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(name + transform.eulerAngles.y);
         if (isChild)
             AutioRotation();
     }
