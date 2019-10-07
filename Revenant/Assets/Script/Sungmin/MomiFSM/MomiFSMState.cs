@@ -16,7 +16,7 @@ public class MomiFSMState : MonoBehaviour
     [SerializeField] protected float jumpPower = 3;
     [SerializeField] protected bool isGround = false;
 
-    [SerializeField] AnimationCurve slopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
+    [SerializeField] AnimationCurve slopeCurveModifier = new AnimationCurve(new Keyframe(-90f, 1f), new Keyframe(0f, 1f), new Keyframe(90f, 0f));
     [SerializeField] Vector3 desiredMoveDirection;
     Vector3 groundContact;
 

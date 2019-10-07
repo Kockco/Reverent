@@ -61,7 +61,7 @@ public class Momi_Handle : MomiFSMState
         Vector3 tempCol = col.transform.position; tempCol.y = 0;
         Vector3 tempMomi = transform.position; tempMomi.y = 0;
 
-        Vector3 tempVec = (tempCol - tempMomi);
+        Vector3 tempVec = tempCol - tempMomi;
 
         transform.rotation = Quaternion.LookRotation(tempVec);
     }
