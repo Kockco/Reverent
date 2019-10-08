@@ -110,6 +110,10 @@ public class Momi_Handle : MomiFSMState
         {
             transform.parent.GetComponent<StarHandle>().CatchCheck();
         }
+        else if (transform.parent.tag == "Potato_Handle")
+        {
+            transform.parent.GetComponent<PuzzleHandle>().CatchCheck();
+        }
     }
 
     //핸들잡고 돌리는 부분 캐릭터에게

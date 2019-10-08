@@ -16,7 +16,7 @@ public class PuzzleHandle : MonoBehaviour
     {
         potatoParent = GameObject.Find("Potato");
         potato = GameObject.FindGameObjectsWithTag("Potato");
-        transform.rotation = link_plate.transform.rotation;
+        transform.localRotation = link_plate.transform.localRotation;
     }
     private void Update()
     {
