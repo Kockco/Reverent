@@ -60,7 +60,7 @@ public class PuzzlePlate : MonoBehaviour
 
         // 핸들과 판이 같이 움직이도록
         if(link_handle.isCatch)
-            transform.rotation = link_handle.gameObject.transform.rotation;
+            transform.localRotation = link_handle.gameObject.transform.localRotation;
 
         else if(!link_handle.isCatch && !isRock)
         {
@@ -107,7 +107,7 @@ public class PuzzlePlate : MonoBehaviour
                             break;
                     }
                 }
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.x, nearAngle, transform.rotation.z), 3 *Time.deltaTime);
+                transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(transform.rotation.x, nearAngle, transform.localRotation.z), 3 *Time.deltaTime);
             }
             
         }
