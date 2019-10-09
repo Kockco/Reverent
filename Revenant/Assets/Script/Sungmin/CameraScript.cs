@@ -75,8 +75,7 @@ public class CameraScript : MonoBehaviour
                 distance = maxDis;
         }
 
-        if (rayHit.transform != null)
-            Debug.Log(rayHit.transform.name + ", RayHitPoint : " + rayHit.point);
+        // if (rayHit.transform != null) Debug.Log(rayHit.transform.name + ", RayHitPoint : " + rayHit.point);
 
         Debug.DrawRay(momi.transform.position, tempVec.normalized * distance, Color.red);
     }
