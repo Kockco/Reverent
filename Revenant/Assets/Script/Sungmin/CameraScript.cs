@@ -16,8 +16,7 @@ public class CameraScript : MonoBehaviour
 
     Vector3 momiPos, momiDirect;
     Quaternion rotation;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         momi = GameObject.Find("Momi").transform.GetChild(1).gameObject;
@@ -26,8 +25,7 @@ public class CameraScript : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         if (momiState.CurrentState != MomiState.Handle)

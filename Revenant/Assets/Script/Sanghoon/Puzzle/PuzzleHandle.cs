@@ -16,13 +16,13 @@ public class PuzzleHandle : MonoBehaviour
     {
         potatoParent = GameObject.Find("Potato");
         potato = GameObject.FindGameObjectsWithTag("Potato");
-        transform.rotation = link_plate.transform.rotation;
+        transform.localRotation = link_plate.transform.localRotation;
     }
     private void Update()
     {
         // 핸들과 판이 같이 움직이도록
         if (!isCatch)
-            transform.rotation = link_plate.gameObject.transform.rotation;
+            transform.localRotation = link_plate.gameObject.transform.localRotation;
     }
 
     public void CatchCheck()

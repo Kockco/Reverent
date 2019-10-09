@@ -84,7 +84,7 @@ public class Momi_Handle : MomiFSMState
         if (Input.GetKey(KeyCode.W))
         {
             anime.SetBool("Momi_Push", true);
-            transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
+            transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.World);
             HandleRotate();
         }
         else
@@ -93,7 +93,7 @@ public class Momi_Handle : MomiFSMState
         if (Input.GetKey(KeyCode.S))
         {
             anime.SetBool("Momi_Pull", true);
-            transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.Self);
+            transform.parent.Rotate(inputMoveY * Time.deltaTime, Space.World);
             HandleRotate();
         }
         else
@@ -109,6 +109,10 @@ public class Momi_Handle : MomiFSMState
         else if (transform.parent.tag == "Star_Handle")
         {
             transform.parent.GetComponent<StarHandle>().CatchCheck();
+        }
+        else if (transform.parent.tag == "Potato_Handle")
+        {
+            transform.parent.GetComponent<PuzzleHandle>().CatchCheck();
         }
     }
 
