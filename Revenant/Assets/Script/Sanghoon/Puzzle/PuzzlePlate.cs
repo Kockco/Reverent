@@ -14,7 +14,7 @@ public class PuzzlePlate : MonoBehaviour
     public bool isRock;
     public float nearAngle = 360;
     public float myRot;
-    // Start is called before the first frame update
+
     void Awake()
     {
         //멈추는 지점
@@ -57,6 +57,7 @@ public class PuzzlePlate : MonoBehaviour
         {
             myRot = transform.eulerAngles.y;
         }
+
         // 핸들과 판이 같이 움직이도록
         if(link_handle.isCatch)
             transform.rotation = link_handle.gameObject.transform.rotation;
