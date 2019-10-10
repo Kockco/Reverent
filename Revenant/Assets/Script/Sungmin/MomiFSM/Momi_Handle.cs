@@ -35,7 +35,7 @@ public class Momi_Handle : MomiFSMState
         anime.SetBool("Momi_Pull", false);
         anime.SetBool("Momi_Push", false);
 
-        // CatchCheck(); isParent = false, isRotate = false;
+        // CatchCheck(); isParent = false;
     }
 
     protected override void Update()
@@ -132,9 +132,7 @@ public class Momi_Handle : MomiFSMState
 
         if (momi.transform.localEulerAngles.y >= 180)
             inputMoveY = -inputMoveY;
-
+        
         transform.parent.Rotate(inputMoveY * Time.deltaTime);
-
-        Debug.Log(momi.transform.localEulerAngles.y);
     }
 }
