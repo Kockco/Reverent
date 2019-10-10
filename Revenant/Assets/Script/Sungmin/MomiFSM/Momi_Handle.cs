@@ -69,7 +69,7 @@ public class Momi_Handle : MomiFSMState
             if (!isParent)
             {
                 SetMomiPosToHandle();
-                // CatchCheck();
+                CatchCheck();
                 isParent = true;
             }
         }
@@ -87,7 +87,7 @@ public class Momi_Handle : MomiFSMState
         if (Input.GetKey(KeyCode.W))
         {
             anime.SetBool("Momi_Push", true);
-            // HandleRotate();
+            HandleRotate();
             RotationVector();
         }
         else
@@ -96,7 +96,7 @@ public class Momi_Handle : MomiFSMState
         if (Input.GetKey(KeyCode.S))
         {
             anime.SetBool("Momi_Pull", true);
-            // HandleRotate();
+            HandleRotate();
             RotationVector();
         }
         else
