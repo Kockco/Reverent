@@ -10,7 +10,7 @@ public class CameraScript : MonoBehaviour
     public float momiY;
 
     public float rotationSpeed, rotationXMax, scrollSpeed;
-    public float distance, minDis, maxDis;
+    public float distance, minDis, maxDis, camFix; // camFix = 카메라 보정땃쥐값
     public bool isClear;
     float rotX, rotY;
 
@@ -67,10 +67,10 @@ public class CameraScript : MonoBehaviour
         Vector3 tempVec = transform.position - momi.transform.position;
 
         RaycastHit rayHit;
-        if (Physics.SphereCast(momi.transform.position, 0.25f, tempVec.normalized, out rayHit, distance))
+        if (Physics.SphereCast(momi.transform.position, 0.1f, tempVec.normalized, out rayHit, distance))
         {
             if (rayHit.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
-                    distance = Vector3.Distance(momi.transform.position, rayHit.point) * 0.8f;
+                    distance = Vector3.Distance(momi.transform.position, rayHit.point) * camFix;
             else
                 distance = maxDis;
         }
