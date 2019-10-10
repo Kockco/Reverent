@@ -22,7 +22,7 @@ public class Momi_Handle : MomiFSMState
         aim = transform.GetChild(1).GetComponent<AimControll>();
         momi = this.transform.gameObject;
 
-        // isParent = false;
+        isParent = false;
     }
 
     public override void EndState()
@@ -35,7 +35,8 @@ public class Momi_Handle : MomiFSMState
         anime.SetBool("Momi_Pull", false);
         anime.SetBool("Momi_Push", false);
 
-        // CatchCheck(); isParent = false;
+        // CatchCheck();
+        isParent = false;
     }
 
     protected override void Update()
@@ -67,8 +68,9 @@ public class Momi_Handle : MomiFSMState
 
             if (!isParent)
             {
+                SetMomiPosToHandle();
                 // CatchCheck();
-                   isParent = true;
+                isParent = true;
             }
         }
 
@@ -134,5 +136,21 @@ public class Momi_Handle : MomiFSMState
             inputMoveY = -inputMoveY;
         
         transform.parent.Rotate(inputMoveY * Time.deltaTime);
+    }
+
+    void SetMomiPosToHandle()
+    {
+        GameObject[] handleLeftRight;
+        handleLeftRight = new GameObject[2];
+        handleLeftRight[0] = transform.parent.GetChild(1).gameObject;
+        handleLeftRight[1] = transform.parent.GetChild(2).gameObject;
+
+        if (Vector3.Distance(transform.position, handleLeftRight[0].transform.position) <
+            Vector3.Distance(transform.position, handleLeftRight[1].transform.position))
+            transform.position = handleLeftRight[0].transform.position;
+        else
+            transform.position = handleLeftRight[1].transform.position;
+
+        Debug.Log(handleLeftRight[0].transform.name + ", " + handleLeftRight[1].transform.name);
     }
 }

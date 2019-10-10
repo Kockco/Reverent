@@ -67,15 +67,13 @@ public class CameraScript : MonoBehaviour
         Vector3 tempVec = transform.position - momi.transform.position;
 
         RaycastHit rayHit;
-        if (Physics.Raycast(momi.transform.position, tempVec.normalized, out rayHit, distance))
+        if (Physics.SphereCast(momi.transform.position, 0.25f, tempVec.normalized, out rayHit, distance))
         {
             if (rayHit.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
                     distance = Vector3.Distance(momi.transform.position, rayHit.point) * 0.8f;
             else
                 distance = maxDis;
         }
-
-        // if (rayHit.transform != null) Debug.Log(rayHit.transform.name + ", RayHitPoint : " + rayHit.point);
 
         Debug.DrawRay(momi.transform.position, tempVec.normalized * distance, Color.red);
     }
