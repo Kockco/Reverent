@@ -5,12 +5,8 @@ using UnityEngine;
 public class PotatoColision : MonoBehaviour
 {
     public int num;
-    
-    private void Start()
-    {
 
-    }
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Potato")
         {
