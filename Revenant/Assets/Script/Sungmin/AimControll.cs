@@ -46,7 +46,7 @@ public class AimControll : MonoBehaviour
         if (col.transform.tag == "Planet_Handle" && Input.GetKeyDown(KeyCode.E) && momiManager.CurrentState != MomiState.Handle)
         {
             momiHandle.col = col.gameObject;
-            momiHandle.handleNum = 2;
+            momiHandle.handleNum = 3;
             momiManager.SetState(MomiState.Handle);
             momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
         }
