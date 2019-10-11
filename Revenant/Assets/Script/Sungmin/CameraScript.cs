@@ -59,20 +59,19 @@ public class CameraScript : MonoBehaviour
         camPos = momiPos + momiDirect * -distance;
 
         RayToWall();
-        transform.position = Vector3.Lerp(transform.position, camPos, Time.deltaTime * 3);
+        transform.position = Vector3.Lerp(transform.position, camPos, Time.deltaTime * 2);
     }
 
     void RayToWall()
     {
         rayHit = new RaycastHit();
-        Vector3 tempVec = transform.position - momi.transform.position;
+        Vector3 tempVec = transform.position - momiPos;
 
-        // if (Physics.Linecast(momiPos, transform.position, out rayHit))
-        if (Physics.Raycast(momi.transform.position, tempVec.normalized, out rayHit, maxDis))
+        if (Physics.Raycast(momiPos, tempVec.normalized, out rayHit, maxDis))
         {
             if (rayHit.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
-                transform.position = momi.transform.position + (tempVec.normalized * rayHit.distance);
+                transform.position = momiPos + (tempVec.normalized * rayHit.distance);
                 distance = rayHit.distance;
             }
         }
