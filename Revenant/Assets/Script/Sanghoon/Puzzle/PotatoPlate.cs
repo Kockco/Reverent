@@ -17,6 +17,7 @@ public class PotatoPlate : MonoBehaviour
     [Header("나의 지점")]
     [SerializeField]
     int myPoint;
+    int MyPoint { get; }
 
     [Header("회전속도")]
     [SerializeField]
@@ -35,20 +36,20 @@ public class PotatoPlate : MonoBehaviour
     int[] potatoNumber;
     #endregion
 
-    //멈춰야되는 각, 중간 각, 움직이는중인지, 어느각으로 도는지?
+    //멈춰야되는 각, 중간 각, 움직이는중인지, 감자, 어느각으로 도는지?
     #region
     [HideInInspector]
     public float[] stopAngle;
-    
-    GameObject potatoBasket;
-    GameObject[] potato;
 
     [HideInInspector]
     public float[] centerAngle;
 
     [HideInInspector]
     public bool isLock;
-    
+
+    GameObject potatoBasket;
+    GameObject[] potato;
+
     enum AngleXYZ { X,Y,Z }
     AngleXYZ angleXYZ;
     #endregion

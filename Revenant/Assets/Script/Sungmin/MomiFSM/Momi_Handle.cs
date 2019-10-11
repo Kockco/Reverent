@@ -107,7 +107,7 @@ public class Momi_Handle : MomiFSMState
     {
         if (transform.parent.tag == "Planet_Handle")
         {
-            transform.parent.GetComponent<PlantPuzzleHandle>().CatchCheck();
+            transform.parent.GetComponent<PlanetHandle>().CatchCheck();
         }
         else if (transform.parent.tag == "Planet_Star")
         {
@@ -124,7 +124,7 @@ public class Momi_Handle : MomiFSMState
     {
         if (transform.parent.tag == "Planet_Handle")
         {
-            transform.parent.GetComponent<PlantPuzzleHandle>().HandleRotate(Input.GetAxis("Vertical"));
+            transform.parent.GetComponent<PlanetHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
         else if (transform.parent.tag == "Planet_Star")
         {

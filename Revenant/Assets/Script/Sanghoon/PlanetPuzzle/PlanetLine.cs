@@ -4,28 +4,64 @@ using UnityEngine;
 
 public class PlanetLine : MonoBehaviour
 {
-    public GameObject planet;
+    //핸들,각도,속도
+    #region
+    [Header("자식")]
+    [SerializeField]
+    GameObject planet;
 
-    //핸들과 연결
-    public PlantPuzzleHandle handle;
+    [Header("연결될 핸들")]
+    [SerializeField]
+    PlanetHandle handle;
+
+    [Header("각도의 갯수")]
+    [SerializeField]
+    int cutAngle;
+    public int CutAngle { get; }
+
+    [Header("나의 지점")]
+    [SerializeField]
+    int myPoint;
+    public int MyPoint { get; }
+
+    [Header("돌아야하는 각(x,y,z) 한개만 1")]
+    [SerializeField]
+    Vector3 rotationAngleXYZ;
+
+    [Header("돌아야하는 각(x,y,z) 한개만 1")]
+    [SerializeField]
+    float selfRotateSpeed;
+
+    [Header("겹쳐지는 라인 갯수,지점")]
+    public int[] overlapLine;
+    #endregion
+
+    //속도, 각, 중간 각, 움직이는중인지, 어느각으로 도는지?
+    #region
+    [HideInInspector]
     public float rotateSpeed;
 
-    [SerializeField]
-    public float[] stopAngle;
-    [SerializeField]
-    public float[] centerAngle;
-    public int cutAngle;
-    public int myPoint;
+    [HideInInspector]
+    public float returnSpeed;
 
-    //현재 멈춰있는지 알기위함
+    [HideInInspector]
+    public float[] stopAngle;
+
+    [HideInInspector]
+    public float[] centerAngle;
+
+    [HideInInspector]
     public bool isLock;
+
+    enum AngleXYZ { X, Y, Z }
+    AngleXYZ angleXYZ;
+    #endregion
 
     void Awake()
     {
-        //멈추는 지점
         stopAngle = new float[cutAngle];
-        //중앙지점(왼쪽으로갈건지 오른쪽으로 갈건지 결정)
         centerAngle = new float[cutAngle];
+        isLock = true;
 
         //360 / 잘린갯수만큼 계산
         float startAngle = 360 / cutAngle;
@@ -34,38 +70,55 @@ public class PlanetLine : MonoBehaviour
             stopAngle[i] = i * startAngle;
             centerAngle[i] = (startAngle / 2) + startAngle * i;
         }
+
         //시작할때 지점
-        Quaternion startingY = Quaternion.Euler(0, stopAngle[myPoint], 0);
-        transform.rotation = startingY;
+        Quaternion startingAngleXYZ = Quaternion.Euler(rotationAngleXYZ * stopAngle[myPoint] + transform.eulerAngles);
+        transform.rotation = startingAngleXYZ;
+        
+        if (rotationAngleXYZ.x != 0)
+            angleXYZ = AngleXYZ.X;
+        else if (rotationAngleXYZ.y != 0)
+            angleXYZ = AngleXYZ.Y;
+        else if (rotationAngleXYZ.z != 0)
+            angleXYZ = AngleXYZ.Z;
     }
 
     void Update()
     {
-        Debug.Log(name + transform.eulerAngles.y);
-        AutioRotation();
-    }
-    
-    public void PlanetRotate(float direction)
-    {
-        transform.Rotate(0,rotateSpeed * direction * Time.deltaTime,0);
-        ChildRotation(direction);
+        AutoRotation();
+        AngleLimit();
     }
 
     //왼쪽으로 맟출건지 오른쪽으로 맟출건지 결정
     public void AngleCheck()
     {
-        for(int i = 0; i <cutAngle; i++)
+        switch (angleXYZ)
+        {
+            case AngleXYZ.X:
+                AngleCheck(transform.localRotation.eulerAngles.x);
+                break;
+            case AngleXYZ.Y:
+                AngleCheck(transform.localRotation.eulerAngles.y);
+                break;
+            case AngleXYZ.Z:
+                AngleCheck(transform.localRotation.eulerAngles.z);
+                break;
+        }
+    }
+    void AngleCheck(float ang)
+    {
+        for (int i = 0; i < cutAngle; i++)
         {
             if (i == cutAngle - 1)
             {
-                if (transform.eulerAngles.y > centerAngle[i] || transform.eulerAngles.y < centerAngle[0])
+                if (ang > centerAngle[i] || ang < centerAngle[0])
                 {
                     myPoint = 0;
                 }
             }
             else
             {
-                if (transform.eulerAngles.y > centerAngle[i] && transform.eulerAngles.y < centerAngle[i+1])
+                if (ang > centerAngle[i] && ang < centerAngle[i + 1])
                 {
                     myPoint = i + 1;
                 }
@@ -73,24 +126,95 @@ public class PlanetLine : MonoBehaviour
         }
     }
 
+    //회전
+    public void Rotate(float direction)
+    {
+        transform.Rotate(rotationAngleXYZ * rotateSpeed * direction * Time.deltaTime);
+    }
+
     //자전
     void ChildRotation(float direction)
     {
-        planet.transform.Rotate(0, rotateSpeed *direction * Time.deltaTime, 0);
+         planet.transform.Rotate(rotationAngleXYZ * selfRotateSpeed * direction * Time.deltaTime);
+    }
+
+    //최대값 최소값 지정
+    void AngleLimit()
+    {
+        switch (angleXYZ)
+        {
+            case AngleXYZ.X:
+                if (transform.localRotation.eulerAngles.x > 360)
+                {
+                    transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x - 360,
+                        transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
+                }
+                if (transform.localRotation.eulerAngles.x < 0)
+                {
+                    transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x + 360,
+                        transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z);
+                }
+                break;
+            case AngleXYZ.Y:
+                if (transform.localRotation.eulerAngles.y > 360)
+                {
+                    transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x,
+                        transform.localRotation.eulerAngles.y - 360, transform.localRotation.eulerAngles.z);
+                }
+                if (transform.localRotation.eulerAngles.y < 0)
+                {
+                    transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x,
+                        transform.localRotation.eulerAngles.y + 360, transform.localRotation.eulerAngles.z);
+                }
+                break;
+            case AngleXYZ.Z:
+                if (transform.localRotation.eulerAngles.z > 360)
+                {
+                    transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x,
+                        transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z - 360);
+                }
+                if (transform.localRotation.eulerAngles.z < 0)
+                {
+                    transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x,
+                        transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z + 360);
+                }
+                break;
+        }
     }
 
     //자동으로 움직이기
-    void AutioRotation()
+    void AutoRotation()
     {
         if (!handle.isCatch)
         {
             if (!isLock)
             {
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(transform.rotation.x, stopAngle[myPoint], transform.rotation.z), rotateSpeed * 0.5f * Time.deltaTime);
-                ChildRotation(rotateSpeed * Time.deltaTime);
-                if ((int)transform.eulerAngles.y == stopAngle[myPoint])
+                switch (angleXYZ)
                 {
-                    isLock = true;
+                    case AngleXYZ.X:
+                        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(stopAngle[myPoint],
+                            transform.localRotation.eulerAngles.y, transform.localRotation.eulerAngles.z), returnSpeed * Time.deltaTime);
+                        if ((int)transform.localRotation.eulerAngles.x == stopAngle[myPoint])
+                        {
+                            isLock = true;
+                        }
+                        break;
+                    case AngleXYZ.Y:
+                        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(transform.localRotation.eulerAngles.x,
+                            stopAngle[myPoint], transform.localRotation.eulerAngles.z), returnSpeed * Time.deltaTime);
+                        if ((int)transform.localRotation.eulerAngles.y == stopAngle[myPoint])
+                        {
+                            isLock = true;
+                        }
+                        break;
+                    case AngleXYZ.Z:
+                        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(transform.localRotation.eulerAngles.x,
+                            transform.localRotation.eulerAngles.y, stopAngle[myPoint]), returnSpeed * Time.deltaTime);
+                        if ((int)transform.localRotation.eulerAngles.z == stopAngle[myPoint])
+                        {
+                            isLock = true;
+                        }
+                        break;
                 }
             }
         }
