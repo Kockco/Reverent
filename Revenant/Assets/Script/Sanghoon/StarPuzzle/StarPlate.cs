@@ -12,13 +12,13 @@ public class StarPlate : MonoBehaviour
     public float[] stopAngle;
     [SerializeField]
     public float[] centerAngle;
+
     public int cutAngle;
     public int myPoint;
 
     //현재 멈춰있는지 알기위함
     public bool isLock;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         //멈추는 지점
@@ -38,8 +38,7 @@ public class StarPlate : MonoBehaviour
         transform.localRotation = startingY;
 
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         AutoRotation();
