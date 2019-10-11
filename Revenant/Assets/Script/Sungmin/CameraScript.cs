@@ -9,8 +9,8 @@ public class CameraScript : MonoBehaviour
     public GameObject[] moveToObject;
     public float momiY;
 
-    public float rotationSpeed, rotationXMax;
-    public float distance, minDis, maxDis;
+    public float rotationSpeed, rotationXMax, scrollSpeed;
+    public float distance, minDis, maxDis, camFix; // camFix = 카메라 보정땃쥐값
     public bool isClear;
     float rotX, rotY;
 
@@ -19,8 +19,9 @@ public class CameraScript : MonoBehaviour
     
     void Start()
     {
-        momi = GameObject.Find("Momi");
+        momi = GameObject.Find("Momi").transform.GetChild(1).gameObject;
         momiState = GameObject.Find("Momi").GetComponent<MomiFSMManager>();
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -50,6 +51,7 @@ public class CameraScript : MonoBehaviour
     {
         rotX += Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
         rotY += Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        distance += -Input.GetAxis("Mouse ScrollWheel") * scrollSpeed * Time.deltaTime;
 
         rotX = Mathf.Clamp(rotX, -rotationXMax, rotationXMax);
         distance = Mathf.Clamp(distance, minDis, maxDis);
@@ -57,7 +59,7 @@ public class CameraScript : MonoBehaviour
         momiPos = momi.transform.position + Vector3.up * momiY;
         momiDirect = Quaternion.Euler(-rotX, rotY, 0f) * Vector3.forward;
 
-        transform.localPosition = Vector3.Slerp(transform.position, momiPos + momiDirect * -distance, Time.deltaTime * 2);
+        transform.localPosition = Vector3.Slerp(transform.position, momiPos + momiDirect * -distance, Time.deltaTime * 10);
     }
 
     void RayToWall()
@@ -65,22 +67,24 @@ public class CameraScript : MonoBehaviour
         Vector3 tempVec = transform.position - momi.transform.position;
 
         RaycastHit rayHit;
-        int layerMask = 12 << LayerMask.NameToLayer("Wall");
-        if (Physics.Raycast(transform.position, -tempVec.normalized * 3, out rayHit))
+        if (Physics.SphereCast(momi.transform.position, 0.1f, tempVec.normalized, out rayHit, maxDis))
         {
             if (rayHit.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
-            {
-                // transform.position = Vector3.Slerp(rayHit.point + (Vector3.forward * 10), momi.transform.position, Time.deltaTime * 2);
-                distance = Mathf.Clamp(rayHit.distance * 0.2f, minDis, maxDis);
-            }
-            else
-            {
-                distance = maxDis;
-            }
+                    distance = Vector3.Distance(momi.transform.position, rayHit.point) * camFix;
         }
+        else
+            distance = maxDis;
+
+        Debug.DrawRay(momi.transform.position, tempVec.normalized * maxDis, Color.red);
 
         if (rayHit.transform != null)
             Debug.Log(rayHit.transform.name);
     }
 
+    void OnTriggerStay(Collider col)
+    {
+        if (col.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+        }
+    }
 }

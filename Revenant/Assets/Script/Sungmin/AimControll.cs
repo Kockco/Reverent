@@ -11,6 +11,7 @@ public class AimControll : MonoBehaviour
     void Start()
     {
         momiManager = GameObject.Find("Momi").GetComponent<MomiFSMManager>();
+        momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
     }
 
     // Update is called once per frame
@@ -20,34 +21,34 @@ public class AimControll : MonoBehaviour
     {
         if (col.transform.tag == "Star_Handle" && Input.GetKeyDown(KeyCode.E) && momiManager.CurrentState != MomiState.Handle)
         {
-            momiManager.SetState(MomiState.Handle);
-            momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
             momiHandle.col = col.gameObject;
             momiHandle.handleNum = 0;
+            momiManager.SetState(MomiState.Handle);
+            momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
         }
 
         if (col.transform.tag == "Star_Handle_2" && Input.GetKeyDown(KeyCode.E) && momiManager.CurrentState != MomiState.Handle)
         {
-            momiManager.SetState(MomiState.Handle);
-            momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
             momiHandle.col = col.gameObject;
             momiHandle.handleNum = 1;
+            momiManager.SetState(MomiState.Handle);
+            momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
         }
 
         if (col.transform.tag == "Potato_Handle" && Input.GetKeyDown(KeyCode.E) && momiManager.CurrentState != MomiState.Handle)
         {
-            momiManager.SetState(MomiState.Handle);
-            momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
             momiHandle.col = col.gameObject;
             momiHandle.handleNum = 2;
+            momiManager.SetState(MomiState.Handle);
+            momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
         }
 
         if (col.transform.tag == "Planet_Handle" && Input.GetKeyDown(KeyCode.E) && momiManager.CurrentState != MomiState.Handle)
         {
-            momiManager.SetState(MomiState.Handle);
-            momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
             momiHandle.col = col.gameObject;
             momiHandle.handleNum = 2;
+            momiManager.SetState(MomiState.Handle);
+            momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
         }
     }
 }

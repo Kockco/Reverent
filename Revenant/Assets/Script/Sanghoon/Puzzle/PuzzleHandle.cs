@@ -22,7 +22,7 @@ public class PuzzleHandle : MonoBehaviour
     {
         // 핸들과 판이 같이 움직이도록
         if (!isCatch)
-            transform.rotation = link_plate.gameObject.transform.rotation;
+            transform.localRotation = link_plate.gameObject.transform.localRotation;
     }
 
     public void CatchCheck()

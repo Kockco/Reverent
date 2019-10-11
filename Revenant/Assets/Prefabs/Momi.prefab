@@ -107,17 +107,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 65.25
-      value: 0.9976425
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
       time: 90
-      value: 0
+      value: 0.99977875
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -339,7 +330,7 @@ PrefabInstance:
     - target: {fileID: 6542645985441943637, guid: 87bfc7c78d18a854095d84a3e03eda32,
         type: 3}
       propertyPath: m_AABB.m_Center.y
-      value: -0.0000076293945
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6542645985441943637, guid: 87bfc7c78d18a854095d84a3e03eda32,
         type: 3}
