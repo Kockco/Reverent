@@ -17,14 +17,14 @@ public class PlanetHandle : MonoBehaviour
 
     //세 개의 라인 받기
     public PlanetLine[] planetLine;
-    public PlanetSecondLine planetSecondLine;
+    public PlanetLine otherLine;
 
-    private void Awake()
+    private void Start()
     {
         //스피드 / 잘린지점 = 모든라인 속도 비율이 같음
         foreach (PlanetLine line in planetLine) {
-            line.rotateSpeed = allPlanetRotateSpeed / line.CutAngle;
-            line.rotateSpeed = allPlanetReturnSpeed / line.CutAngle;
+            line.rotateSpeed = allPlanetRotateSpeed / line.cutAngle;
+            line.returnSpeed = allPlanetReturnSpeed / line.cutAngle;
         }
     }
 
@@ -33,12 +33,15 @@ public class PlanetHandle : MonoBehaviour
         if (isCatch == false)
         {
             isCatch = true;
-            
-            foreach (PlanetLine line in planetLine)
-                    line.isLock = false;
 
-            if (planetSecondLine.isChild)
-                planetSecondLine.isLock = false;
+            foreach (PlanetLine line in planetLine)
+            {
+                if(line.overlapLine.Length != 0)
+                {
+                    line.GetPlanet(otherLine);
+                }
+                line.isLock = false;
+            }
         }
         else
         {
@@ -46,9 +49,6 @@ public class PlanetHandle : MonoBehaviour
             //포인트 제자리로 돌리기
             foreach (PlanetLine line in planetLine)
                     line.AngleCheck();
-
-            if (planetSecondLine.isChild)
-                planetSecondLine.AngleCheck();
         }
     }
 

@@ -15,26 +15,25 @@ public class PlanetLine : MonoBehaviour
     PlanetHandle handle;
 
     [Header("각도의 갯수")]
-    [SerializeField]
-    int cutAngle;
-    public int CutAngle { get; }
+    public  int cutAngle;
 
     [Header("나의 지점")]
-    [SerializeField]
-    int myPoint;
-    public int MyPoint { get; }
-
+    public int myPoint;
     [Header("돌아야하는 각(x,y,z) 한개만 1")]
     [SerializeField]
     Vector3 rotationAngleXYZ;
 
-    [Header("돌아야하는 각(x,y,z) 한개만 1")]
+    [Header("자전속도")]
     [SerializeField]
     float selfRotateSpeed;
 
     [Header("겹쳐지는 라인 갯수,지점")]
     public int[] overlapLine;
+
+    [Header("현재 라인에 행성이 존재하는가?")]
+    public bool isPlanet;
     #endregion
+
 
     //속도, 각, 중간 각, 움직이는중인지, 어느각으로 도는지?
     #region
@@ -57,11 +56,14 @@ public class PlanetLine : MonoBehaviour
     AngleXYZ angleXYZ;
     #endregion
 
-    void Awake()
+    void Start()
     {
         stopAngle = new float[cutAngle];
         centerAngle = new float[cutAngle];
         isLock = true;
+        //행성이 있으면 true 없으면 false
+        if (transform.childCount == 0) isPlanet = false;
+        else isPlanet = true;
 
         //360 / 잘린갯수만큼 계산
         float startAngle = 360 / cutAngle;
@@ -130,6 +132,7 @@ public class PlanetLine : MonoBehaviour
     public void Rotate(float direction)
     {
         transform.Rotate(rotationAngleXYZ * rotateSpeed * direction * Time.deltaTime);
+        ChildRotation(direction);
     }
 
     //자전
@@ -215,6 +218,24 @@ public class PlanetLine : MonoBehaviour
                             isLock = true;
                         }
                         break;
+                }
+            }
+        }
+    }
+
+    public void GetPlanet(PlanetLine other)
+    {
+        if(transform.childCount == 0)
+        {
+            for(int i =0; i < other.overlapLine.Length; i++)
+            {
+                if(other.overlapLine[i] == other.myPoint)
+                {
+                    myPoint = overlapLine[i];
+                    transform.localRotation = Quaternion.Euler(rotationAngleXYZ * stopAngle[overlapLine[i]]);
+                    other.isPlanet = false;
+                    isPlanet = true;
+                    planet.transform.SetParent(this.transform);
                 }
             }
         }

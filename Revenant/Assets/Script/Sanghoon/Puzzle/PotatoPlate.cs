@@ -17,7 +17,6 @@ public class PotatoPlate : MonoBehaviour
     [Header("나의 지점")]
     [SerializeField]
     int myPoint;
-    int MyPoint { get; }
 
     [Header("회전속도")]
     [SerializeField]
