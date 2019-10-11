@@ -14,9 +14,10 @@ public class CameraScript : MonoBehaviour
     public bool isClear;
     float rotX, rotY;
 
-    Vector3 momiPos, momiDirect;
+    Vector3 momiPos, momiDirect, camPos;
     Quaternion rotation;
-    
+    RaycastHit rayHit;
+
     void Start()
     {
         momi = GameObject.Find("Momi").transform.GetChild(1).gameObject;
@@ -30,10 +31,10 @@ public class CameraScript : MonoBehaviour
     {
         if (momiState.CurrentState != MomiState.Handle)
         {
-            RayToWall();
-
             LookAtMomi();
             transform.LookAt(momiPos);
+
+            // RayToWall();
         }
     }
 
@@ -55,24 +56,30 @@ public class CameraScript : MonoBehaviour
 
         momiPos = momi.transform.position + Vector3.up * momiY;
         momiDirect = Quaternion.Euler(-rotX, rotY, 0f) * Vector3.forward;
+        camPos = momiPos + momiDirect * -distance;
 
-        transform.position = Vector3.Lerp(transform.position, momiPos + momiDirect * -distance, Time.deltaTime * 5);
+        RayToWall();
+        transform.position = Vector3.Lerp(transform.position, camPos, Time.deltaTime * 3);
     }
 
     void RayToWall()
     {
+        rayHit = new RaycastHit();
         Vector3 tempVec = transform.position - momi.transform.position;
-        RaycastHit rayHit;
 
-        if (Physics.SphereCast(momi.transform.position, 0.1f, tempVec.normalized, out rayHit, maxDis))
+        // if (Physics.Linecast(momiPos, transform.position, out rayHit))
+        if (Physics.Raycast(momi.transform.position, tempVec.normalized, out rayHit, maxDis))
         {
             if (rayHit.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
-                transform.position = Vector3.Lerp(transform.position, rayHit.point, Time.deltaTime);
+                transform.position = momi.transform.position + (tempVec.normalized * rayHit.distance);
                 distance = rayHit.distance;
             }
         }
         else
             distance = maxDis;
+
+        if (rayHit.transform != null)
+            Debug.Log(rayHit.transform.name + ", " + rayHit.point);
     }
 }
