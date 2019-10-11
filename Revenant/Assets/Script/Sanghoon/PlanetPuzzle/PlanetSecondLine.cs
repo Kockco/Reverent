@@ -11,7 +11,7 @@ public class PlanetSecondLine : MonoBehaviour
     public GameObject planet;
 
     //핸들과 연결
-    public PlantPuzzleHandle handle;
+    public PlanetHandle handle;
     public float rotateSpeed;
 
     [SerializeField]

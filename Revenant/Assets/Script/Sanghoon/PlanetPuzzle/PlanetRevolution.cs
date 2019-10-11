@@ -15,7 +15,7 @@ public class PlanetRevolution : MonoBehaviour
     }
     private void Update()
     {
-        revolutionPlanet.transform.rotation = Quaternion.Euler(0,(transform.eulerAngles.y * myPlanet.cutAngle/2)+ 90, 0);
+        //revolutionPlanet.transform.rotation = Quaternion.Euler(0,(transform.eulerAngles.y * myPlanet.cutAngle/2)+ 90, 0);
     }
     
 }
