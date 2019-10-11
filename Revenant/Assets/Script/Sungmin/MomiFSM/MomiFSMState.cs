@@ -79,7 +79,6 @@ public class MomiFSMState : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), 5);
         rig.MovePosition(transform.position + desiredMoveDirection.normalized * SlopeMomi() * moveSpeed * Time.deltaTime);
-        // transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
 
     protected virtual void JumpMomi()
@@ -91,6 +90,10 @@ public class MomiFSMState : MonoBehaviour
     protected float SlopeMomi()
     {
         float angle = Vector3.Angle(groundContact, Vector3.up);
+
+        if (manager.CurrentState == MomiState.Jump)
+            angle = 0;
+
         return slopeCurveModifier.Evaluate(angle);
     }
 
@@ -107,7 +110,6 @@ public class MomiFSMState : MonoBehaviour
         {
             isGround = true;
             groundContact = Vector3.up;
-            
         }
     }
 
