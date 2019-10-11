@@ -1578,7 +1578,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.035
+    value: 0.085
   fastMode:
     overrideState: 1
     value: 0

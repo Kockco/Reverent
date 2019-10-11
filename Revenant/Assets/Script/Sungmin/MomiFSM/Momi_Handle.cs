@@ -27,6 +27,7 @@ public class Momi_Handle : MomiFSMState
 
     public override void EndState()
     {
+        CatchCheck();
         base.EndState();
 
         transform.parent = null;
@@ -34,8 +35,7 @@ public class Momi_Handle : MomiFSMState
 
         anime.SetBool("Momi_Pull", false);
         anime.SetBool("Momi_Push", false);
-
-        // CatchCheck();
+        
         isParent = false;
     }
 
@@ -113,6 +113,10 @@ public class Momi_Handle : MomiFSMState
         {
             transform.parent.GetComponent<StarHandle>().CatchCheck();
         }
+        else if (transform.parent.tag == "Potato_Handle")
+        {
+            transform.parent.GetComponent<PotatoHandle>().CatchCheck();
+        }
     }
 
     //핸들잡고 돌리는 부분 캐릭터에게
@@ -125,6 +129,10 @@ public class Momi_Handle : MomiFSMState
         else if (transform.parent.tag == "Planet_Star")
         {
             transform.parent.GetComponent<StarHandle>().HandleRotate(Input.GetAxis("Vertical"));
+        }
+        else if (transform.parent.tag == "Potato_Handle")
+        {
+            transform.parent.GetComponent<PotatoHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
     }
 
