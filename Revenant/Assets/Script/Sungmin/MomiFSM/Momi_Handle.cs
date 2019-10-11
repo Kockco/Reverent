@@ -35,7 +35,7 @@ public class Momi_Handle : MomiFSMState
 
         anime.SetBool("Momi_Pull", false);
         anime.SetBool("Momi_Push", false);
-        
+
         isParent = false;
     }
 
@@ -92,7 +92,7 @@ public class Momi_Handle : MomiFSMState
         }
         else
             anime.SetBool("Momi_Push", false);
-        
+
         if (Input.GetKey(KeyCode.S))
         {
             anime.SetBool("Momi_Pull", true);
@@ -105,11 +105,11 @@ public class Momi_Handle : MomiFSMState
 
     void CatchCheck()
     {
-        if(transform.parent.tag == "Planet_Handle")
+        if (transform.parent.tag == "Planet_Handle")
         {
             transform.parent.GetComponent<PlantPuzzleHandle>().CatchCheck();
         }
-        else if(transform.parent.tag == "Planet_Star")
+        else if (transform.parent.tag == "Planet_Star")
         {
             transform.parent.GetComponent<StarHandle>().CatchCheck();
         }
@@ -142,7 +142,7 @@ public class Momi_Handle : MomiFSMState
 
         if (momi.transform.localEulerAngles.y >= 180)
             inputMoveY = -inputMoveY;
-        
+
         transform.parent.Rotate(inputMoveY * Time.deltaTime);
     }
 
