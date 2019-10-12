@@ -235,7 +235,7 @@ public class PlanetLine : MonoBehaviour
                     transform.localRotation = Quaternion.Euler(rotationAngleXYZ * stopAngle[overlapLine[i]]);
                     other.isPlanet = false;
                     isPlanet = true;
-                    planet.transform.SetParent(this.transform);
+                    planet.transform.parent.transform.SetParent(this.transform);
                 }
             }
         }
