@@ -5,9 +5,11 @@ using UnityEngine;
 public class PuzzleManager : MonoBehaviour
 {
     public StarPlate[] starPuzzle1;
+    public GameObject starPuzzle1Pos;
     public StarPlate[] starPuzzle2;
+    public GameObject starPuzzle2Pos;
 
-    public ParticleSystem[] particle;
+    public ParticleSystem[] starPuzzleParticle;
 
     void Update()
     {
@@ -17,10 +19,13 @@ public class PuzzleManager : MonoBehaviour
     {
         foreach(StarPlate starPuzzle in starPuzzle1)
         {
-            if (starPuzzle.isLock == true &&
-                starPuzzle.myPoint == 0)
+            if (starPuzzle.myPoint == 0)
             {
-
+                starPuzzleParticle[0].transform.position = starPuzzle1Pos.transform.position;
+                foreach (ParticleSystem effect in starPuzzleParticle)
+                {
+                    effect.Play();
+                }
             }
         }
     }

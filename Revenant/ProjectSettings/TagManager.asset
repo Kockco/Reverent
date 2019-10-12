@@ -12,6 +12,7 @@ TagManager:
   - Planet_ChangePoint
   - Planet_Handle
   - Handle
+  - Potato_Handle2
   layers:
   - Default
   - TransparentFX

@@ -82,6 +82,7 @@ public class StarPlate : MonoBehaviour
                 if ((int)transform.localRotation.eulerAngles.y == stopAngle[myPoint])
                 {
                     isLock = true;
+                    GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().StarPuzzleClearCheck();
                 }
             }
         }
