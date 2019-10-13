@@ -14,9 +14,10 @@ public class CameraScript : MonoBehaviour
     public bool isClear;
     float rotX, rotY;
 
-    Vector3 momiPos, momiDirect;
+    Vector3 momiPos, momiDirect, camPos;
     Quaternion rotation;
-    
+    RaycastHit rayHit;
+
     void Start()
     {
         momi = GameObject.Find("Momi").transform.GetChild(1).gameObject;
@@ -30,18 +31,19 @@ public class CameraScript : MonoBehaviour
     {
         if (momiState.CurrentState != MomiState.Handle)
         {
-            RayToWall();
-
             LookAtMomi();
             transform.LookAt(momiPos);
+
+            // RayToWall();
         }
     }
 
     public void CamMoveToObject(int num)
     {
-        Vector3 tempPos = new Vector3(moveToObject[num].transform.position.x, moveToObject[num].transform.position.y, moveToObject[num].transform.position.z);// -(camHeight * 10));
-        transform.position = Vector3.Lerp(transform.position, tempPos, Time.deltaTime * viewSpeed);
-        transform.rotation = Quaternion.Lerp((Quaternion)transform.rotation, (Quaternion)moveToObject[num].transform.rotation, Time.deltaTime * 2f);
+        transform.position = Vector3.Lerp(transform.position, moveToObject[num].transform.position, Time.deltaTime * viewSpeed);
+        transform.rotation = Quaternion.Lerp((Quaternion)transform.rotation, (Quaternion)moveToObject[num].transform.rotation, Time.deltaTime * viewSpeed);
+
+        Debug.Log(moveToObject[num].transform.name);
     }
 
     void LookAtMomi()
@@ -55,24 +57,29 @@ public class CameraScript : MonoBehaviour
 
         momiPos = momi.transform.position + Vector3.up * momiY;
         momiDirect = Quaternion.Euler(-rotX, rotY, 0f) * Vector3.forward;
+        camPos = momiPos + momiDirect * -distance;
 
-        transform.position = Vector3.Lerp(transform.position, momiPos + momiDirect * -distance, Time.deltaTime * 5);
+        RayToWall();
+        transform.position = Vector3.Lerp(transform.position, camPos, Time.deltaTime * 2);
     }
 
     void RayToWall()
     {
-        Vector3 tempVec = transform.position - momi.transform.position;
-        RaycastHit rayHit;
+        rayHit = new RaycastHit();
+        Vector3 tempVec = transform.position - momiPos;
 
-        if (Physics.SphereCast(momi.transform.position, 0.1f, tempVec.normalized, out rayHit, maxDis))
+        if (Physics.Raycast(momiPos, tempVec.normalized, out rayHit, maxDis))
         {
             if (rayHit.transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
-                transform.position = Vector3.Lerp(transform.position, rayHit.point, Time.deltaTime);
+                transform.position = momiPos + (tempVec.normalized * rayHit.distance);
                 distance = rayHit.distance;
             }
         }
         else
             distance = maxDis;
+
+        if (rayHit.transform != null)
+            Debug.Log(rayHit.transform.name + ", " + rayHit.point);
     }
 }

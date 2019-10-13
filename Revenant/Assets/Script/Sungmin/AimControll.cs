@@ -42,11 +42,18 @@ public class AimControll : MonoBehaviour
             momiManager.SetState(MomiState.Handle);
             momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
         }
+        if (col.transform.tag == "Potato_Handle_2" && Input.GetKeyDown(KeyCode.E) && momiManager.CurrentState != MomiState.Handle)
+        {
+            momiHandle.col = col.gameObject;
+            momiHandle.handleNum = 3;
+            momiManager.SetState(MomiState.Handle);
+            momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
+        }
 
         if (col.transform.tag == "Planet_Handle" && Input.GetKeyDown(KeyCode.E) && momiManager.CurrentState != MomiState.Handle)
         {
             momiHandle.col = col.gameObject;
-            momiHandle.handleNum = 3;
+            momiHandle.handleNum = 4;
             momiManager.SetState(MomiState.Handle);
             momiHandle = GameObject.Find("Momi").GetComponent<Momi_Handle>();
         }

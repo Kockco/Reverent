@@ -56,6 +56,9 @@ public class PlanetHandle : MonoBehaviour
     public void HandleRotate(float direction)
     {
         foreach (PlanetLine line in planetLine)
-                line.Rotate(direction);
+        {
+            if(line.isPlanet == true)
+            line.Rotate(direction);
+        }
     }
 }

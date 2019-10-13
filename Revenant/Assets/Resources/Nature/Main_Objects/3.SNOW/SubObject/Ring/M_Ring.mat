@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_Ring
+  m_Shader: {fileID: 4800000, guid: 58d5109ca31838346aa35de1a7954bbe, type: 3}
+  m_ShaderKeywords: _NORMALMAP
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 667e9a75ccb54f543bc98a212427eced, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 8059c68f14569a342ba849e7bb99627a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 2800000, guid: 23c6dd9d6e40f5a41a1a523eafed7732, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AmbientPower: 0
+    - _Antialiasing: 5
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _Fresnel: 0.5
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _GradientHeight: 10
+    - _GradientYStartPos: 0
+    - _LightmapPower: 0.5
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
+    - _Outline: 0.243
+    - _OutlineSize: 0.01
+    - _Parallax: 0.02
+    - _RotationX: 0
+    - _RotationY: 0
+    - _RotationZ: 0
+    - _ScaleX: 0
+    - _ScaleY: 0
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SpecularScale: 0.01
+    - _SplitX: 0
+    - _SplitY: 0
+    - _SquareN: 1
+    - _SquareScale: 0
+    - _SrcBlend: 1
+    - _TranslationX: 0
+    - _TranslationY: 0
+    - _UVSec: 0
+    - _ZWrite: 1
+    m_Colors:
+    - _AmbientColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
+    - _BackBottomColor: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _BackTopColor: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _BottomColor: {r: 0, g: 0.5, b: 0.5, a: 0}
+    - _Color: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FrontBottomColor: {r: 1, g: 0, b: 0, a: 0}
+    - _FrontTopColor: {r: 1, g: 0, b: 0, a: 0}
+    - _LeftBottomColor: {r: 0.5, g: 0, b: 0.5, a: 0}
+    - _LeftTopColor: {r: 0.5, g: 0, b: 0.5, a: 0}
+    - _LightTint: {r: 1, g: 1, b: 1, a: 0}
+    - _LightmapColor: {r: 0, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RightBottomColor: {r: 0, g: 0, b: 1, a: 0}
+    - _RightTopColor: {r: 0, g: 0, b: 1, a: 0}
+    - _Specular: {r: 1, g: 1, b: 1, a: 1}
+    - _TopColor: {r: 0, g: 1, b: 0, a: 0}
