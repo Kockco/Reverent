@@ -3,6 +3,10 @@
 	Properties
 	{
 		_MainTex("Albedo (RGB)", 2D) = "white" {}
+		_Illum("Illumin (A)", 2D) = "white" {}
+		_EmissionLM("Emission (Lightmapper)", Float) = 0
+		//_EmissionMap("Emission Map", 2D) = "black" {}
+		[HDR] _EmissionColor("Emission Color", Color) = (0,0,0)
 		_BumpMap("Normal/Bump Map", 2D) = "bump" {}
 		_Color("Tint Color", Color) = (1,1,1,1)
 		_Antialiasing("Band Smoothing", Float) = 5.0
@@ -26,16 +30,15 @@
 
 			CGPROGRAM
 			#pragma surface surf Cel
-
-			// Use shader model 3.0 target, to get nicer looking lighting
 			#pragma target 3.0
 
 			sampler2D _MainTex;
 			sampler2D _BumpMap;
-			fixed4 _Color;
+			sampler2D _Illum;
 			float _Antialiasing;
 			float _Glossiness;
 			float _Fresnel;
+			half4 _Color, _EdgeColor1, _EmissionColor;
 
 			float4 LightingCel(SurfaceOutput s, half3 lightDir, half3 viewDir, half atten)
 			{
@@ -66,13 +69,16 @@
 			{
 				float2 uv_MainTex;
 				float2 uv_BumpMap;
+				float2 uv_Illum;
 			};
 
 			void surf(Input IN, inout SurfaceOutput o)
 			{
 				fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
 				o.Albedo = c.rgb;
+				o.Emission = c.rgb * tex2D(_Illum, IN.uv_Illum).a * _EmissionColor;
 				o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
+				
 			}
 
 			ENDCG
