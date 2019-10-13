@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StarPlate : MonoBehaviour
 {
+    public int myPuzzleNumber;
     //핸들과 연결
     public StarHandle handle;
     public float rotateSpeed;
@@ -82,7 +83,8 @@ public class StarPlate : MonoBehaviour
                 if ((int)transform.localRotation.eulerAngles.y == stopAngle[myPoint])
                 {
                     isLock = true;
-                    GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().StarPuzzleClearCheck();
+                    if(myPoint == 0)
+                        GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().StarPuzzleClearCheck(myPuzzleNumber);
                 }
             }
         }

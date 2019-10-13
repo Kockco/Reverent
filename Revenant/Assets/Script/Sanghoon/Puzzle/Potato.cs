@@ -14,6 +14,7 @@ public class Potato : MonoBehaviour
     {
         potatoPos = GameObject.FindGameObjectsWithTag("Potato_Collider");
         transform.position = potatoPos[myNum].transform.position;
+        transform.rotation = potatoPos[myNum].transform.rotation;
     }
 
     // Update is called once per frame
