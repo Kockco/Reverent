@@ -9,7 +9,6 @@ public class PuzzleManager : MonoBehaviour
     public StarPlate[] starPuzzle1;
     public StarPlate[] starPuzzle2;
     public ParticleSystem[] starPuzzleParticle;
-    public ParticleSystem[] starPuzzleParticle2;
     public ParticleSystem[] starPuzzleClearEffect;
     public ParticleSystem[] starPuzzleClearEffect2;
     public ParticleSystem[] starPuzzleAllClearEffect;
@@ -27,19 +26,27 @@ public class PuzzleManager : MonoBehaviour
     public ParticleSystem[] starPuzzleClearEffect4;
     public ParticleSystem[] starPuzzleClearEffect5;
 
-    void Update()
+    void Start()
     {
     }
 
+    void Update()
+    {
+
+        
+    }
     public void StarPuzzleClearCheck(int PuzzleNumber)
     {
         int clearPoint = 0;
+        //1개맞으면 반짝하는거
         foreach (ParticleSystem effect in starPuzzleParticle)
         {
             effect.Play();
         }
+        
         if (PuzzleNumber == 1)
         {
+            //퍼즐 두개다 맞았는지 체크
             for (int i = 0; i < starPuzzle1.Length; i++)
             {
                 if (starPuzzle1[i].myPoint == 0)
@@ -47,6 +54,7 @@ public class PuzzleManager : MonoBehaviour
                     clearPoint++;
                 }
             }
+            //두개다 맞으면 클리어 이펙트 플레이
             if (clearPoint == starPuzzle1.Length)
             {
                 starPuzzleClear++;
@@ -60,11 +68,13 @@ public class PuzzleManager : MonoBehaviour
         {
             for (int i = 0; i < starPuzzle2.Length; i++)
             {
+                //모든 퍼즐조각이 포인트가 0인가?(0이점답임)
                 if (starPuzzle2[i].myPoint == 0)
                 {
                     clearPoint++;
                 }
             }
+            //퍼즐2 이펙트 플레이
             if (clearPoint == starPuzzle2.Length)
             {
                 starPuzzleClear++;
@@ -74,6 +84,7 @@ public class PuzzleManager : MonoBehaviour
                 }
             }
         }
+
     }
 
     public bool PuzzleClearCheck(int puzzleNumber)
@@ -88,19 +99,19 @@ public class PuzzleManager : MonoBehaviour
                     {
                         clearPoint++;
                     }
-                    if (starPuzzle1.Length-1 == clearPoint)
+                    if (starPuzzle1.Length == clearPoint)
                     {
-                        foreach(ParticleSystem effect in starPuzzleClearEffect)
+                        foreach(ParticleSystem effect in starPuzzleAllClearEffect)
                         {
                             effect.Play();
                         }
                         return true;
                     }
                 }
-
                 break;
         }
 
         return false;
     }
+
 }

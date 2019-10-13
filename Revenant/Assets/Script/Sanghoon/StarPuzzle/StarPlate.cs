@@ -80,6 +80,7 @@ public class StarPlate : MonoBehaviour
             if (!isLock)
             {
                 transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(transform.localRotation.x, stopAngle[myPoint], transform.localRotation.z), rotateSpeed * 0.5f * Time.deltaTime);
+                //원래 위치로 이동이 완료되었으면
                 if ((int)transform.localRotation.eulerAngles.y == stopAngle[myPoint])
                 {
                     isLock = true;
