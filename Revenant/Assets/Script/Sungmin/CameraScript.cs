@@ -40,7 +40,15 @@ public class CameraScript : MonoBehaviour
 
     public void CamMoveToObject(int num)
     {
-        Vector3 tempPos = new Vector3(moveToObject[num].transform.position.x, moveToObject[num].transform.position.y, moveToObject[num].transform.position.z);// -(camHeight * 10));
+        /*Vector3 tempPos = new Vector3(moveToObject[num].transform.position.x, moveToObject[num].transform.position.y, moveToObject[num].transform.position.z);// -(camHeight * 10));
+        //transform.position = Vector3.Lerp(transform.position, tempPos, Time.deltaTime * viewSpeed);
+        transform.rotation = Quaternion.Lerp((Quaternion)transform.rotation, (Quaternion)moveToObject[num].transform.rotation, Time.deltaTime * 2f);
+        (윤씨가 주석처리함)*/
+        Debug.Log(moveToObject[num].transform.name + ", " + moveToObject[num].transform.position);
+
+        Debug.Log(moveToObject[num].transform.position); 
+
+        Vector3 tempPos = moveToObject[num].transform.position;
         transform.position = Vector3.Lerp(transform.position, tempPos, Time.deltaTime * viewSpeed);
         transform.rotation = Quaternion.Lerp((Quaternion)transform.rotation, (Quaternion)moveToObject[num].transform.rotation, Time.deltaTime * 2f);
     }
