@@ -68,8 +68,8 @@ public class PotatoPlate : MonoBehaviour
             stopAngle[i] = i * startAngle;
             centerAngle[i] = (startAngle / 2) + startAngle * i;
         }
-        
-        //시작할때 지점
+
+        //시작할때 지점\
         Quaternion startingAngleXYZ = Quaternion.Euler(rotationAngleXYZ  * stopAngle[myPoint] + transform.eulerAngles);
         transform.rotation = startingAngleXYZ;
 
