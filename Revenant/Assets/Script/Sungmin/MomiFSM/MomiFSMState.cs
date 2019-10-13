@@ -13,7 +13,7 @@ public class MomiFSMState : MonoBehaviour
     protected Animator anime;
 
     [SerializeField] protected float moveSpeed = 4;
-    [SerializeField] protected float jumpPower = 3;
+    [SerializeField] protected float jumpPower = 4;
     [SerializeField] protected bool isGround = false;
 
     [SerializeField] AnimationCurve slopeCurveModifier = new AnimationCurve(new Keyframe(-90f, 1f), new Keyframe(0f, 1f), new Keyframe(90f, 0f));
@@ -79,6 +79,8 @@ public class MomiFSMState : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), 5);
         rig.MovePosition(transform.position + desiredMoveDirection.normalized * SlopeMomi() * moveSpeed * Time.deltaTime);
+
+        anime.SetBool("IfAnyKey", true);
     }
 
     protected virtual void JumpMomi()

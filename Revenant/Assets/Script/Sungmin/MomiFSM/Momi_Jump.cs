@@ -11,7 +11,7 @@ public class Momi_Jump : MomiFSMState
         // anime.SetInteger("Momi_Jump", 1);
         anime.SetTrigger("Momi_Jump");
 
-        Invoke("EndJump", 0.5f);
+        Invoke("EndJump", 0.775f);
     }
 
     public override void EndState()
@@ -29,6 +29,7 @@ public class Momi_Jump : MomiFSMState
 
     void EndJump()
     {
+        // anime.SetBool("Momi_Jump", false);
         manager.SetState(MomiState.Idle);
     }
 }

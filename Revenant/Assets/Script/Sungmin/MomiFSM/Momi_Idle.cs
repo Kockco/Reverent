@@ -9,7 +9,8 @@ public class Momi_Idle : MomiFSMState
     public override void BeginState()
     {
         base.BeginState();
-        
+
+        anime.SetBool("IfAnyKey", false);
     }
 
     public override void EndState()
