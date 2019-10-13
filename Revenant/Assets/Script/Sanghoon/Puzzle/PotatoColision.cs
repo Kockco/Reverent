@@ -11,7 +11,6 @@ public class PotatoColision : MonoBehaviour
         if (other.tag == "Potato")
         {
             other.GetComponent<Potato>().myNum = num;
-            Debug.Log(other.name);
         }
     }
 }

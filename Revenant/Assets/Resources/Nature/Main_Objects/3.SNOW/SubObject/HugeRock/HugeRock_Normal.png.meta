@@ -7,7 +7,11 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+<<<<<<< HEAD
     sRGBTexture: 0
+=======
+    sRGBTexture: 1
+>>>>>>> 361273b77e3af10607e0957d4c8232ddc641b20e
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -51,7 +55,11 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
+<<<<<<< HEAD
   textureType: 1
+=======
+  textureType: 0
+>>>>>>> 361273b77e3af10607e0957d4c8232ddc641b20e
   textureShape: 1
   singleChannelComponent: 0
   maxTextureSizeSet: 0

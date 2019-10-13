@@ -105,11 +105,11 @@ public class Momi_Handle : MomiFSMState
 
     void CatchCheck()
     {
-        if (transform.parent.tag == "Planet_Handle")
+        if (transform.parent.tag == "Planet_Handle"|| transform.parent.tag == "Planet_Handle2")
         {
             transform.parent.GetComponent<PlanetHandle>().CatchCheck();
         }
-        else if (transform.parent.tag == "Planet_Star")
+        else if (transform.parent.tag == "Star_Handle" || transform.parent.tag == "Star_Handle_2")
         {
             transform.parent.GetComponent<StarHandle>().CatchCheck();
         }
@@ -122,11 +122,11 @@ public class Momi_Handle : MomiFSMState
     //핸들잡고 돌리는 부분 캐릭터에게
     void HandleRotate()
     {
-        if (transform.parent.tag == "Planet_Handle")
+        if (transform.parent.tag == "Planet_Handle" || transform.parent.tag == "Planet_Handle2")
         {
             transform.parent.GetComponent<PlanetHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
-        else if (transform.parent.tag == "Planet_Star")
+        else if (transform.parent.tag == "Star_Handle" ||transform.parent.tag == "Star_Handle_2")
         {
             transform.parent.GetComponent<StarHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
