@@ -25,7 +25,13 @@ public class Momi_Move : MomiFSMState
             manager.SetState(MomiState.Idle);
     }
 
-    
+    void OnCollisionStay(Collision col)
+    {
+        switch (col.transform.tag)
+        {
+            
+        }
+    }
 }
 /*
     void CameraFrontViewMomi()

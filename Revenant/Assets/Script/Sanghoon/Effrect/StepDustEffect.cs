@@ -4,17 +4,32 @@ using UnityEngine;
 
 public class StepDustEffect : MonoBehaviour
 {
+    MomiFSMManager manager;
+    ParticleSystem particle;
     public GameObject stepDust;
-    public float y;
-    public float dustSpeed;
+
+    bool isPlay;
 
     void Start()
     {
         stepDust.transform.position = transform.position;
+        manager = GameObject.Find("Momi").GetComponent<MomiFSMManager>();
+        particle = stepDust.gameObject.GetComponent<ParticleSystem>();
     }
+
     void Update()
     {
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y + y, transform.position.z);
-        stepDust.transform.position =Vector3.MoveTowards(stepDust.transform.position, pos, dustSpeed * Time.deltaTime);
+        stepDust.transform.position = transform.position;
+
+        if (manager.CurrentState == MomiState.Jump)
+        {
+            isPlay = false;
+            particle.Stop();
+        }
+        else if (manager.CurrentState != MomiState.Idle && isPlay == false) // || manager.CurrentState == MomiState.Move)
+        {
+            isPlay = true;
+            particle.Play();
+        }
     }
 }
