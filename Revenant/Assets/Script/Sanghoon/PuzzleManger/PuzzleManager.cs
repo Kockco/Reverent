@@ -16,6 +16,12 @@ public class PuzzleManager : MonoBehaviour
     public ParticleSystem[] potatoPuzzleParticle2;
     public ParticleSystem[] planetPuzzleParticle;
 
+    public ParticleSystem[] starPuzzleClearEffect;
+    public ParticleSystem[] starPuzzleClearEffect2;
+    public ParticleSystem[] starPuzzleClearEffect3;
+    public ParticleSystem[] starPuzzleClearEffect4;
+    public ParticleSystem[] starPuzzleClearEffect5;
+
     void Update()
     {
     }
@@ -33,7 +39,7 @@ public class PuzzleManager : MonoBehaviour
             }
         }
     }
-    public void PuzzleClearCheck(int puzzleNumber)
+    public bool PuzzleClearCheck(int puzzleNumber)
     {
         int clearPoint = 0;
         switch (puzzleNumber)
@@ -45,13 +51,19 @@ public class PuzzleManager : MonoBehaviour
                     {
                         clearPoint++;
                     }
-                    if (starPuzzle1.Length == clearPoint)
+                    if (starPuzzle1.Length-1 == clearPoint)
                     {
-
+                        foreach(ParticleSystem effect in starPuzzleClearEffect)
+                        {
+                            effect.Play();
+                        }
+                        return true;
                     }
                 }
 
                 break;
         }
+
+        return false;
     }
 }
