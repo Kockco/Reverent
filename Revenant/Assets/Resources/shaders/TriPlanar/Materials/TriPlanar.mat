@@ -68,7 +68,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: b0e2374f0e6f50840a1edb57303229df, type: 3}
+        m_Texture: {fileID: 2800000, guid: 80353650a300d4241a976b5372f651d1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -94,7 +94,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RimPower: 16.9
-    - _Scale: 0.001
+    - _Scale: 0.67
     - _SideScale: 0.04
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
