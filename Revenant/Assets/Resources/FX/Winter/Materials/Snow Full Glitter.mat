@@ -52,7 +52,7 @@ Material:
         m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: 7fec3cfa95f7cb041923abd566c76e9d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8ee588acc32531d4fa3df24a15a778c7, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SubMap:
@@ -68,7 +68,7 @@ Material:
     - _Coverage: 0.5
     - _Density: 0.95
     - _DensityStatic: 4
-    - _Depth: 0.08928572
+    - _Depth: 1
     - _Glitter: 1.3392857
     - _Power: 0.2
     - _RampPower: 1
@@ -82,4 +82,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Direction: {r: 0, g: 1, b: 0, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 0.5882353}
