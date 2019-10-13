@@ -42,6 +42,8 @@ public class CameraScript : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, moveToObject[num].transform.position, Time.deltaTime * viewSpeed);
         transform.rotation = Quaternion.Lerp((Quaternion)transform.rotation, (Quaternion)moveToObject[num].transform.rotation, Time.deltaTime * viewSpeed);
+
+        Debug.Log(moveToObject[num].transform.name);
     }
 
     void LookAtMomi()
