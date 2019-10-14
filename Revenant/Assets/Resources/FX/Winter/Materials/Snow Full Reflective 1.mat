@@ -63,13 +63,13 @@ Material:
     - _Aniso: 0.55906594
     - _Coverage: 0.5
     - _Depth: 0.08928572
-    - _Falloff: 0.76
+    - _Falloff: 2.88
     - _Glitter: 3.2142856
-    - _RampPower: 1
-    - _Reflection: 0.19642857
+    - _RampPower: 0
+    - _Reflection: 0.172
     - _Shininess: 0.055557743
     - _Smooth: 0.5
-    - _Specular: 3.482143
+    - _Specular: 4.36
     - _Spread: 1
     - _Transition: 0.5
     - _TransitionSmooth: 0.5
