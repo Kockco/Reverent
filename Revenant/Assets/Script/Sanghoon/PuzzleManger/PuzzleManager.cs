@@ -14,27 +14,35 @@ public class PuzzleManager : MonoBehaviour
     public ParticleSystem[] starPuzzleAllClearEffect;
     #endregion
 
-    public StarPlate[] potatoPuzzle1;
-    public StarPlate[] potatoPuzzle2;
-    public StarPlate[] planetPuzzle1;
+    #region
+    int potatoPuzzleClear;
+    public PotatoPlate[] potatoPuzzle1;
+    public PotatoPlate[] potatoPuzzle2;
     
     public ParticleSystem[] potatoPuzzleParticle;
     public ParticleSystem[] potatoPuzzleParticle2;
-    public ParticleSystem[] planetPuzzleParticle;
+    public ParticleSystem[] potatoPuzzleClearEffect;
+    public ParticleSystem[] potatoPuzzleClearEffect2;
+    public ParticleSystem[] potatoPuzzleAllClearEffect;
+
+    #endregion
     
-    public ParticleSystem[] starPuzzleClearEffect3;
-    public ParticleSystem[] starPuzzleClearEffect4;
-    public ParticleSystem[] starPuzzleClearEffect5;
+
+    #region
+    public PlanetLine[] planetPuzzle;
+    public ParticleSystem[] planetPuzzleParticle;
+    public ParticleSystem[] planetPuzzleLineParticle;
+    public ParticleSystem[] planetPuzzleAllClearEffect;
+    #endregion
 
     void Start()
     {
+        foreach (ParticleSystem effect in planetPuzzleParticle)
+        {
+            effect.Stop();
+        }
     }
 
-    void Update()
-    {
-
-        
-    }
     public void StarPuzzleClearCheck(int PuzzleNumber)
     {
         int clearPoint = 0;
@@ -84,9 +92,49 @@ public class PuzzleManager : MonoBehaviour
                 }
             }
         }
-
     }
 
+    public void PlanetPuzzleClearCheck(int puzzleNumber)
+    {
+        if (puzzleNumber == 4)
+            return;
+
+        int clearPoint = 0;
+        //1개맞으면 반짝하는거
+
+        for(int i = puzzleNumber; i < puzzleNumber +1; i++)
+        {
+            planetPuzzleParticle[i].Play();
+            planetPuzzleLineParticle[i].Play();
+        }
+        
+
+        //퍼즐 다 맞았는지 체크
+        for (int i = 0; i < planetPuzzle.Length; i++)
+        {
+            if (planetPuzzle[i].myPoint == 0)
+            {
+                clearPoint++;
+            }
+        }
+        //두개다 맞으면 클리어 이펙트 플레이
+        if (clearPoint == planetPuzzle.Length)
+        {
+
+            foreach (ParticleSystem effect in starPuzzleClearEffect)
+            {
+                effect.Play();
+            }
+        }
+    }
+
+    public void PlanetReset()
+    {
+            foreach (ParticleSystem effect in planetPuzzleParticle)
+            {
+                effect.Stop();
+            }
+    }
     public bool PuzzleClearCheck(int puzzleNumber)
     {
         int clearPoint = 0;
@@ -113,5 +161,6 @@ public class PuzzleManager : MonoBehaviour
 
         return false;
     }
+
 
 }
