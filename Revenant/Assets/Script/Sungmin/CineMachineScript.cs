@@ -8,6 +8,8 @@ using Cinemachine;
 public class CineMachineScript : MonoBehaviour
 {
     public GameObject[] starPuzzles;
+    public GameObject[] potatoPuzzles;
+    public GameObject[] planetPuzzles;
     public PlayableDirector play;
     public TimelineAsset[] timeline;
 
@@ -23,6 +25,9 @@ public class CineMachineScript : MonoBehaviour
     {
         for (int i = 0; i < starPuzzles.Length; i++)
             starPuzzles[i].SetActive(false);
+
+        for (int i = 0; i < potatoPuzzles.Length; i++)
+            potatoPuzzles[i].SetActive(false);
     }
 
     public void CineCameraSwitching()
@@ -39,11 +44,18 @@ public class CineMachineScript : MonoBehaviour
         }
     }
 
-    public void PlayPuzzleCine()
+    public void PlayPuzzleCine(int puzzleNum)
     {
-        for (int i = 0; i < starPuzzles.Length; i++)
-            starPuzzles[i].SetActive(true);
-
+        if (puzzleNum == 1)
+        {
+            for (int i = 0; i < starPuzzles.Length; i++)
+                starPuzzles[i].SetActive(true);
+        }
+        else if (puzzleNum == 2)
+        {
+            for (int i = 0; i < starPuzzles.Length; i++)
+                potatoPuzzles[i].SetActive(true);
+        }
 
         Invoke("InitStarPuzzle", 20);
         // play.Play();

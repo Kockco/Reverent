@@ -116,22 +116,33 @@ public class PuzzleManager : MonoBehaviour
             case 1:
                 if (starPuzzle1Clear && starPuzzle2Clear)
                 {
-                    GameObject.Find("CineManager").GetComponent<CineMachineScript>().PlayPuzzleCine();
-
+                    starPuzzleAllClearEffect[0].Play();
+                    GameObject.Find("CineManager").GetComponent<CineMachineScript>().PlayPuzzleCine(1);
+                    Invoke("StarPuzzleallClearEffect_2", 1);
                     return true;
                 }
                 break;
             case 2:
                 if (potatoPuzzle1Clear && potatoPuzzle2Clear)
                 {
-                    GameObject.Find("CineManager").GetComponent<CineMachineScript>().PlayPuzzleCine();
-
+                    potatoPuzzleAllClearEffect[0].Play();
+                    GameObject.Find("CineManager").GetComponent<CineMachineScript>().PlayPuzzleCine(2);
+                    Invoke("PotatoPuzzleallClearEffect_2", 1);
                     return true;
                 }
                 break;
         }
 
         return false;
+    }
+
+    void StarPuzzleallClearEffect_2()
+    {
+        starPuzzleAllClearEffect[1].Play();
+    }
+    void PotatoPuzzleallClearEffect_2()
+    {
+        potatoPuzzleAllClearEffect[1].Play();
     }
 
     //스타 퍼즐 클리어 체크 (1탄퍼즐) 매개변수는 1-1 인지 1-2인지 체크
