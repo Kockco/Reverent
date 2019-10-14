@@ -6,22 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class CutSceneManager : MonoBehaviour
 {
-    new AudioSource audio;
-    AudioClip audioClip;
+    public float videoTime;
     VideoPlayer video;
 
     // Start is called before the first frame update
     void Start()
     {
-        audio = GetComponent<AudioSource>();
-        audioClip = GetComponent<AudioSource>().clip;
+        video = GetComponent<VideoPlayer>();
 
+        Invoke("OpeningEnd", 40);
     }
 
     // Update is called once per frame
-    void Update()
+    //void Update()
+    //{
+    //    videoTime += Time.deltaTime;
+
+    //    if (!video.isPlaying && videoTime >= 5)
+    //        OpeningEnd();
+    //}
+
+    void OpeningEnd()
     {
-        if (!video.isPlaying)
-            SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
     }
 }
