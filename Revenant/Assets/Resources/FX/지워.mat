@@ -32,4 +32,4 @@ Material:
     - _DistortSpeed: 0.2
     - _WidthScale: 2
     m_Colors:
-    - _TintColor: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 0.5}
+    - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
