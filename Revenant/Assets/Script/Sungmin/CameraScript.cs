@@ -11,7 +11,7 @@ public class CameraScript : MonoBehaviour
 
     public float rotationSpeed, rotationXMax, scrollSpeed, viewSpeed; // viewSpeed = 퍼즐 뷰 속도땃쥐값
     public float distance, minDis, maxDis, camFix; // camFix = 카메라 보정땃쥐값
-    public bool isClear;
+    public bool isClear, puzzleClear;
     float rotX, rotY;
 
     Vector3 momiPos, momiDirect, camPos;
@@ -22,7 +22,7 @@ public class CameraScript : MonoBehaviour
     {
         momi = GameObject.Find("Momi").transform.GetChild(1).gameObject;
         momiState = GameObject.Find("Momi").GetComponent<MomiFSMManager>();
-
+        
         Cursor.visible = false;
         // Cursor.lockState = CursorLockMode.Locked;
     }
@@ -31,10 +31,11 @@ public class CameraScript : MonoBehaviour
     {
         if (momiState.CurrentState != MomiState.Handle)
         {
-            LookAtMomi();
-            transform.LookAt(momiPos);
-
-            // RayToWall();
+            if (puzzleClear == false)
+            {
+                LookAtMomi();
+                transform.LookAt(momiPos);
+            }
         }
     }
 
@@ -42,8 +43,6 @@ public class CameraScript : MonoBehaviour
     {
         transform.position = Vector3.Lerp(transform.position, moveToObject[num].transform.position, Time.deltaTime * viewSpeed);
         transform.rotation = Quaternion.Lerp((Quaternion)transform.rotation, (Quaternion)moveToObject[num].transform.rotation, Time.deltaTime * viewSpeed);
-
-        Debug.Log(moveToObject[num].transform.name);
     }
 
     void LookAtMomi()
@@ -81,5 +80,24 @@ public class CameraScript : MonoBehaviour
 
         if (rayHit.transform != null)
             Debug.Log(rayHit.transform.name + ", " + rayHit.point);
+    }
+
+    public void PuzzleClearView(ParticleSystem tempParticle, bool ifClear)
+    {
+        puzzleClear = ifClear;
+
+        if (puzzleClear)
+            transform.LookAt(tempParticle.transform);
+
+        // if (tempParticle.isStopped) puzzleClear = false;
+
+        Invoke("ExitPuzzleView", 2);
+    }
+
+    void ExitPuzzleView()
+    {
+        puzzleClear = false;
+
+        Debug.Log("ExitPuzzle");
     }
 }

@@ -37,12 +37,16 @@ public class PuzzleManager : MonoBehaviour
     public ParticleSystem[] planetPuzzleAllClearEffect;
     #endregion
 
+    CameraScript cam;
+
     void Start()
     {
         foreach (ParticleSystem effect in planetPuzzleParticle)
         {
             effect.Stop();
         }
+
+        cam = Camera.main.transform.gameObject.GetComponent<CameraScript>();
     }
 
     //스타 퍼즐 클리어 체크 (1탄퍼즐) 매개변수는 1-1 인지 1-2인지 체크
@@ -72,6 +76,7 @@ public class PuzzleManager : MonoBehaviour
                 foreach (ParticleSystem effect in starPuzzleClearEffect)
                 {
                     effect.Play();
+                    cam.PuzzleClearView(effect, true);
                 }
             }
         }
@@ -93,6 +98,7 @@ public class PuzzleManager : MonoBehaviour
                 foreach (ParticleSystem effect in starPuzzleClearEffect2)
                 {
                     effect.Play();
+                    cam.PuzzleClearView(effect, true);
                 }
             }
         }
@@ -116,6 +122,7 @@ public class PuzzleManager : MonoBehaviour
                         foreach (ParticleSystem effect in starPuzzleAllClearEffect)
                         {
                             effect.Play();
+                            //  선호씨의 시네머신 연출
                         }
                         return true;
                     }
@@ -137,7 +144,6 @@ public class PuzzleManager : MonoBehaviour
         for (int i = puzzleNumber; i < puzzleNumber + 1; i++)
         {
             planetPuzzleParticle[i].Play();
-            planetPuzzleLineParticle[i].Play();
         }
 
         //퍼즐 다 맞았는지 체크
@@ -154,6 +160,11 @@ public class PuzzleManager : MonoBehaviour
             foreach (ParticleSystem effect in starPuzzleClearEffect)
             {
                 effect.Play();
+
+                for (int i = puzzleNumber; i < puzzleNumber + 1; i++)
+                    planetPuzzleLineParticle[i].Play();
+
+                cam.PuzzleClearView(planetPuzzleLineParticle[0], true);
             }
         }
     }

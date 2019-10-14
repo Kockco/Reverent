@@ -50,6 +50,10 @@ public class PlanetHandle : MonoBehaviour
             //포인트 제자리로 돌리기
             foreach (PlanetLine line in planetLine)
                     line.AngleCheck();
+
+            if (GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PuzzleClearCheck(3))
+                this.enabled = false;
+            
         }
     }
 
