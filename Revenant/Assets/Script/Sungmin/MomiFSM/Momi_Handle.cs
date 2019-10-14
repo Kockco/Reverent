@@ -98,32 +98,32 @@ public class Momi_Handle : MomiFSMState
 
     void CatchCheck()
     {
-        if (transform.parent.tag == "Planet_Handle"|| transform.parent.tag == "Planet_Handle2")
+        if (transform.parent.parent.tag == "Planet_Handle"|| transform.parent.parent.tag == "Planet_Handle2")
         {
-            transform.parent.GetComponent<PlanetHandle>().CatchCheck();
+            transform.parent.parent.GetComponent<PlanetHandle>().CatchCheck();
         }
-        else if (transform.parent.tag == "Star_Handle" || transform.parent.tag == "Star_Handle_2")
+        else if (transform.parent.parent.tag == "Star_Handle" || transform.parent.parent.tag == "Star_Handle_2")
         {
-            transform.parent.GetComponent<StarHandle>().CatchCheck();
+            transform.parent.parent.GetComponent<StarHandle>().CatchCheck();
         }
-        else if (transform.parent.tag == "Potato_Handle")
+        else if (transform.parent.parent.tag == "Potato_Handle")
         {
-            transform.parent.GetComponent<PotatoHandle>().CatchCheck();
+            transform.parent.parent.GetComponent<PotatoHandle>().CatchCheck();
         }
     }
 
     //핸들잡고 돌리는 부분 캐릭터에게
     void HandleRotate()
     {
-        if (transform.parent.tag == "Planet_Handle" || transform.parent.tag == "Planet_Handle2")
+        if (transform.parent.parent.tag == "Planet_Handle" || transform.parent.parent.tag == "Planet_Handle2")
         {
-            transform.parent.GetComponent<PlanetHandle>().HandleRotate(Input.GetAxis("Vertical"));
+            transform.parent.parent.GetComponent<PlanetHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
-        else if (transform.parent.tag == "Star_Handle" ||transform.parent.tag == "Star_Handle_2")
+        else if (transform.parent.parent.tag == "Star_Handle" ||transform.parent.parent.tag == "Star_Handle_2")
         {
-            transform.parent.GetComponent<StarHandle>().HandleRotate(Input.GetAxis("Vertical"));
+            transform.parent.parent.GetComponent<StarHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
-        else if (transform.parent.tag == "Potato_Handle")
+        else if (transform.parent.parent.tag == "Potato_Handle")
         {
             transform.parent.GetComponent<PotatoHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
