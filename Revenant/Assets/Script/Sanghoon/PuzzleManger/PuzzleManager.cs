@@ -6,8 +6,8 @@ public class PuzzleManager : MonoBehaviour
 {
     //1번퍼즐
     #region
-    bool starPuzzle1Clear;
-    bool starPuzzle2Clear;
+    public bool starPuzzle1Clear;
+    public bool starPuzzle2Clear;
     public StarPlate[] starPuzzle1;
     public StarPlate[] starPuzzle2;
     public ParticleSystem[] starPuzzleParticle;
@@ -116,22 +116,16 @@ public class PuzzleManager : MonoBehaviour
             case 1:
                 if (starPuzzle1Clear && starPuzzle2Clear)
                 {
-                    foreach (ParticleSystem effect in starPuzzleAllClearEffect)
-                    {
-                        effect.Play();
-                        //  선호씨의 시네머신 연출
-                    }
+                    GameObject.Find("CineManager").GetComponent<CineMachineScript>().PlayPuzzleCine();
+
                     return true;
                 }
                 break;
             case 2:
                 if (potatoPuzzle1Clear && potatoPuzzle2Clear)
                 {
-                    foreach (ParticleSystem effect in potatoPuzzleAllClearEffect)
-                    {
-                        effect.Play();
-                        //  선호씨의 시네머신 연출
-                    }
+                    GameObject.Find("CineManager").GetComponent<CineMachineScript>().PlayPuzzleCine();
+
                     return true;
                 }
                 break;
