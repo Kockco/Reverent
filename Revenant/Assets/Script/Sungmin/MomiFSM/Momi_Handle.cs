@@ -7,6 +7,7 @@ public class Momi_Handle : MomiFSMState
     new CameraScript cam;
     new AimControll aim;
     GameObject momi;
+    public AudioSource[] knob;
     public GameObject col;
 
     public int handleNum;
@@ -17,7 +18,9 @@ public class Momi_Handle : MomiFSMState
     public override void BeginState()
     {
         base.BeginState();
-
+        knob = new AudioSource[2];
+        knob[0] = GameObject.Find("Knob1").GetComponent<AudioSource>();
+        knob[1] = GameObject.Find("Knob2").GetComponent<AudioSource>();
         cam = GameObject.Find("Camera").GetComponent<CameraScript>();
         aim = transform.GetChild(1).GetComponent<AimControll>();
         momi = this.transform.gameObject;
@@ -77,8 +80,26 @@ public class Momi_Handle : MomiFSMState
 
     void RotationHandle()
     {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
+        {
+            knob[0].Play();
+        }
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+        {
+            for (int i = 0; i < knob.Length; i++)
+            {
+                knob[i].Stop();
+            }
+        }
         if (Input.GetKey(KeyCode.W))
         {
+            for (int i = 0; i < knob.Length; i++)
+            {
+                if (knob[i].time > 2.5f)
+                {
+                    knob[i].Play();
+                }
+            }
             anime.SetBool("Momi_Push", true);
             HandleRotate();
             RotationVector();
@@ -88,6 +109,13 @@ public class Momi_Handle : MomiFSMState
 
         if (Input.GetKey(KeyCode.S))
         {
+            for (int i = 0; i < knob.Length; i++)
+            {
+                if (knob[i].time > 2.5f)
+                {
+                    knob[i].Play();
+                }
+            }
             anime.SetBool("Momi_Pull", true);
             HandleRotate();
             RotationVector();
@@ -96,9 +124,10 @@ public class Momi_Handle : MomiFSMState
             anime.SetBool("Momi_Pull", false);
     }
 
+
     void CatchCheck()
     {
-        if (transform.parent.parent.tag == "Planet_Handle"|| transform.parent.parent.tag == "Planet_Handle2")
+        if (transform.parent.parent.tag == "Planet_Handle" || transform.parent.parent.tag == "Planet_Handle2")
         {
             transform.parent.parent.GetComponent<PlanetHandle>().CatchCheck();
         }
@@ -119,7 +148,7 @@ public class Momi_Handle : MomiFSMState
         {
             transform.parent.parent.GetComponent<PlanetHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
-        else if (transform.parent.parent.tag == "Star_Handle" ||transform.parent.parent.tag == "Star_Handle_2")
+        else if (transform.parent.parent.tag == "Star_Handle" || transform.parent.parent.tag == "Star_Handle_2")
         {
             transform.parent.parent.GetComponent<StarHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
