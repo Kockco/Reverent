@@ -90,5 +90,4 @@ public class StarPlate : MonoBehaviour
             }
         }
     }
-
 }
