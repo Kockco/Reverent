@@ -6,7 +6,8 @@ public class PuzzleManager : MonoBehaviour
 {
     //1번퍼즐
     #region
-    int starPuzzleClear;
+    bool starPuzzle1Clear;
+    bool starPuzzle2Clear;
     public StarPlate[] starPuzzle1;
     public StarPlate[] starPuzzle2;
     public ParticleSystem[] starPuzzleParticle;
@@ -17,9 +18,12 @@ public class PuzzleManager : MonoBehaviour
 
     //2번퍼즐
     #region
-    int potatoPuzzleClear;
+    bool potatoPuzzle1Clear;
+    bool potatoPuzzle2Clear;
     public PotatoPlate[] potatoPuzzle1;
+    public Potato[] potato1;
     public PotatoPlate[] potatoPuzzle2;
+    public Potato[] potato2;
 
     public ParticleSystem[] potatoPuzzleParticle;
     public ParticleSystem[] potatoPuzzleParticle2;
@@ -72,7 +76,7 @@ public class PuzzleManager : MonoBehaviour
             //두개다 맞으면 클리어 이펙트 플레이
             if (clearPoint == starPuzzle1.Length)
             {
-                starPuzzleClear++;
+                starPuzzle1Clear = true;
                 foreach (ParticleSystem effect in starPuzzleClearEffect)
                 {
                     effect.Play();
@@ -94,7 +98,7 @@ public class PuzzleManager : MonoBehaviour
             //퍼즐2 이펙트 플레이
             if (clearPoint == starPuzzle2.Length)
             {
-                starPuzzleClear++;
+                starPuzzle2Clear = true;
                 foreach (ParticleSystem effect in starPuzzleClearEffect2)
                 {
                     effect.Play();
@@ -107,30 +111,99 @@ public class PuzzleManager : MonoBehaviour
     //올클리어 이벤트 ( 1번퍼즐의 올클리어면 매개변수 1을 넣어서 출력 )
     public bool PuzzleClearCheck(int puzzleNumber)
     {
-        int clearPoint = 0;
         switch (puzzleNumber)
         {
             case 1:
-                foreach (StarPlate starPuzzle in starPuzzle1)
+                if (starPuzzle1Clear && starPuzzle2Clear)
                 {
-                    if (starPuzzle.myPoint == 0)
+                    foreach (ParticleSystem effect in starPuzzleAllClearEffect)
                     {
-                        clearPoint++;
+                        effect.Play();
+                        //  선호씨의 시네머신 연출
                     }
-                    if (starPuzzle1.Length == clearPoint)
+                    return true;
+                }
+                break;
+            case 2:
+                if (potatoPuzzle1Clear && potatoPuzzle2Clear)
+                {
+                    foreach (ParticleSystem effect in potatoPuzzleAllClearEffect)
                     {
-                        foreach (ParticleSystem effect in starPuzzleAllClearEffect)
-                        {
-                            effect.Play();
-                            //  선호씨의 시네머신 연출
-                        }
-                        return true;
+                        effect.Play();
+                        //  선호씨의 시네머신 연출
                     }
+                    return true;
                 }
                 break;
         }
 
         return false;
+    }
+
+    //스타 퍼즐 클리어 체크 (1탄퍼즐) 매개변수는 1-1 인지 1-2인지 체크
+    public void PotatoPuzzleClearCheck(int PuzzleNumber)
+    {
+        int clearPoint = 0;
+        //1-1퍼즐
+        if (PuzzleNumber == 0)
+        {
+            //퍼즐 모두다 맞았는지 체크
+            for (int i = 0; i < potatoPuzzle1.Length; i++)
+            {
+                if (potatoPuzzle1[i].myPoint == 0)
+                {
+                    clearPoint++;
+                }
+            }
+            for (int i = 0; i < potato1.Length; i++)
+            {
+                if (potato1[i].resultNum == -1) { clearPoint++; }
+                else if (potato1[i].resultNum == potato1[i].resultNum)
+                {
+                    clearPoint++;
+                }
+            }
+            //두개다 맞으면 클리어 이펙트 플레이
+            if (clearPoint == potatoPuzzle1.Length + potato1.Length)
+            {
+                potatoPuzzle1Clear = true;
+                foreach (ParticleSystem effect in potatoPuzzleClearEffect)
+                {
+                    effect.Play();
+                    cam.PuzzleClearView(effect, true);
+                }
+            }
+        }
+        //1-2퍼즐
+        else if (PuzzleNumber == 1)
+        {
+            //퍼즐 모두다 맞았는지 체크
+            for (int i = 0; i < potatoPuzzle2.Length; i++)
+            {
+                if (potatoPuzzle2[i].myPoint == 0)
+                {
+                    clearPoint++;
+                }
+            }
+            for (int i = 0; i < potato2.Length; i++)
+            {
+                if (potato2[i].resultNum == -1) { clearPoint++; }
+                else if (potato2[i].resultNum == potato2[i].resultNum)
+                {
+                    clearPoint++;
+                }
+            }
+            //두개다 맞으면 클리어 이펙트 플레이
+            if (clearPoint == potatoPuzzle2.Length + potato2.Length)
+            {
+                potatoPuzzle2Clear = true;
+                foreach (ParticleSystem effect in potatoPuzzleClearEffect2)
+                {
+                    effect.Play();
+                    cam.PuzzleClearView(effect, true);
+                }
+            }
+        }
     }
 
     //플레닛 퍼즐 클리어 체크
@@ -168,6 +241,7 @@ public class PuzzleManager : MonoBehaviour
             }
         }
     }
+
     //플레닛에 이펙트를 전부 꺼주기
     public void PlanetReset()
     {

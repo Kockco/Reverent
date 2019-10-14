@@ -6,7 +6,7 @@ public class Potato : MonoBehaviour
 {
     //현재 위치값
     public int myNum;
-
+    public int resultNum;
     public GameObject[] potatoPos;
 
 
