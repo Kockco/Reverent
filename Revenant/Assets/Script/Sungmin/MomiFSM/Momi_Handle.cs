@@ -57,14 +57,7 @@ public class Momi_Handle : MomiFSMState
     {
         if (col.transform != null)
         {
-            try
-            {
-                transform.parent = col.transform.parent.transform.parent;
-            }
-            catch
-            {
-                transform.parent = col.transform.parent;
-            }
+            transform.parent = col.transform.parent;
 
             if (!isParent)
             {
