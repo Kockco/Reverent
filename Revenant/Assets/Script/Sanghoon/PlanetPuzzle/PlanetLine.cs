@@ -204,7 +204,7 @@ public class PlanetLine : MonoBehaviour
                         if ((int)transform.localRotation.eulerAngles.x == stopAngle[myPoint])
                         {
                             isLock = true;
-                            if (myPoint == 0)
+                            if (myPoint == 0 && cutAngle > 3)
                                 GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PlanetPuzzleClearCheck(planetNumber);
                         }
                         break;
@@ -214,7 +214,7 @@ public class PlanetLine : MonoBehaviour
                         if ((int)transform.localRotation.eulerAngles.y == stopAngle[myPoint])
                         {
                             isLock = true;
-                            if (myPoint == 0)
+                            if (myPoint == 0 && cutAngle > 3)
                                 GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PlanetPuzzleClearCheck(planetNumber);
 
                         }
@@ -225,7 +225,7 @@ public class PlanetLine : MonoBehaviour
                         if ((int)transform.localRotation.eulerAngles.z == stopAngle[myPoint])
                         {
                             isLock = true;
-                            if (myPoint == 0)
+                            if (myPoint == 0 && cutAngle > 3)
                                 GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PlanetPuzzleClearCheck(planetNumber);
 
                         }

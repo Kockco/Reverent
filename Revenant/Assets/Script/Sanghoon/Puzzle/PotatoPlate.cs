@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PotatoPlate : MonoBehaviour
 {
+    public int myPuzzleNumber;
     //핸들,각도,속도,감자 [SerializeField]
     #region
     [Header("연결될 핸들")]
@@ -16,7 +17,7 @@ public class PotatoPlate : MonoBehaviour
 
     [Header("나의 지점")]
     [SerializeField]
-    int myPoint;
+    public int myPoint;
 
     [Header("회전속도")]
     [SerializeField]
@@ -103,6 +104,9 @@ public class PotatoPlate : MonoBehaviour
                         {
                             SetPotatoParent();
                             isLock = true;
+                            if (myPoint == 0)
+                                GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PotatoPuzzleClearCheck(myPuzzleNumber);
+
                         }
                         break;
                     case AngleXYZ.Y:
@@ -112,6 +116,9 @@ public class PotatoPlate : MonoBehaviour
                         {
                             SetPotatoParent();
                             isLock = true;
+                            if (myPoint == 0)
+                                GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PotatoPuzzleClearCheck(myPuzzleNumber);
+
                         }
                         break;
                     case AngleXYZ.Z:
@@ -121,6 +128,9 @@ public class PotatoPlate : MonoBehaviour
                         {
                             SetPotatoParent();
                             isLock = true;
+                            if (myPoint == 0)
+                                GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PotatoPuzzleClearCheck(myPuzzleNumber);
+
                         }
                         break;
                 }

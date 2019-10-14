@@ -20,6 +20,9 @@ public class StarHandle : MonoBehaviour
             isCatch = false;
             //포인트 제자리로 돌리기
             starPlate.AngleCheck();
+
+            if (GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PuzzleClearCheck(1))
+                this.enabled = false;
         }
     }
 

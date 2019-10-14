@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Free_Mountain
-  m_Shader: {fileID: 4800000, guid: 9b91864950bb4a2419a7886b2511f557, type: 3}
+  m_Shader: {fileID: 4800000, guid: b0d3622d85519144e8f4368653ac731b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0

@@ -22,6 +22,7 @@ public class StarPlate : MonoBehaviour
     
     void Start()
     {
+        isLock = true;
         //멈추는 지점
         stopAngle = new float[cutAngle];
         //중앙지점(왼쪽으로갈건지 오른쪽으로 갈건지 결정)
@@ -90,5 +91,4 @@ public class StarPlate : MonoBehaviour
             }
         }
     }
-
 }
