@@ -6,6 +6,9 @@ public class PlanetLine : MonoBehaviour
 {
     //핸들,각도,속도
     #region
+    [Header("행성번호")]
+    public int planetNumber;
+
     [Header("자식")]
     [SerializeField]
     GameObject planet;
@@ -192,6 +195,7 @@ public class PlanetLine : MonoBehaviour
         {
             if (!isLock)
             {
+                Debug.Log(name + myPoint);
                 switch (angleXYZ)
                 {
                     case AngleXYZ.X:
@@ -200,6 +204,8 @@ public class PlanetLine : MonoBehaviour
                         if ((int)transform.localRotation.eulerAngles.x == stopAngle[myPoint])
                         {
                             isLock = true;
+                            if (myPoint == 0)
+                                GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PlanetPuzzleClearCheck(planetNumber);
                         }
                         break;
                     case AngleXYZ.Y:
@@ -208,6 +214,9 @@ public class PlanetLine : MonoBehaviour
                         if ((int)transform.localRotation.eulerAngles.y == stopAngle[myPoint])
                         {
                             isLock = true;
+                            if (myPoint == 0)
+                                GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PlanetPuzzleClearCheck(planetNumber);
+
                         }
                         break;
                     case AngleXYZ.Z:
@@ -216,6 +225,9 @@ public class PlanetLine : MonoBehaviour
                         if ((int)transform.localRotation.eulerAngles.z == stopAngle[myPoint])
                         {
                             isLock = true;
+                            if (myPoint == 0)
+                                GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PlanetPuzzleClearCheck(planetNumber);
+
                         }
                         break;
                 }

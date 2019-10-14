@@ -34,6 +34,7 @@ public class PlanetHandle : MonoBehaviour
         {
             isCatch = true;
 
+            GameObject.Find("PuzzleManager").GetComponent<PuzzleManager>().PlanetReset();
             foreach (PlanetLine line in planetLine)
             {
                 if(line.overlapLine.Length != 0)
