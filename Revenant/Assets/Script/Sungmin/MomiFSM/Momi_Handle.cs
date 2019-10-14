@@ -143,8 +143,8 @@ public class Momi_Handle : MomiFSMState
     {
         GameObject[] handleLeftRight;
         handleLeftRight = new GameObject[2];
-        handleLeftRight[0] = transform.parent.GetChild(1).gameObject;
-        handleLeftRight[1] = transform.parent.GetChild(2).gameObject;
+        handleLeftRight[0] = transform.parent.GetChild(0).gameObject;
+        handleLeftRight[1] = transform.parent.GetChild(1).gameObject;
 
         if (Vector3.Distance(transform.position, handleLeftRight[0].transform.position) <
             Vector3.Distance(transform.position, handleLeftRight[1].transform.position))
