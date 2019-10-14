@@ -48,10 +48,10 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.43
+    value: 0.823
   smoothness:
     overrideState: 1
-    value: 0.2
+    value: 0.289
   roundness:
     overrideState: 1
     value: 1
@@ -123,7 +123,7 @@ MonoBehaviour:
     value: 4
   color:
     overrideState: 1
-    value: {r: 0.24586153, g: 0.4069424, b: 0.6132076, a: 1}
+    value: {r: 0.079120696, g: 0.10246636, b: 0.13207549, a: 1}
   ambientOnly:
     overrideState: 1
     value: 1
@@ -138,7 +138,7 @@ MonoBehaviour:
     value: -12
   thicknessModifier:
     overrideState: 1
-    value: 1
+    value: 1.8
   directLightingStrength:
     overrideState: 0
     value: 0
@@ -166,13 +166,13 @@ MonoBehaviour:
     value: 1
   focusDistance:
     overrideState: 1
-    value: 10.33
+    value: 50
   aperture:
     overrideState: 1
-    value: 15.8
+    value: 12.5
   focalLength:
     overrideState: 1
-    value: 196
+    value: 1
   kernelSize:
     overrideState: 1
     value: 3
@@ -216,7 +216,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 1.5
+    value: 1.2
   threshold:
     overrideState: 1
     value: 1
@@ -298,10 +298,10 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: -54
+    value: -49
   tint:
     overrideState: 1
-    value: 0
+    value: 3
   colorFilter:
     overrideState: 1
     value: {r: 1, g: 1, b: 1, a: 1}
@@ -1578,7 +1578,7 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 0.035
+    value: 0.2
   fastMode:
     overrideState: 1
     value: 0
