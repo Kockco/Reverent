@@ -59,7 +59,7 @@ public class CameraScript : MonoBehaviour
         camPos = momiPos + momiDirect * -distance;
 
         RayToWall();
-        transform.position = Vector3.Lerp(transform.position, camPos, Time.deltaTime * 2);
+        transform.position = Vector3.Lerp(transform.position, camPos, Time.deltaTime * viewSpeed);
     }
 
     void RayToWall()
