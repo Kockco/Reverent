@@ -8,8 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Door
-  m_Shader: {fileID: 4800000, guid: c3b151c163bef40e1baa60d6d8326cc2, type: 3}
-  m_ShaderKeywords: _USE_GRADIENT_ON
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _NORMALMAP _USE_GRADIENT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -55,8 +55,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: d440902fad11e807d00044888d76c639, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Illum:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IrTex:
+        m_Texture: {fileID: 2800000, guid: 23c6dd9d6e40f5a41a1a523eafed7732, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: cf0bae45410a65142bc7f03593ba432c, type: 3}
+        m_Texture: {fileID: 2800000, guid: dc3858400dda4f6448462e061f2065c4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: 50f5bfbaf5f024c409813bdac16a6237, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -68,7 +80,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Noise:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 50f5bfbaf5f024c409813bdac16a6237, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal:
@@ -84,7 +96,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Ramp:
-        m_Texture: {fileID: 2800000, guid: d440902fad11e807d00044888d76c639, type: 3}
+        m_Texture: {fileID: 2800000, guid: 23c6dd9d6e40f5a41a1a523eafed7732, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ReflectionTex:
@@ -106,7 +118,9 @@ Material:
     m_Floats:
     - _AnisoOffset: -0.2
     - _AnisoOffset2: -0.2
+    - _Antialiasing: 5
     - _Bias: 1
+    - _Brightness: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DepthBlur: 1
@@ -115,21 +129,27 @@ Material:
     - _DstBlend: 0
     - _EdgeBlend: 0.25
     - _EdgeSize: 1
+    - _EmissionLM: 0
     - _ExtraEmission: 0
     - _FoamDepth: 2
     - _FoamScale: 1
     - _Focus: -100
     - _FogCullDistance: 1000
     - _FogDepth: 5
+    - _Fresnel: 0.5
     - _Gloss: 0.2
     - _Gloss2: 0.2
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _LM: 0
+    - _LM2: 0
     - _Metallic: 0
     - _Mode: 0
     - _NoiseStrength: 0
     - _OcclusionStrength: 1
+    - _Offset: 1
+    - _OutlineSize: 0.01
     - _Parallax: 0.02
     - _Power: 1
     - _Reflection: 0.2
@@ -147,10 +167,13 @@ Material:
     - _Turbulence: 1
     - _UVSec: 0
     - _Use_Gradient: 1
+    - _Value: 1
+    - _Value2: 2
     - _WaterCullDistance: 1000
     - _WaveFrequency: 10
     - _WaveHeight: 1
     - _WaveLength: 200
+    - _WorldScale: 1
     - _ZWrite: 1
     - _speed: 1
     - _value: 0
@@ -164,5 +187,7 @@ Material:
     - _FoamColor: {r: 1, g: 1, b: 1, a: 1}
     - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
     - _HighlightColor2: {r: 1, g: 1, b: 1, a: 1}
+    - _IrColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _Position: {r: 0, g: 0, b: 0, a: 0}
     - _ShadowColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
