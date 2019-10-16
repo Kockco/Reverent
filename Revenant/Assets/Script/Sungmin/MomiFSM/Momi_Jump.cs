@@ -11,13 +11,13 @@ public class Momi_Jump : MomiFSMState
         // anime.SetInteger("Momi_Jump", 1);
         anime.SetTrigger("Momi_Jump");
 
-        Invoke("EndJump", 0.775f);
+        Invoke("EndJump", 1.15f);
     }
 
     public override void EndState()
     {
         base.EndState();
-        
+
     }
 
     protected override void Update()

@@ -1,0 +1,276 @@
+fileFormatVersion: 2
+guid: 175819c6ef43c774ca56f9a7e48baffb
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bip001
+    100002: Bip001 Footsteps
+    100004: Bip001 Head
+    100006: Bip001 HeadNub
+    100008: Bip001 L Calf
+    100010: Bip001 L Clavicle
+    100012: Bip001 L Foot
+    100014: Bip001 L Forearm
+    100016: Bip001 L Hand
+    100018: Bip001 L Thigh
+    100020: Bip001 L Toe0
+    100022: Bip001 L Toe0Nub
+    100024: Bip001 L UpperArm
+    100026: Bip001 LThighTwist
+    100028: Bip001 LThighTwist1
+    100030: Bip001 LThighTwist2
+    100032: Bip001 LThighTwist3
+    100034: Bip001 LThighTwist4
+    100036: Bip001 Neck
+    100038: Bip001 Pelvis
+    100040: Bip001 R Calf
+    100042: Bip001 R Clavicle
+    100044: Bip001 R Foot
+    100046: Bip001 R Forearm
+    100048: Bip001 R Hand
+    100050: Bip001 R Thigh
+    100052: Bip001 R Toe0
+    100054: Bip001 R Toe0Nub
+    100056: Bip001 R UpperArm
+    100058: Bip001 RThighTwist
+    100060: Bip001 RThighTwist1
+    100062: Bip001 RThighTwist2
+    100064: Bip001 RThighTwist3
+    100066: Bip001 RThighTwist4
+    100068: Bip001 Spine
+    100070: Bip001 Spine1
+    100072: Body_low
+    100074: Bone001
+    100076: Bone002
+    100078: Cape_low
+    100080: Hat01
+    100082: Hat01_low
+    100084: Hat02
+    100086: Hat02_low
+    100088: Hat03
+    100090: Head_low
+    100092: //RootNode
+    100094: L Clavicle Point
+    100096: L Deltoid
+    100098: L hand twist
+    100100: L hip twist
+    100102: L upper point
+    100104: Muffler01_low
+    100106: Muffler02_low
+    100108: Point001
+    100110: Point002
+    100112: Point004
+    100114: R Clavicle point
+    100116: R Deltoid
+    100118: R hand twist
+    100120: R hip twist
+    100122: R upper point
+    100124: Scarf002
+    100126: Scarf01
+    100128: Scarf03
+    400000: Bip001
+    400002: Bip001 Footsteps
+    400004: Bip001 Head
+    400006: Bip001 HeadNub
+    400008: Bip001 L Calf
+    400010: Bip001 L Clavicle
+    400012: Bip001 L Foot
+    400014: Bip001 L Forearm
+    400016: Bip001 L Hand
+    400018: Bip001 L Thigh
+    400020: Bip001 L Toe0
+    400022: Bip001 L Toe0Nub
+    400024: Bip001 L UpperArm
+    400026: Bip001 LThighTwist
+    400028: Bip001 LThighTwist1
+    400030: Bip001 LThighTwist2
+    400032: Bip001 LThighTwist3
+    400034: Bip001 LThighTwist4
+    400036: Bip001 Neck
+    400038: Bip001 Pelvis
+    400040: Bip001 R Calf
+    400042: Bip001 R Clavicle
+    400044: Bip001 R Foot
+    400046: Bip001 R Forearm
+    400048: Bip001 R Hand
+    400050: Bip001 R Thigh
+    400052: Bip001 R Toe0
+    400054: Bip001 R Toe0Nub
+    400056: Bip001 R UpperArm
+    400058: Bip001 RThighTwist
+    400060: Bip001 RThighTwist1
+    400062: Bip001 RThighTwist2
+    400064: Bip001 RThighTwist3
+    400066: Bip001 RThighTwist4
+    400068: Bip001 Spine
+    400070: Bip001 Spine1
+    400072: Body_low
+    400074: Bone001
+    400076: Bone002
+    400078: Cape_low
+    400080: Hat01
+    400082: Hat01_low
+    400084: Hat02
+    400086: Hat02_low
+    400088: Hat03
+    400090: Head_low
+    400092: //RootNode
+    400094: L Clavicle Point
+    400096: L Deltoid
+    400098: L hand twist
+    400100: L hip twist
+    400102: L upper point
+    400104: Muffler01_low
+    400106: Muffler02_low
+    400108: Point001
+    400110: Point002
+    400112: Point004
+    400114: R Clavicle point
+    400116: R Deltoid
+    400118: R hand twist
+    400120: R hip twist
+    400122: R upper point
+    400124: Scarf002
+    400126: Scarf01
+    400128: Scarf03
+    2100000: 01 - Default
+    2100002: No Name
+    2300000: Cape_low
+    2300002: Hat01_low
+    2300004: L Deltoid
+    2300006: Muffler01_low
+    2300008: R Deltoid
+    3300000: Cape_low
+    3300002: Hat01_low
+    3300004: L Deltoid
+    3300006: Muffler01_low
+    3300008: R Deltoid
+    4300000: Body_low
+    4300002: Muffler02_low
+    4300004: Head_low
+    4300006: L Deltoid
+    4300008: R Deltoid
+    4300010: Hat01_low
+    4300012: Hat02_low
+    4300014: Cape_low
+    4300016: Muffler01_low
+    7400000: Jump
+    9500000: //RootNode
+    13700000: Body_low
+    13700002: Hat02_low
+    13700004: Head_low
+    13700006: Muffler02_low
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Jump
+      takeName: Jump
+      firstFrame: 0
+      lastFrame: 43
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

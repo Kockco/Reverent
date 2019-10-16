@@ -91,7 +91,7 @@ public class CameraScript : MonoBehaviour
 
         // if (tempParticle.isStopped) puzzleClear = false;
 
-        Invoke("ExitPuzzleView", 2);
+        Invoke("ExitPuzzleView", 3);
     }
 
     void ExitPuzzleView()
