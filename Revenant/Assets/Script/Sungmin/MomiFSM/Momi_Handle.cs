@@ -135,7 +135,7 @@ public class Momi_Handle : MomiFSMState
         {
             transform.parent.parent.GetComponent<StarHandle>().CatchCheck();
         }
-        else if (transform.parent.parent.tag == "Potato_Handle")
+        else if (transform.parent.parent.tag == "Potato_Handle" || transform.parent.parent.tag == "Potato_Handle_2")
         {
             transform.parent.parent.GetComponent<PotatoHandle>().CatchCheck();
         }
@@ -152,9 +152,9 @@ public class Momi_Handle : MomiFSMState
         {
             transform.parent.parent.GetComponent<StarHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
-        else if (transform.parent.parent.tag == "Potato_Handle")
+        else if (transform.parent.parent.tag == "Potato_Handle" || transform.parent.parent.tag == "Potato_Handle_2")
         {
-            transform.parent.GetComponent<PotatoHandle>().HandleRotate(Input.GetAxis("Vertical"));
+            transform.parent.parent.GetComponent<PotatoHandle>().HandleRotate(Input.GetAxis("Vertical"));
         }
     }
 
