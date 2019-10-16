@@ -24,7 +24,7 @@ public class CameraScript : MonoBehaviour
         momiState = GameObject.Find("Momi").GetComponent<MomiFSMManager>();
         
         Cursor.visible = false;
-        // Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
     }
     
     void Update()
